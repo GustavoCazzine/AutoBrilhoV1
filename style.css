@@ -379,3 +379,251 @@ body {
     text-align: center;
     padding: 0 var(--space-md);
 }
+
+/* =================================================================== */
+/* ========================== SEÇÃO GALERIA ========================== */
+/* =================================================================== */
+.gallery-section {
+    padding: var(--space-section) 0;
+}
+
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Garante que os botões quebrem linha em telas pequenas */
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(1, 55, 197, 0.3);
+    color: var(--cor-texto-secundario);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--fonte-principal);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.filter-btn:hover {
+    background: rgba(1, 55, 197, 0.1);
+    color: var(--cor-texto-principal);
+}
+
+.filter-btn.active {
+    background: var(--cor-destaque);
+    color: var(--cor-texto-principal);
+    border-color: var(--cor-destaque);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 4 / 3; /* Proporção consistente para as imagens */
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+/* Efeito para o filtro JS */
+.gallery-item.hide {
+    transform: scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--space-lg) var(--space-md) var(--space-md);
+    background: linear-gradient(to top, rgba(8, 10, 19, 0.95) 10%, transparent 100%);
+    z-index: 2;
+    color: var(--cor-texto-principal);
+}
+
+.gallery-item-caption h3 {
+    font-size: var(--font-size-md);
+    margin: 0;
+}
+
+.gallery-item-caption p {
+    font-size: var(--font-size-base);
+    color: var(--cor-texto-secundario);
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* =================================================================== */
+/* ======================== SEÇÃO DIFERENCIAIS ======================= */
+/* =================================================================== */
+.diferenciais-section {
+    padding: var(--space-section) 0;
+}
+
+.diferenciais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+}
+
+.diferencial-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(1, 55, 197, 0.1);
+    padding: var(--space-xl);
+    border-radius: var(--border-radius-md);
+    transition: var(--transition-fast);
+}
+
+.diferencial-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(1, 55, 197, 0.4);
+}
+
+.diferencial-item h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-sm);
+    color: var(--cor-texto-principal);
+}
+
+.diferencial-item p {
+    font-size: var(--font-size-base);
+    color: var(--cor-texto-secundario);
+    line-height: 1.6;
+}
+
+
+/* =================================================================== */
+/* =========================== SEÇÃO CONTATO ========================= */
+/* =================================================================== */
+.contato-section {
+    padding: var(--space-section) 0;
+}
+
+.contato-wrapper {
+    display: grid;
+    grid-template-columns: 1fr; /* Padrão mobile: uma coluna */
+    gap: var(--space-xl);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(1, 55, 197, 0.1);
+    padding: var(--space-xl);
+    border-radius: var(--border-radius-md);
+}
+
+/* Futuramente, para desktop, usaremos uma media query:
+@media (min-width: 900px) {
+    .contato-wrapper { grid-template-columns: 1fr 1fr; }
+}
+*/
+
+.contato-info h3, .contato-form h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-md);
+}
+
+.contato-info p {
+    font-size: var(--font-size-base);
+    color: var(--cor-texto-secundario);
+    margin-bottom: var(--space-lg);
+    line-height: 1.6;
+}
+
+.info-item {
+    display: flex;
+    align-items: start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    font-size: var(--font-size-base);
+}
+
+.info-item span {
+    flex: 1;
+}
+
+/* Estilos para os inputs do formulário */
+.contato-form form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.contato-form input,
+.contato-form textarea {
+    width: 100%;
+    padding: var(--space-sm);
+    background: var(--cor-fundo);
+    border: 1px solid rgba(1, 55, 197, 0.3);
+    border-radius: var(--border-radius-sm);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-principal);
+    font-size: var(--font-size-base);
+    transition: var(--transition-fast);
+}
+
+.contato-form input:focus,
+.contato-form textarea:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 10px rgba(1, 55, 197, 0.5);
+}
+
+.contato-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.cta-form {
+    background: linear-gradient(90deg, var(--cor-destaque) 0%, var(--cor-gradiente-b) 100%);
+    color: var(--cor-texto-principal);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-fast);
+    border: none;
+    cursor: pointer;
+    font-family: var(--fonte-principal);
+    font-size: var(--font-size-base);
+}
+
+.cta-form:hover {
+    filter: brightness(1.2);
+}
+
+
+/* =================================================================== */
+/* ============================= RODAPÉ ============================== */
+/* =================================================================== */
+.footer {
+    padding: var(--space-xl) var(--space-md);
+    text-align: center;
+    margin-top: var(--space-section);
+    border-top: 1px solid rgba(1, 55, 197, 0.1);
+    font-size: var(--font-size-sm);
+    color: var(--cor-texto-secundario);
+}

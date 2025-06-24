@@ -66,3 +66,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// ===================================================================
+// =================== LÓGICA DO FILTRO DA GALERIA ===================
+// ===================================================================
+
+// Seleciona todos os elementos necessários
+const filterButtons = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+// Adiciona um evento de clique a cada botão de filtro
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove a classe 'active' de todos os botões
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Adiciona a classe 'active' apenas ao botão clicado
+        button.classList.add('active');
+
+        // Pega o valor do filtro do atributo 'data-filter'
+        const filterValue = button.dataset.filter;
+
+        // Itera sobre cada item da galeria para mostrar ou esconder
+        galleryItems.forEach(item => {
+            const itemCategory = item.dataset.category;
+
+            // Se o filtro for "todos" OU a categoria do item for a mesma do filtro
+            if (filterValue === 'todos' || itemCategory === filterValue) {
+                item.classList.remove('hide'); // Mostra o item
+            } else {
+                item.classList.add('hide'); // Esconde o item
+            }
+        });
+    });
+});

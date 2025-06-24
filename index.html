@@ -14,7 +14,6 @@
     <header class="header">
         <div class="header-container">
             <a href="#hero" class="header-logo">Auto<span>Brilho</span></a>
-            
             <button id="hamburger-btn" class="hamburger-btn">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -32,6 +31,7 @@
             <a href="#contato" class="nav-link">Contato</a>
         </nav>
     </div>
+
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
@@ -72,7 +72,7 @@
                             <a href="#" class="cta-servico cta-whatsapp" data-message="Olá! Quero um orçamento para Polimento.">Solicitar Orçamento</a>
                         </div>
                         <div id="higienizacao-content" class="service-content-panel">
-                            <img src="https://images.pexels.com/photos/8982439/pexels-photo-8982439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Higienização Interna">
+                             <img src="https://images.pexels.com/photos/8982439/pexels-photo-8982439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Higienização Interna">
                             <h3>Saúde e Bem-Estar a Bordo</h3>
                             <p>Limpeza profunda que elimina 99,9% de ácaros, fungos e bactérias do interior do veículo, removendo manchas e odores.</p>
                             <a href="#" class="cta-servico cta-whatsapp" data-message="Olá! Quero um orçamento para Higienização.">Solicitar Orçamento</a>
@@ -81,10 +81,120 @@
                 </div>
             </div>
         </section>
-        
-        <section id="galeria" class="placeholder-section">Galeria</section>
-        <section id="diferenciais" class="placeholder-section">Diferenciais</section>
-        <section id="contato" class="placeholder-section">Contato</section>
+
+        <section id="galeria" class="gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">A Arte do Detalhe</h2>
+                    <p class="section-subtitle">Resultados que falam por si. Veja o antes e depois de alguns dos nossos projetos.</p>
+                </div>
+
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="todos">Todos</button>
+                    <button class="filter-btn" data-filter="vitrificacao">Vitrificação</button>
+                    <button class="filter-btn" data-filter="polimento">Polimento</button>
+                    <button class="filter-btn" data-filter="interiores">Interiores</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="vitrificacao">
+                        <img src="https://images.pexels.com/photos/6871787/pexels-photo-6871787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Aplicação de coating cerâmico">
+                        <div class="gallery-item-caption"><h3>Vitrificação Cerâmica</h3><p>Porsche 911</p></div>
+                    </div>
+                    <div class="gallery-item" data-category="interiores">
+                        <img src="https://images.pexels.com/photos/7091427/pexels-photo-7091427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Limpeza de interior de couro">
+                        <div class="gallery-item-caption"><h3>Higienização Interna</h3><p>Mercedes-Benz</p></div>
+                    </div>
+                    <div class="gallery-item" data-category="polimento">
+                        <img src="https://images.pexels.com/photos/9514032/pexels-photo-9514032.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Polimento de alta performance">
+                        <div class="gallery-item-caption"><h3>Polimento Técnico</h3><p>Ferrari F8</p></div>
+                    </div>
+                    <div class="gallery-item" data-category="vitrificacao">
+                        <img src="https://images.pexels.com/photos/9708027/pexels-photo-9708027.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Detalhe de gota d'água em pintura vitrificada">
+                        <div class="gallery-item-caption"><h3>Efeito Hidrofóbico</h3><p>Audi RS6</p></div>
+                    </div>
+                    <div class="gallery-item" data-category="polimento">
+                         <img src="https://images.pexels.com/photos/9514022/pexels-photo-9514022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Reflexo perfeito após polimento">
+                        <div class="gallery-item-caption"><h3>Correção de Pintura</h3><p>Lamborghini</p></div>
+                    </div>
+                    <div class="gallery-item" data-category="interiores">
+                        <img src="https://images.pexels.com/photos/1707920/pexels-photo-1707920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Aspiração detalhada do interior">
+                        <div class="gallery-item-caption"><h3>Limpeza Detalhada</h3><p>Veículo Clássico</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diferenciais" class="diferenciais-section blueprint-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">O Padrão Auto Brilho</h2>
+                    <p class="section-subtitle">Não se trata apenas de limpeza, mas de um cuidado meticuloso e um compromisso com a excelência.</p>
+                </div>
+                <div class="diferenciais-grid">
+                    <div class="diferencial-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 21.5z"></path><path d="M12 15l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 15z"></path><path d="M12 8.5l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 8.5z"></path></svg>
+                        <h3>Produtos Premium</h3>
+                        <p>Utilizamos apenas produtos de marcas líderes mundiais, garantindo um acabamento superior e proteção duradoura para o seu veículo.</p>
+                    </div>
+                    <div class="diferencial-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m10 13-2 2 2 2"></path><path d="m14 13 2 2-2 2"></path></svg>
+                        <h3>Técnica e Precisão</h3>
+                        <p>Nossa equipe possui treinamento e certificação, seguindo processos rigorosos para garantir que cada detalhe seja tratado com a máxima perfeição.</p>
+                    </div>
+                    <div class="diferencial-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"></path><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg>
+                        <h3>Consultoria Personalizada</h3>
+                        <p>Analisamos as necessidades específicas do seu carro e do seu perfil de uso para recomendar o tratamento ideal, com total transparência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="contato-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Agende sua Avaliação</h2>
+                    <p class="section-subtitle">Dê o primeiro passo para ter seu carro em estado de zero km novamente. Fale conosco!</p>
+                </div>
+                <div class="contato-wrapper">
+                    <div class="contato-info">
+                        <h3>Informações de Contato</h3>
+                        <p>Estamos à disposição para tirar suas dúvidas e agendar o melhor horário para cuidar do seu veículo.</p>
+                        <div class="info-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span><strong>Endereço:</strong> Sua Rua, 123 - Seu Bairro, Piracicaba - SP</span>
+                        </div>
+                        <div class="info-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                            <span><strong>Email:</strong> contato@autobrilho.com.br</span>
+                        </div>
+                        <h3>Horário de Funcionamento</h3>
+                        <div class="info-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <span>Segunda a Sexta: <strong>8:00 - 18:00</strong></span>
+                        </div>
+                        <div class="info-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <span>Sábado: <strong>8:00 - 12:00</strong></span>
+                        </div>
+                    </div>
+                    <div class="contato-form">
+                        <h3>Envie uma Mensagem</h3>
+                        <form action="#" method="POST">
+                            <input type="text" name="name" placeholder="Seu Nome" required>
+                            <input type="text" name="phone" placeholder="Seu WhatsApp" required>
+                            <textarea name="message" placeholder="Qual serviço você tem interesse?" required></textarea>
+                            <button type="submit" class="cta-form">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Auto Brilho Estética Automotiva. Todos os direitos reservados.</p>
+        </footer>
     </main>
 
     <script src="script.js"></script>
