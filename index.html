@@ -17,7 +17,7 @@
     <header class="header">
         <div class="header-container">
             <a href="#hero" class="header-logo">
-                <img src="./assets/img/" alt="Auto Brilho Logo">
+                <img src="./assets/img/logopng.png" alt="Auto Brilho Logo">
             </a>
             
             <button id="hamburger-btn" class="hamburger-btn">
@@ -51,7 +51,10 @@
                 <p>Elevamos o padrão da estética automotiva com serviços de vitrificação, polimento e higienização que protegem e valorizam seu investimento.</p>
                 
                 <div class="appointment-link">
-                    <a href="#" class="cta-whatsapp" data-message="Olá! Gostaria de conhecer mais sobre os serviços.">Descubra Nossos Serviços</a>
+                    <a href="#servicos" class="cta-principal">
+                        Ver Serviços
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+                    </a>
                 </div>
             </div>
             
@@ -63,176 +66,159 @@
         <section id="servicos" class="servicos-section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Nossos Serviços de Elite</h2>
-                    <p class="section-subtitle">O tratamento que seu veículo merece, com a precisão que você espera.</p>
+                    <h2 class="section-title">Soluções em Detalhamento</h2>
+                    <p class="section-subtitle">Descubra como nossa precisão técnica pode proteger e rejuvenescer seu veículo.</p>
                 </div>
                 
                 <div class="servicos-showcase-container">
-                    <div class="servicos-menu">
-                        <button class="service-tab-item active" data-target="vitrificacao-content"><span>01</span> Vitrificação</button>
-                        <button class="service-tab-item" data-target="polimento-content"><span>02</span> Polimento</button>
-                        <button class="service-tab-item" data-target="higienizacao-content"><span>03</span> Higienização</button>
-                    </div>
-
-                    <div class="servicos-display">
-                        <div id="vitrificacao-content" class="service-content-panel active">
-                            <img src="https://images.pexels.com/photos/10399120/pexels-photo-10399120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Vitrificação de Pintura">
-                            <h3>Proteção Cerâmica de Longa Duração</h3>
-                            <p>Criamos um escudo de vidro sobre a pintura que oferece brilho intenso, proteção contra micro-riscos e um incrível efeito hidrorrepelente.</p>
-                            <a href="#" class="cta-servico cta-whatsapp" data-message="Olá! Quero um orçamento para Vitrificação.">Solicitar Orçamento</a>
-                        </div>
-                        <div id="polimento-content" class="service-content-panel">
-                            <img src="https://images.pexels.com/photos/7131301/pexels-photo-7131301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Polimento Técnico">
-                            <h3>Restauração e Brilho Espelhado</h3>
-                            <p>Removemos com técnica as imperfeições como "teias de aranha" e riscos superficiais, revelando a cor e o brilho originais do seu carro.</p>
-                            <a href="#" class="cta-servico cta-whatsapp" data-message="Olá! Quero um orçamento para Polimento.">Solicitar Orçamento</a>
-                        </div>
-                        <div id="higienizacao-content" class="service-content-panel">
-                             <img src="https://images.pexels.com/photos/8982439/pexels-photo-8982439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Higienização Interna">
-                            <h3>Saúde e Bem-Estar a Bordo</h3>
-                            <p>Limpeza profunda que elimina 99,9% de ácaros, fungos e bactérias do interior do veículo, removendo manchas e odores.</p>
-                            <a href="#" class="cta-servico cta-whatsapp" data-message="Olá! Quero um orçamento para Higienização.">Solicitar Orçamento</a>
-                        </div>
-                    </div>
+                    <div class="servicos-menu"></div>
+                    <div class="servicos-display"></div>
                 </div>
             </div>
         </section>
         
-        <section id="combo-builder" class="combo-section blueprint-bg">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Orçamento Interativo</h2>
-                    <p class="section-subtitle">Monte o pacote de detalhamento ideal para seu veículo e envie para uma cotação detalhada.</p>
-                </div>
-
-                <div class="combo-builder-container">
-                    <div class="combo-options">
-                        <div class="service-group">
-                            <label class="group-title"><input type="checkbox" name="servico" value="Vitrificação de Pintura">Vitrificação de Pintura</label>
-                            <div class="sub-options">
-                                <p>Escolha o nível de proteção:</p>
-                                <label><input type="radio" name="vitrificacao_level" value="Essencial (1 Ano)"> Proteção Essencial (1 Ano)</label>
-                                <label><input type="radio" name="vitrificacao_level" value="Premium (3 Anos)"> Proteção Premium (3 Anos)</label>
-                                <label><input type="radio" name="vitrificacao_level" value="Graphene (5 Anos)"> Proteção Graphene (5+ Anos)</label>
-                            </div>
-                        </div>
-                        <div class="service-group">
-                            <label class="group-title"><input type="checkbox" name="servico" value="Polimento Técnico">Polimento Técnico</label>
-                        </div>
-                        <div class="service-group">
-                            <label class="group-title"><input type="checkbox" name="servico" value="Proteção para Rodas">Proteção para Rodas</label>
-                        </div>
-                        <div class="service-group">
-                            <label class="group-title"><input type="checkbox" name="servico" value="Higienização Interna">Higienização Interna</label>
-                            <div class="sub-options">
-                                <p>Deseja adicionar hidratação de couro?</p>
-                                <label><input type="radio" name="higienizacao_level" value="com Hidratação de Couro"> Sim, incluir hidratação</label>
-                                <label><input type="radio" name="higienizacao_level" value="sem Hidratação de Couro"> Não, apenas higienização</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="combo-summary">
-                        <h3>Seu Pacote Personalizado</h3>
-                        <ul id="summary-list"><li>Nenhum serviço selecionado.</li></ul>
-                        <button id="send-combo-btn" class="cta-combo">Enviar para Orçamento</button>
-                    </div>
-                </div>
-            </div>
-        </section>
         
         <section id="galeria" class="gallery-section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">A Arte do Detalhe</h2>
-                    <p class="section-subtitle">Resultados que falam por si. Veja o antes e depois de alguns dos nossos projetos.</p>
+                    <h2 class="section-title">A Prova está nos Detalhes</h2>
+                    <p class="section-subtitle">Transformações reais, resultados impecáveis. Clique em um projeto para ver a mágica acontecer.</p>
                 </div>
+
                 <div class="gallery-filters">
                     <button class="filter-btn active" data-filter="todos">Todos</button>
                     <button class="filter-btn" data-filter="vitrificacao">Vitrificação</button>
                     <button class="filter-btn" data-filter="polimento">Polimento</button>
                     <button class="filter-btn" data-filter="interiores">Interiores</button>
                 </div>
-                <div class="gallery-grid">
-                    <div class="gallery-item" data-category="vitrificacao"><img src="https://images.pexels.com/photos/6871787/pexels-photo-6871787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Aplicação de coating cerâmico"><div class="gallery-item-caption"><h3>Vitrificação Cerâmica</h3><p>Porsche 911</p></div></div>
-                    <div class="gallery-item" data-category="interiores"><img src="https://images.pexels.com/photos/7091427/pexels-photo-7091427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Limpeza de interior de couro"><div class="gallery-item-caption"><h3>Higienização Interna</h3><p>Mercedes-Benz</p></div></div>
-                    <div class="gallery-item" data-category="polimento"><img src="https://images.pexels.com/photos/9514032/pexels-photo-9514032.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Polimento de alta performance"><div class="gallery-item-caption"><h3>Polimento Técnico</h3><p>Ferrari F8</p></div></div>
-                    <div class="gallery-item" data-category="vitrificacao"><img src="https://images.pexels.com/photos/9708027/pexels-photo-9708027.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Detalhe de gota d'água em pintura vitrificada"><div class="gallery-item-caption"><h3>Efeito Hidrofóbico</h3><p>Audi RS6</p></div></div>
-                    <div class="gallery-item" data-category="polimento"><img src="https://images.pexels.com/photos/9514022/pexels-photo-9514022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Reflexo perfeito após polimento"><div class="gallery-item-caption"><h3>Correção de Pintura</h3><p>Lamborghini</p></div></div>
-                    <div class="gallery-item" data-category="interiores"><img src="https://images.pexels.com/photos/1707920/pexels-photo-1707920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Aspiração detalhada do interior"><div class="gallery-item-caption"><h3>Limpeza Detalhada</h3><p>Veículo Clássico</p></div></div>
+
+                <div class="gallery-grid"></div>
+
+                <div class="load-more-container">
+                    <button id="load-more-btn" class="cta-secondary">Ver Mais Projetos</button>
                 </div>
             </div>
         </section>
+
+
+        <div id="lightbox" class="lightbox">
+            <button class="lightbox-close">&times;</button>
+            <div class="lightbox-content">
+                <img id="lightbox-img" src="" alt="Resultado do projeto em destaque">
+            </div>
+        </div>
         
         <section id="diferenciais" class="diferenciais-section blueprint-bg">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">O Padrão Auto Brilho</h2>
-                    <p class="section-subtitle">Não se trata apenas de limpeza, mas de um cuidado meticuloso e um compromisso com a excelência.</p>
+                    <h2 class="section-title">Nosso Compromisso com a Excelência</h2>
+                    <p class="section-subtitle">Não entregamos apenas um carro limpo. Entregamos um resultado técnico, duradouro e uma experiência de total confiança.</p>
                 </div>
+
                 <div class="diferenciais-grid">
                     <div class="diferencial-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 21.5z"></path><path d="M12 15l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 15z"></path><path d="M12 8.5l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 8.5z"></path></svg>
-                        <h3>Produtos Premium</h3>
-                        <p>Utilizamos apenas produtos de marcas líderes mundiais, garantindo um acabamento superior e proteção duradoura para o seu veículo.</p>
+                        <div class="diferencial-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m10 13-2 2 2 2"></path><path d="m14 13 2 2-2 2"></path></svg>
+                        </div>
+                        <h3>Processo Meticuloso</h3>
+                        <p>Seguimos um checklist rigoroso e técnico para cada serviço. Nenhuma etapa é pulada. Utilizamos iluminação de inspeção e ferramentas de precisão para garantir que até os mínimos detalhes sejam perfeitos.</p>
                     </div>
                     <div class="diferencial-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m10 13-2 2 2 2"></path><path d="m14 13 2 2-2 2"></path></svg>
-                        <h3>Técnica e Precisão</h3>
-                        <p>Nossa equipe possui treinamento e certificação, seguindo processos rigorosos para garantir que cada detalhe seja tratado com a máxima perfeição.</p>
+                        <div class="diferencial-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 21.5z"></path><path d="M12 15l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 15z"></path><path d="M12 8.5l-3.3-3.3a4.6 4.6 0 1 1 6.6 0L12 8.5z"></path></svg>
+                        </div>
+                        <h3>Química de Ponta</h3>
+                        <p>A qualidade do resultado final depende diretamente dos produtos. Por isso, investimos e utilizamos apenas o que há de melhor no mercado mundial de detalhamento automotivo.</p>
                     </div>
                     <div class="diferencial-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"></path><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg>
-                        <h3>Consultoria Personalizada</h3>
-                        <p>Analisamos as necessidades específicas do seu carro e do seu perfil de uso para recomendar o tratamento ideal, com total transparência.</p>
+                        <div class="diferencial-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"></path><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg>
+                        </div>
+                        <h3>Atendimento Consultivo</h3>
+                        <p>O melhor serviço é aquele que atende à sua necessidade. Conversamos com você para entender seu uso e suas expectativas, oferecendo uma solução honesta e personalizada.</p>
                     </div>
                 </div>
+
+                <div class="product-showcase-container">
+                    <h3 class="subsection-title">Marcas que Confiamos e Utilizamos</h3>
+                    <div class="product-logos"></div>
+                </div>
+
+                <div class="guarantee-seal">
+                    <div class="seal-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                    </div>
+                    <div class="seal-text">
+                        <h4>Nossa Garantia de Satisfação</h4>
+                        <p>Nosso objetivo é superar suas expectativas. Entregamos seu veículo apenas quando cada detalhe estiver de acordo com nosso altíssimo padrão de qualidade. Sua satisfação é a assinatura do nosso trabalho.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <section id="contato" class="contato-section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Agende sua Avaliação</h2>
-                    <p class="section-subtitle">Dê o primeiro passo para ter seu carro em estado de zero km novamente. Fale conosco!</p>
+                    <h2 class="section-title">Receba seu Orçamento Detalhado</h2>
+                    <p class="section-subtitle">Preencha os dados abaixo para gerar uma mensagem personalizada e iniciar nossa conversa no WhatsApp.</p>
                 </div>
-                <div class="contato-wrapper">
-                    <div class="contato-info">
-                        <h3>Informações de Contato</h3>
-                        <p>Estamos à disposição para tirar suas dúvidas e agendar o melhor horário para cuidar do seu veículo.</p>
-                        <div class="info-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            <span><strong>Endereço:</strong> Sua Rua, 123 - Seu Bairro, Piracicaba - SP</span>
+
+                <div class="quote-generator-container">
+                    <div class="quote-inputs">
+                        <div class="input-group">
+                            <label for="veiculo-modelo">Marca e Modelo do Veículo</label>
+                            <input type="text" id="veiculo-modelo" name="veiculo-modelo" placeholder="Ex: Honda Civic G10">
                         </div>
-                        <div class="info-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
-                            <span><strong>Email:</strong> contato@autobrilho.com.br</span>
+                        <div class="input-group">
+                            <label for="veiculo-ano">Ano do Veículo</label>
+                            <input type="number" id="veiculo-ano" name="veiculo-ano" placeholder="Ex: 2022">
                         </div>
-                        <h3>Horário de Funcionamento</h3>
-                        <div class="info-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                            <span>Segunda a Sexta: <strong>8:00 - 18:00</strong></span>
+                        
+                        <div class="input-group">
+                            <label>Serviços de Interesse (selecione um ou mais)</label>
+                            <div class="servicos-checkboxes">
+                                <label><input type="checkbox" name="servico-interesse" value="Vitrificação"> Vitrificação</label>
+                                <label><input type="checkbox" name="servico-interesse" value="Polimento Técnico"> Polimento Técnico</label>
+                                <label><input type="checkbox" name="servico-interesse" value="Higienização Interna"> Higienização Interna</label>
+                                <label><input type="checkbox" name="servico-interesse" value="Proteção de Rodas"> Proteção de Rodas</label>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                            <span>Sábado: <strong>8:00 - 12:00</strong></span>
+
+                        <div class="input-group">
+                            <label for="observacoes">Observações Adicionais (opcional)</label>
+                            <textarea id="observacoes" name="observacoes" rows="3" placeholder="Ex: O carro possui alguns riscos na porta direita."></textarea>
                         </div>
                     </div>
-                    <div class="contato-form">
-                        <h3>Envie uma Mensagem</h3>
-                        <form action="#" method="POST">
-                            <input type="text" name="name" placeholder="Seu Nome" required>
-                            <input type="text" name="phone" placeholder="Seu WhatsApp" required>
-                            <textarea name="message" placeholder="Qual serviço você tem interesse?" required></textarea>
-                            <button type="submit" class="cta-form">Enviar Mensagem</button>
-                        </form>
+
+                    <div class="quote-preview">
+                        <h4>Prévia da Mensagem:</h4>
+                        <div id="whatsapp-message-preview" class="whatsapp-preview-box">
+                            <p>Olá, Auto Brilho! Gostaria de um orçamento para o meu veículo.</p>
+                        </div>
+                        <button id="generate-whatsapp-btn" class="cta-principal">
+                            Marcar um horário
+                            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+                        </button>
                     </div>
+                </div>
+
+                <div class="contato-info-footer">
+                    <p>Prefere outro método? <a href="mailto:contato@autobrilho.com.br">Envie-nos um e-mail</a> ou visite-nos.</p>
+                    <span>Sua Rua, 123 - Piracicaba, SP</span>
                 </div>
             </div>
         </section>
 
         <footer class="footer">
-            <p>&copy; 2025 Auto Brilho Estética Automotiva. Todos os direitos reservados.</p>
+            <div class="footer-container">
+                <a href="#hero" class="header-logo">Auto<span>Brilho</span></a>
+                <p>&copy; 2025 Auto Brilho Estética Automotiva. Todos os direitos reservados.</p>
+                <div class="social-icons">
+                    </div>
+            </div>
         </footer>
+
     </main>
     
     <script src="script.js"></script>
