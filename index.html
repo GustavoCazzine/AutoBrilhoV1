@@ -72,7 +72,7 @@
                             <a href="#" class="cta-servico cta-whatsapp" data-message="Olá! Quero um orçamento para Polimento.">Solicitar Orçamento</a>
                         </div>
                         <div id="higienizacao-content" class="service-content-panel">
-                             <img src="https://images.pexels.com/photos/8982439/pexels-photo-8982439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Higienização Interna">
+                            <img src="https://images.pexels.com/photos/8982439/pexels-photo-8982439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Higienização Interna">
                             <h3>Saúde e Bem-Estar a Bordo</h3>
                             <p>Limpeza profunda que elimina 99,9% de ácaros, fungos e bactérias do interior do veículo, removendo manchas e odores.</p>
                             <a href="#" class="cta-servico cta-whatsapp" data-message="Olá! Quero um orçamento para Higienização.">Solicitar Orçamento</a>
@@ -114,7 +114,7 @@
                         <div class="gallery-item-caption"><h3>Efeito Hidrofóbico</h3><p>Audi RS6</p></div>
                     </div>
                     <div class="gallery-item" data-category="polimento">
-                         <img src="https://images.pexels.com/photos/9514022/pexels-photo-9514022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Reflexo perfeito após polimento">
+                        <img src="https://images.pexels.com/photos/9514022/pexels-photo-9514022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Reflexo perfeito após polimento">
                         <div class="gallery-item-caption"><h3>Correção de Pintura</h3><p>Lamborghini</p></div>
                     </div>
                     <div class="gallery-item" data-category="interiores">
@@ -146,6 +146,68 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"></path><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg>
                         <h3>Consultoria Personalizada</h3>
                         <p>Analisamos as necessidades específicas do seu carro e do seu perfil de uso para recomendar o tratamento ideal, com total transparência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="combo-builder" class="combo-section blueprint-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Orçamento Interativo</h2>
+                    <p class="section-subtitle">Monte o pacote de detalhamento ideal para seu veículo e envie para uma cotação detalhada.</p>
+                </div>
+
+                <div class="combo-builder-container">
+                    <div class="combo-options">
+                        
+                        <div class="service-group">
+                            <label class="group-title">
+                                <input type="checkbox" name="servico" value="Vitrificação de Pintura">
+                                Vitrificação de Pintura
+                            </label>
+                            <div class="sub-options">
+                                <p>Escolha o nível de proteção:</p>
+                                <label><input type="radio" name="vitrificacao_level" value="Essencial (1 Ano)"> Proteção Essencial (1 Ano)</label>
+                                <label><input type="radio" name="vitrificacao_level" value="Premium (3 Anos)"> Proteção Premium (3 Anos)</label>
+                                <label><input type="radio" name="vitrificacao_level" value="Graphene (5 Anos)"> Proteção Graphene (5+ Anos)</label>
+                            </div>
+                        </div>
+
+                        <div class="service-group">
+                            <label class="group-title">
+                                <input type="checkbox" name="servico" value="Polimento Técnico">
+                                Polimento Técnico
+                            </label>
+                        </div>
+                        
+                        <div class="service-group">
+                            <label class="group-title">
+                                <input type="checkbox" name="servico" value="Proteção para Rodas">
+                                Proteção para Rodas
+                            </label>
+                        </div>
+
+                        <div class="service-group">
+                            <label class="group-title">
+                                <input type="checkbox" name="servico" value="Higienização Interna">
+                                Higienização Interna
+                            </label>
+                            <div class="sub-options">
+                                <p>Deseja adicionar hidratação de couro?</p>
+                                <label><input type="radio" name="higienizacao_level" value="com Hidratação de Couro"> Sim, incluir hidratação</label>
+                                <label><input type="radio" name="higienizacao_level" value="sem Hidratação de Couro"> Não, apenas higienização</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="combo-summary">
+                        <h3>Seu Pacote Personalizado</h3>
+                        <ul id="summary-list">
+                            <li>Nenhum serviço selecionado.</li>
+                        </ul>
+                        <button id="send-combo-btn" class="cta-combo">Enviar para Orçamento</button>
                     </div>
                 </div>
             </div>

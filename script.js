@@ -99,3 +99,82 @@ filterButtons.forEach(button => {
         });
     });
 });
+
+// ===================================================================
+// =================== LÓGICA DO ORÇAMENTO INTERATIVO ==================
+// ===================================================================
+const comboOptionsContainer = document.querySelector('.combo-options');
+const summaryList = document.getElementById('summary-list');
+const sendComboBtn = document.getElementById('send-combo-btn');
+
+if (comboOptionsContainer && summaryList && sendComboBtn) {
+
+    // Função para atualizar o resumo do pacote
+    function updateComboSummary() {
+        summaryList.innerHTML = ''; // Limpa a lista atual
+        let selectedItems = [];
+
+        // Pega todos os checkboxes de serviço que estão marcados
+        const selectedServices = comboOptionsContainer.querySelectorAll('input[name="servico"]:checked');
+
+        if (selectedServices.length === 0) {
+            summaryList.innerHTML = '<li>Nenhum serviço selecionado.</li>';
+            return;
+        }
+
+        selectedServices.forEach(checkbox => {
+            let serviceName = checkbox.value;
+            let serviceDetail = '';
+            
+            // Procura por uma sub-opção selecionada para este serviço
+            const serviceGroup = checkbox.closest('.service-group');
+            const selectedRadio = serviceGroup.querySelector('input[type="radio"]:checked');
+            
+            if (selectedRadio) {
+                serviceDetail = ` (${selectedRadio.value})`;
+            }
+
+            // Adiciona o item formatado à lista
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>${serviceName}</strong>${serviceDetail}`;
+            summaryList.appendChild(listItem);
+            selectedItems.push(`${serviceName}${serviceDetail}`);
+        });
+    }
+
+    // "Escuta" por qualquer mudança nos inputs dentro das opções
+    comboOptionsContainer.addEventListener('change', updateComboSummary);
+
+    // Lógica do botão "Enviar para Orçamento"
+    sendComboBtn.addEventListener('click', () => {
+        const items = summaryList.querySelectorAll('li');
+        if (items.length === 0 || items[0].textContent === 'Nenhum serviço selecionado.') {
+            alert('Por favor, selecione ao menos um serviço para solicitar um orçamento.');
+            return;
+        }
+
+        let messageText = "Olá! Gostaria de um orçamento para o seguinte pacote personalizado:\n";
+        items.forEach(item => {
+            messageText += `\n- ${item.textContent}`;
+        });
+
+        // Encontra o formulário de contato e preenche a mensagem
+        const contactFormMessage = document.querySelector('#contato textarea[name="message"]');
+        if (contactFormMessage) {
+            contactFormMessage.value = messageText;
+            
+            // Rola a página suavemente até a seção de contato
+            document.getElementById('contato').scrollIntoView({
+                behavior: 'smooth'
+            });
+
+            // Dá um foco visual no campo da mensagem
+            contactFormMessage.focus();
+        } else {
+            alert('Não foi possível encontrar o formulário de contato.');
+        }
+    });
+
+    // Inicia o resumo ao carregar a página
+    updateComboSummary();
+}

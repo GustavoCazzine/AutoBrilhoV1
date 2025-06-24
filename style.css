@@ -627,3 +627,148 @@ body {
     font-size: var(--font-size-sm);
     color: var(--cor-texto-secundario);
 }
+
+/* =================================================================== */
+/* ======================= SEÇÃO MONTE SEU COMBO ===================== */
+/* =================================================================== */
+.combo-section {
+    padding: var(--space-section) 0;
+}
+
+.combo-builder-container {
+    display: flex;
+    flex-direction: column; /* Mobile first: colunas empilhadas */
+    gap: var(--space-xl);
+}
+
+/* Futuramente, para desktop, usaremos uma media query:
+@media (min-width: 992px) {
+    .combo-builder-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .combo-options { flex: 2; }
+    .combo-summary { flex: 1; }
+}
+*/
+
+.combo-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.service-group {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(1, 55, 197, 0.1);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-md);
+    transition: var(--transition-smooth);
+}
+
+.service-group .group-title {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    width: 100%;
+}
+
+.group-title input[type="checkbox"] {
+    margin-right: var(--space-sm);
+    width: 20px;
+    height: 20px;
+    accent-color: var(--cor-destaque);
+}
+
+.sub-options {
+    max-height: 0;
+    overflow: hidden;
+    padding-left: 35px; /* Alinha com o texto do título */
+    transition: max-height 0.4s ease-in-out, margin-top 0.4s ease-in-out;
+}
+
+/* Mostra as sub-opções quando o checkbox correspondente está marcado */
+.service-group input[type="checkbox"]:checked ~ .sub-options {
+    max-height: 300px; /* Um valor alto o suficiente para caber o conteúdo */
+    margin-top: var(--space-md);
+}
+
+.sub-options p {
+    font-size: var(--font-size-sm);
+    color: var(--cor-texto-secundario);
+    margin-bottom: var(--space-sm);
+}
+
+.sub-options label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-base);
+    color: var(--cor-texto-secundario);
+    cursor: pointer;
+}
+
+.sub-options input[type="radio"] {
+    margin-right: var(--space-xs);
+    accent-color: var(--cor-destaque);
+}
+
+.combo-summary {
+    background: var(--cor-fundo);
+    border: 1px solid rgba(1, 55, 197, 0.3);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-lg);
+    /* Deixa o box fixo na tela ao rolar (em telas maiores) */
+    position: sticky;
+    top: 120px; 
+}
+
+.combo-summary h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(1, 55, 197, 0.2);
+    padding-bottom: var(--space-sm);
+}
+
+#summary-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-lg);
+}
+
+#summary-list li {
+    font-size: var(--font-size-base);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--cor-texto-secundario);
+}
+
+#summary-list li strong {
+    color: var(--cor-texto-principal);
+    font-weight: var(--font-weight-bold);
+}
+
+#summary-list li:first-child {
+    font-style: italic;
+}
+
+.cta-combo {
+    width: 100%;
+    background: linear-gradient(90deg, var(--cor-destaque) 0%, var(--cor-gradiente-b) 100%);
+    color: var(--cor-texto-principal);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-fast);
+    border: none;
+    cursor: pointer;
+    font-family: var(--fonte-principal);
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+}
+
+.cta-combo:hover {
+    filter: brightness(1.2);
+}
