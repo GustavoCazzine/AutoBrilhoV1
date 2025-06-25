@@ -26,12 +26,12 @@
     --font-size-display: clamp(2.2rem, 5vw, 3rem); /* REFINADO: Início menor e teto mais baixo */
 
     /* Espaçamento */
-    --space-xs: 5px;
-    --space-sm: 10px;
-    --space-md: 20px;
-    --space-lg: 30px;
-    --space-xl: 40px;
-    --space-section: 120px;
+    --space-xs: 8px;    /* Era 5px */
+    --space-sm: 16px;   /* Era 10px */
+    --space-md: 24px;   /* Era 20px */
+    --space-lg: 40px;   /* Era 30px */
+    --space-xl: 64px;   /* Era 40px */
+    --space-section: 60px; /* <<< PRINCIPAL MUDANÇA: Era 120px */
 
     /* Outros */
     --border-radius-sm: 5px;
@@ -650,12 +650,178 @@ body {
 }
 
 /* =================================================================== */
-/* ============== SEÇÃO DIFERENCIAIS (ESTILO REFINADO) ============== */
+/* ============= SEÇÃO PROVA SOCIAL (CARROSSEL REFINADO) ============= */
+/* =================================================================== */
+.social-proof-section {
+    padding: var(--space-section) 0;
+    background-color: var(--cor-fundo);
+    position: relative; /* Necessário para o separador diagonal */
+    overflow: hidden; /* Garante que o separador não crie scroll */
+}
+
+/* NOVO: Separador de Seção Diagonal */
+.social-proof-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* Altura da área de transição */
+    /* Cria a forma diagonal */
+    clip-path: polygon(0 100%, 100% 0, 100% 100%); 
+    /* Usa a mesma imagem de fundo da próxima seção */
+    background-image: linear-gradient(to top, rgba(8,10,19,0.9), rgba(8,10,19,0.8)), url('assets/img/fundo-diferenciais.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Garante que o conteúdo fique na frente do separador */
+.social-proof-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Carrossel de Depoimentos */
+.testimonial-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+    display: flex; /* Adicionado para alinhar os scrollers */
+}
+
+/* NOVO: Trillho que se move com a animação */
+.testimonial-scroller {
+    display: flex;
+    width: max-content;
+    flex-wrap: nowrap;
+    gap: var(--space-lg);
+    animation: scroll-testimonials 80s linear infinite; /* Animação mais lenta para leitura */
+}
+
+/* Pausa a animação no hover/touch */
+.testimonial-carousel:hover .testimonial-scroller {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-testimonials {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-100%); }
+}
+
+/* Estilo do card de depoimento dentro do carrossel */
+.testimonial-card {
+    width: 360px; /* Largura fixa para cada card */
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(1, 55, 197, 0.15);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+/* Efeito de destaque no card sob o mouse */
+.testimonial-carousel:hover .testimonial-card {
+    opacity: 0.4;
+    transform: scale(0.98);
+}
+.testimonial-carousel .testimonial-card:hover {
+    opacity: 1;
+    background: rgba(1, 22, 64, 0.4);
+    border-color: rgba(1, 55, 197, 0.5);
+    transform: scale(1);
+}
+
+.testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+.testimonial-rating {
+    font-size: 1.2rem;
+    color: #FFC107;
+}
+.testimonial-source {
+    font-size: var(--font-size-sm);
+    color: var(--cor-texto-secundario);
+    opacity: 0.7;
+}
+.testimonial-text {
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    color: var(--cor-texto-secundario);
+    margin-bottom: var(--space-lg);
+    flex-grow: 1;
+    font-style: italic;
+}
+.testimonial-text::before {
+    content: '“';
+    font-size: 3rem;
+    color: var(--cor-destaque);
+    line-height: 0;
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(1, 55, 197, 0.1);
+}
+.testimonial-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.testimonial-author h4 {
+    margin: 0;
+    font-size: var(--font-size-base);
+    color: var(--cor-texto-principal);
+}
+.testimonial-author span {
+    font-size: var(--font-size-sm);
+    color: var(--cor-texto-secundario);
+}
+
+/* =================================================================== */
+/* ============== SEÇÃO DIFERENCIAIS (ESTILO FINAL) ================== */
 /* =================================================================== */
 
 .diferenciais-section {
+    position: relative;
     padding: var(--space-section) 0;
-    /* O blueprint-bg já está no HTML, criando a base visual */
+    
+    /* IMAGEM DE FUNDO COM EFEITO PARALLAX */
+    background-image: url('assets/img/Img2.png'); /* <<<--- COLOQUE O CAMINHO DA SUA IMAGEM AQUI */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* A mágica do efeito parallax acontece aqui */
+}
+
+/* Camada escura para garantir contraste e legibilidade */
+.diferenciais-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 10, 19, 0.767); /* Overlay escuro (88% de opacidade) */
+    z-index: 1;
+}
+
+/* Garante que o conteúdo fique por cima do overlay */
+.diferenciais-section .container {
+    position: relative;
+    z-index: 2;
 }
 
 /* --- Grid dos 3 Pilares da Qualidade --- */
@@ -666,10 +832,10 @@ body {
 }
 
 .diferencial-item {
-    background: rgba(1, 22, 64, 0.2); /* Fundo com tom azulado e transparente */
-    backdrop-filter: blur(10px); /* Efeito de vidro fosco */
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(1, 55, 197, 0.2);
+    background: rgba(1, 22, 64, 0.3); /* Efeito de vidro colorido */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(1, 55, 197, 0.3);
     padding: var(--space-lg);
     border-radius: var(--border-radius-md);
     transition: var(--transition-smooth);
@@ -678,9 +844,9 @@ body {
 }
 
 .diferencial-item:hover {
-    transform: translateY(-8px);
-    border-color: rgba(1, 55, 197, 0.6);
-    box-shadow: 0 10px 40px rgba(1, 55, 197, 0.15);
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(1, 55, 197, 0.7);
+    box-shadow: 0 15px 40px rgba(1, 55, 197, 0.2);
 }
 
 .diferencial-icon {
@@ -703,13 +869,16 @@ body {
 .diferencial-item p {
     font-size: var(--font-size-base);
     color: var(--cor-texto-secundario);
-    line-height: 1.7; /* Melhor espaçamento entre linhas para leitura */
-    flex-grow: 1; /* Faz o parágrafo ocupar o espaço, alinhando os botões (se houver) */
+    line-height: 1.7;
+    flex-grow: 1;
 }
 
-/* --- Showcase de Marcas (Carrossel Automático) --- */
+/* =================================================================== */
+/* ============== CARROSSEL DE LOGOS (VERSÃO CONTÍNUA) =============== */
+/* =================================================================== */
+
 .product-showcase-container {
-    margin-top: calc(var(--space-section) / 2);
+    margin-top: calc(var(--space-section) / 1.5);
     padding-top: var(--space-xl);
 }
 
@@ -723,60 +892,62 @@ body {
     letter-spacing: 1px;
 }
 
+/* O contêiner principal que esconde o excesso */
 .product-logos {
     width: 100%;
     overflow: hidden;
     position: relative;
+    display: flex; /* Alinha os dois trilhos lado a lado */
     -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
     mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
 }
 
+/* Cada trilho de logos que será animado */
 .logos-scroller {
     display: flex;
+    flex-shrink: 0; /* Impede que os trilhos se esmaguem */
     width: max-content;
-    flex-wrap: nowrap;
-    gap: calc(var(--space-xl) * 2); /* Aumenta o espaço entre os logos */
-    animation: scroll 40s linear infinite;
+    gap: calc(var(--space-xl) * 2);
+    /* Animação mais rápida, em um único sentido e infinita */
+    animation: seamless-scroll 30s linear infinite;
 }
 
-@keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+@keyframes seamless-scroll {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        /* Move o trilho exatamente a sua própria largura para a esquerda */
+        transform: translateX(-100%);
+    }
 }
 
 .logo-item {
-    height: 50px; /* Altura padrão ajustada */
+    height: 60px; /* Mantém a altura padrão */
+    width: 180px;  /* <<<--- NOVO: Largura fixa para cada "box" de logo */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* <<<--- NOVO: Centraliza o logo dentro do box */
+    flex-shrink: 0; /* Impede que o item seja esmagado */
 }
 
+/* Estilo final dos logos, sem hover */
 .logo-item img {
-    max-height: 100%;
+    max-height: 90%; /* Garante um respiro vertical */
+    max-width: 90%;  /* Garante um respiro horizontal */
     width: auto;
-    filter: brightness(0) invert(1) grayscale(1) opacity(0.5);
-    transition: var(--transition-fast);
+    filter: brightness(0) invert(1) grayscale(1) opacity(0.6);
+    /* O hover foi removido como solicitado */
 }
-
-.logos-scroller:hover .logo-item img {
-    filter: brightness(0) invert(1) grayscale(1) opacity(0.2);
-}
-
-.logo-item:hover img {
-    filter: none; /* Remove todos os filtros para mostrar a cor original */
-    opacity: 1;
-    transform: scale(1.1);
-}
-
 /* --- Selo de Garantia e Compromisso --- */
 .guarantee-seal {
-    margin-top: calc(var(--space-section) / 2);
-    background: linear-gradient(to right, rgba(1, 55, 197, 0.1), rgba(1, 55, 197, 0.05));
+    margin-top: calc(var(--space-section) / 1.5);
+    background: linear-gradient(to right, rgba(1, 55, 197, 0.15), rgba(1, 55, 197, 0.05));
     border-left: 4px solid var(--cor-destaque);
     border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
     padding: var(--space-lg);
     display: flex;
-    flex-direction: column; /* Padrão Mobile */
+    flex-direction: column;
     align-items: center;
     text-align: center;
     gap: var(--space-md);
@@ -804,6 +975,7 @@ body {
     color: var(--cor-texto-secundario);
     line-height: 1.6;
 }
+
 
 /* =================================================================== */
 /* ============ CONTATO & GERADOR DE ORÇAMENTO (REFINADO) ============ */
@@ -978,6 +1150,85 @@ body {
 }
 .contato-info-footer a:hover { filter: brightness(1.2); }
 .contato-info-footer span { display: block; margin-top: var(--space-xs); }
+
+/* =================================================================== */
+/* ============== MELHORIAS NA SEÇÃO DE CONTATO ====================== */
+/* =================================================================== */
+
+/* Botão Final Refinado (substitui o estilo antigo) */
+#generate-whatsapp-btn {
+    width: 100%;
+    padding: 14px 28px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    background: #25D366; /* Cor oficial do WhatsApp */
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: var(--transition-fast);
+}
+
+#generate-whatsapp-btn:hover {
+    background: #128C7E; /* Cor mais escura do WhatsApp no hover */
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+}
+
+#generate-whatsapp-btn svg {
+    fill: currentColor;
+}
+
+/* Seção do Mapa */
+.map-container {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgba(1, 55, 197, 0.1);
+}
+
+.map-embed {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* Proporção 4:3 para o mapa */
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(1, 55, 197, 0.2);
+}
+
+.map-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.directions-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.directions-link svg {
+    transition: var(--transition-fast);
+}
+
+.directions-link:hover svg {
+    transform: rotate(45deg);
+}
+
+/* Remove a animação de pulso do botão antigo, caso ainda exista */
+@keyframes pulse {
+    from { box-shadow: none; }
+    to { box-shadow: none; }
+}
 
 /* =================================================================== */
 /* ======================== RODAPÉ (VERSÃO FINAL) ==================== */

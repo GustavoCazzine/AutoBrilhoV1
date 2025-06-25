@@ -453,43 +453,46 @@ lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.cla
     // =================== LÓGICA DO CARROSSEL DE LOGOS ==================
     // ===================================================================
 
+document.addEventListener('DOMContentLoaded', () => {
+
     // --- BANCO DE DADOS DOS LOGOS ---
     const partnerLogosData = [
-        { name: '3M', imgSrc: 'https://logospng.org/download/3m/logo-3m-2048.png' },
-        { name: 'Vonixx', imgSrc: 'https://www.vonixx.com.br/wp-content/uploads/2022/03/Group-2544.svg' },
-        { name: 'Menzerna', imgSrc: 'https://cdn.shopify.com/s/files/1/0539/3800/3817/files/Menzerna_Logo_grau_300x.png?v=1616766481' },
-        { name: 'CarPro', imgSrc: 'https://www.carpro-us.com/content/images/logos/CARPRO-LOGO-2022-HORZ-WHITE-2K.png' },
-        { name: 'Rupes', imgSrc: 'https://www.rupes.com/wp-content/uploads/2021/04/logo_rupes.svg' },
-        { name: 'Koch-Chemie', imgSrc: 'https://www.koch-chemie.com/img/logo.svg' },
-        { name: 'Gyeon', imgSrc: 'https://gyeon.co/wp-content/uploads/2022/02/logo-white.svg' }
+        { name: '3M', imgSrc: './assets/img/3m-logo-1-1.png' },
+        { name: 'Vonixx', imgSrc: './assets/img/vonixx-logo.png' },
+        { name: 'Menzerna', imgSrc: './assets/img/menzerna-logo.png' },
+        { name: 'CarPro', imgSrc: './assets/img/carpro-logo.png' },
+        { name: 'Rupes', imgSrc: './assets/img/rupes-logo.png' },
+        { name: 'Koch-Chemie', imgSrc: './assets/img/koch-chemie-logo.png' },
+        { name: 'Gyeon', imgSrc: './assets/img/gyeon-logo.png' }
     ];
 
-    const logosContainer = document.querySelector('.product-logos');
+    function initLogoCarousel() {
+        const logosContainer = document.querySelector('.product-logos');
+        if (!logosContainer) return;
 
-    if (logosContainer) {
-        // Cria o contêiner interno que irá rolar
-        const scroller = document.createElement('div');
-        scroller.className = 'logos-scroller';
+        // Limpa qualquer conteúdo anterior para segurança
+        logosContainer.innerHTML = '';
 
-        // Função para popular o scroller com os logos
-        const populateScroller = (data) => {
-            data.forEach(logo => {
-                const logoDiv = document.createElement('div');
-                logoDiv.className = 'logo-item';
-                logoDiv.innerHTML = `<img src="${logo.imgSrc}" alt="Logo ${logo.name}">`;
-                scroller.appendChild(logoDiv);
-            });
-        };
+        // Cria o primeiro trilho de logos
+        const scroller1 = document.createElement('div');
+        scroller1.className = 'logos-scroller';
+        partnerLogosData.forEach(logo => {
+            scroller1.innerHTML += `<div class="logo-item"><img src="${logo.imgSrc}" alt="Logo ${logo.name}"></div>`;
+        });
 
-        // Popula com a lista original
-        populateScroller(partnerLogosData);
-        // Popula com a cópia da lista para criar o efeito de loop infinito
-        populateScroller(partnerLogosData);
-
-        logosContainer.appendChild(scroller);
-
+        // Cria o segundo trilho (clone do primeiro) para o efeito contínuo
+        const scroller2 = scroller1.cloneNode(true);
         
+        // Adiciona os dois trilhos ao contêiner principal
+        logosContainer.appendChild(scroller1);
+        logosContainer.appendChild(scroller2);
     }
+
+    // Chama a nova função de inicialização
+    initLogoCarousel();
+
+
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -665,5 +668,64 @@ document.addEventListener('DOMContentLoaded', () => {
     initServicesSection();
     initQuoteGenerator();
     // (Aqui entrarão as inicializações da Galeria, etc. no futuro)
+
+});
+
+
+// ===================================================================
+    // ============ LÓGICA DO CARROSSEL DE DEPOIMENTOS (FINAL) ===========
+    // ===================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- BANCO DE DADOS DOS DEPOIMENTOS ---
+    const testimonialsData = [
+        { rating: 5, source: 'via Google', quote: 'Serviço impecável! Meu carro, que já tem 5 anos de uso, saiu parecendo que acabou de vir da concessionária. O brilho da vitrificação é inacreditável.', authorName: 'Carlos Monteiro', authorDetail: 'Proprietário de um Audi A4', authorImg: 'assets/img/cliente1.jpg' },
+        { rating: 5, source: 'via Google', quote: 'Atendimento nota 10 e o resultado do polimento superou todas as minhas expectativas. Recomendo de olhos fechados!', authorName: 'Juliana Alves', authorDetail: 'Proprietária de uma BMW X1', authorImg: 'assets/img/cliente2.jpg' },
+        { rating: 5, source: 'via Google', quote: 'Profissionalismo raro de se encontrar. Cuidaram do meu carro como se fosse deles. A higienização interna deixou o carro com cheiro de novo.', authorName: 'Roberto Dias', authorDetail: 'Proprietária de uma Toyota Hilux', authorImg: 'assets/img/cliente3.jpg' },
+        { rating: 5, source: 'via Google', quote: 'Levei meu carro para um polimento e o resultado foi simplesmente fantástico. Removeram todos os pequenos riscos e o brilho voltou com tudo.', authorName: 'Fernanda Lima', authorDetail: 'Proprietária de um VW Nivus', authorImg: 'assets/img/cliente4.jpg' }
+    ];
+
+    function initTestimonialCarousel() {
+        const carouselContainer = document.querySelector('.testimonial-carousel');
+        if (!carouselContainer) return;
+
+        carouselContainer.innerHTML = ''; // Limpa o contêiner
+
+        // Cria o primeiro trilho e o popula
+        const scroller1 = document.createElement('div');
+        scroller1.className = 'testimonial-scroller';
+        testimonialsData.forEach(testimonial => {
+            scroller1.innerHTML += `
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-rating">${'★'.repeat(testimonial.rating)}<span style="opacity:0.3">${'★'.repeat(5 - testimonial.rating)}</span></div>
+                        <span class="testimonial-source">${testimonial.source}</span>
+                    </div>
+                    <p class="testimonial-text">${testimonial.quote}</p>
+                    <div class="testimonial-author">
+                        <img src="${testimonial.authorImg}" alt="Foto de ${testimonial.authorName}" loading="lazy">
+                        <div>
+                            <h4>${testimonial.authorName}</h4>
+                            <span>${testimonial.authorDetail}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Cria o segundo trilho como um clone do primeiro para o loop perfeito
+        const scroller2 = scroller1.cloneNode(true);
+        
+        carouselContainer.appendChild(scroller1);
+        carouselContainer.appendChild(scroller2);
+        
+        // Pausa a animação no toque em dispositivos móveis
+        carouselContainer.addEventListener('touchstart', () => { scroller1.style.animationPlayState = 'paused'; scroller2.style.animationPlayState = 'paused'; }, { passive: true });
+        carouselContainer.addEventListener('touchend', () => { scroller1.style.animationPlayState = 'running'; scroller2.style.animationPlayState = 'running'; });
+    }
+
+    // Chama a nova função de inicialização
+    initTestimonialCarousel();
 
 });
