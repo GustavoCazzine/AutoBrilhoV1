@@ -67,58 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ===================================================================
-    // =================== LÓGICA DO ORÇAMENTO INTERATIVO ==================
-    // ===================================================================
-    const comboOptionsContainer = document.querySelector('.combo-options');
-    const summaryList = document.getElementById('summary-list');
-    const sendComboBtn = document.getElementById('send-combo-btn');
-
-    if (comboOptionsContainer && summaryList && sendComboBtn) {
-        function updateComboSummary() {
-            summaryList.innerHTML = '';
-            let selectedItems = [];
-            const selectedServices = comboOptionsContainer.querySelectorAll('input[name="servico"]:checked');
-            if (selectedServices.length === 0) {
-                summaryList.innerHTML = '<li>Nenhum serviço selecionado.</li>';
-                return;
-            }
-            selectedServices.forEach(checkbox => {
-                let serviceName = checkbox.value;
-                let serviceDetail = '';
-                const serviceGroup = checkbox.closest('.service-group');
-                const selectedRadio = serviceGroup.querySelector('input[type="radio"]:checked');
-                if (selectedRadio) {
-                    serviceDetail = ` (${selectedRadio.value})`;
-                }
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `<strong>${serviceName}</strong>${serviceDetail}`;
-                summaryList.appendChild(listItem);
-                selectedItems.push(`${serviceName}${serviceDetail}`);
-            });
-        }
-
-        comboOptionsContainer.addEventListener('change', updateComboSummary);
-
-        sendComboBtn.addEventListener('click', () => {
-            const items = summaryList.querySelectorAll('li');
-            if (items.length === 0 || items[0].textContent === 'Nenhum serviço selecionado.') {
-                alert('Por favor, selecione ao menos um serviço para solicitar um orçamento.');
-                return;
-            }
-            let messageText = "Olá! Gostaria de um orçamento para o seguinte pacote personalizado:\n";
-            items.forEach(item => { messageText += `\n- ${item.textContent}`; });
-            const contactFormMessage = document.querySelector('#contato textarea[name="message"]');
-            if (contactFormMessage) {
-                contactFormMessage.value = messageText;
-                document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
-                contactFormMessage.focus();
-            } else {
-                alert('Não foi possível encontrar o formulário de contato.');
-            }
-        });
-        updateComboSummary();
-    }
 
     // ===================================================================
     // =================== LÓGICA DO FILTRO DA GALERIA ===================
@@ -570,6 +518,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!servicosMenu || !servicosDisplay || servicosData.length === 0) return;
 
+        // ===================================================================
+        // ===================== CORREÇÃO APLICADA AQUI ====================
+        // ===================================================================
+        servicosMenu.innerHTML = ''; // Limpa o menu antes de criar os botões
+        // ===================================================================
+
         function renderServiceContent(service) {
             servicosDisplay.innerHTML = `
                 <div id="${service.id}-content" class="service-content-panel active">
@@ -581,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="#" class="cta-servico cta-whatsapp" data-message="${service.ctaMessage}">Solicitar Orçamento de ${service.menuTitle}</a>
                 </div>
             `;
-            // IMPORTANTE: Re-configura os links de CTA recém-criados no painel
+            // Re-configura os links de CTA recém-criados no painel
             setupCtaLinks();
         }
 
@@ -601,8 +555,12 @@ document.addEventListener('DOMContentLoaded', () => {
             servicosMenu.appendChild(tabButton);
         });
 
-        renderServiceContent(servicosData[0]);
+        // Renderiza o primeiro serviço por padrão
+        if (servicosData.length > 0) {
+            renderServiceContent(servicosData[0]);
+        }
     }
+
 
     function initQuoteGenerator() {
         const quoteGenerator = document.querySelector('.quote-generator-container');
@@ -727,5 +685,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Chama a nova função de inicialização
     initTestimonialCarousel();
+
+    // ===================================================================
+    // ================== LÓGICA DO BOTÃO FLUTUANTE DE WHATSAPP ===========
+    // ===================================================================
+    const floatingCtaContainer = document.getElementById('floating-cta-container');
+
+    if (floatingCtaContainer) {
+        const chatBubble = floatingCtaContainer.querySelector('.chat-bubble');
+        let bubbleHasBeenShown = false;
+
+        window.addEventListener('scroll', () => {
+            // Mostra o componente após o usuário rolar 300px
+            if (window.scrollY > 300) {
+                floatingCtaContainer.classList.add('visible');
+
+                // Se o balão ainda não foi mostrado, inicia o timer
+                if (!bubbleHasBeenShown && chatBubble) {
+                    bubbleHasBeenShown = true;
+                    // MUDANÇA AQUI: Esconde o balão de conversa após 5 segundos
+                    setTimeout(() => {
+                        chatBubble.classList.add('hidden');
+                    }, 5000); // 5000ms = 5 segundos
+                }
+
+            } else {
+                // Esconde o componente se o usuário voltar ao topo
+                floatingCtaContainer.classList.remove('visible');
+            }
+        });
+    }
 
 });

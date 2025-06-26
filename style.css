@@ -28,10 +28,10 @@
     /* Espaçamento */
     --space-xs: 8px;    /* Era 5px */
     --space-sm: 16px;   /* Era 10px */
-    --space-md: 24px;   /* Era 20px */
-    --space-lg: 40px;   /* Era 30px */
-    --space-xl: 64px;   /* Era 40px */
-    --space-section: 60px; /* <<< PRINCIPAL MUDANÇA: Era 120px */
+    --space-md: 20px;   /* Era 20px */
+    --space-lg: 30px;   /* Era 30px */
+    --space-xl: 54px;   /* Era 40px */
+    --space-section: 50px; /* <<< PRINCIPAL MUDANÇA: Era 120px */
 
     /* Outros */
     --border-radius-sm: 5px;
@@ -698,7 +698,7 @@ body {
     width: max-content;
     flex-wrap: nowrap;
     gap: var(--space-lg);
-    animation: scroll-testimonials 80s linear infinite; /* Animação mais lenta para leitura */
+    animation: scroll-testimonials 30s linear infinite; /* Animação mais lenta para leitura */
 }
 
 /* Pausa a animação no hover/touch */
@@ -1152,17 +1152,138 @@ body {
 .contato-info-footer span { display: block; margin-top: var(--space-xs); }
 
 /* =================================================================== */
-/* ============== MELHORIAS NA SEÇÃO DE CONTATO ====================== */
+/* ============= CONTATO, MAPA E RODAPÉ (ESTILO FINAL) ================ */
 /* =================================================================== */
 
-/* Botão Final Refinado (substitui o estilo antigo) */
+.contato-section {
+    padding: var(--space-section) 0;
+    position: relative;
+}
+.contato-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Gerador de Orçamento */
+.quote-generator-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    background: rgba(1, 22, 64, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(1, 55, 197, 0.2);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius-md);
+}
+
+/* Campos de Formulário com Espaçamento Refinado */
+.input-group {
+    margin-bottom: var(--space-md); /* Espaçamento reduzido */
+}
+.input-group label {
+    display: block;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-sm);
+    color: var(--cor-texto-secundario);
+}
+.input-group input[type="text"],
+.input-group input[type="number"],
+.input-group textarea {
+    width: 100%;
+    padding: 14px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(1, 55, 197, 0.3);
+    border-radius: var(--border-radius-sm);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-principal);
+    font-size: var(--font-size-base);
+    transition: var(--transition-fast);
+}
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 15px rgba(1, 55, 197, 0.5);
+    background: rgba(1, 55, 197, 0.05);
+}
+.input-group textarea { resize: vertical; }
+
+/* Checkboxes Customizados */
+.servicos-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-sm);
+}
+.servicos-checkboxes div { /* Wrapper para o input+label */
+    position: relative;
+}
+.servicos-checkboxes input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.servicos-checkboxes label {
+    display: block;
+    background: transparent;
+    border: 1px solid rgba(1, 55, 197, 0.3);
+    color: var(--cor-texto-secundario);
+    padding: var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-fast);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    width: 100%;
+}
+.servicos-checkboxes input[type="checkbox"]:hover + label {
+    border-color: var(--cor-destaque);
+    color: var(--cor-texto-principal);
+}
+.servicos-checkboxes input[type="checkbox"]:checked + label {
+    background-color: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+    color: var(--cor-texto-principal);
+    box-shadow: 0 0 15px rgba(1, 55, 197, 0.4);
+}
+
+/* Prévia da Mensagem */
+.quote-preview {
+    display: flex;
+    flex-direction: column;
+}
+.quote-preview h4 {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-sm);
+}
+.whatsapp-preview-box {
+    background-color: var(--cor-fundo);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-md);
+    min-height: 180px;
+    font-size: var(--font-size-base);
+    color: var(--cor-texto-secundario);
+    white-space: pre-wrap;
+    line-height: 1.6;
+    border: 1px solid rgba(1, 55, 197, 0.2);
+    transition: var(--transition-smooth);
+    flex-grow: 1;
+}
+.whatsapp-preview-box.updated {
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 15px rgba(1, 55, 197, 0.5);
+}
 #generate-whatsapp-btn {
     width: 100%;
+    margin-top: var(--space-md);
     padding: 14px 28px;
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-bold);
     text-transform: uppercase;
-    background: #25D366; /* Cor oficial do WhatsApp */
+    background: #25D366;
     color: #fff;
     border: none;
     border-radius: var(--border-radius-sm);
@@ -1173,61 +1294,85 @@ body {
     gap: var(--space-sm);
     transition: var(--transition-fast);
 }
-
 #generate-whatsapp-btn:hover {
-    background: #128C7E; /* Cor mais escura do WhatsApp no hover */
+    background: #128C7E;
     transform: scale(1.02);
     box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
 }
+#generate-whatsapp-btn svg { fill: currentColor; }
 
-#generate-whatsapp-btn svg {
-    fill: currentColor;
-}
-
-/* Seção do Mapa */
+/* Bloco do Mapa e Endereço */
 .map-container {
     margin-top: var(--space-xl);
     padding-top: var(--space-xl);
     border-top: 1px solid rgba(1, 55, 197, 0.1);
 }
-
 .map-embed {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 75%; /* Proporção 4:3 para o mapa */
+    padding-bottom: 60%;
     border-radius: var(--border-radius-md);
     overflow: hidden;
     border: 1px solid rgba(1, 55, 197, 0.2);
 }
-
 .map-embed iframe {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
 }
-
-.directions-link {
-    display: inline-flex;
+.map-info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    background: rgba(1, 22, 64, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(1, 55, 197, 0.2);
+    padding: var(--space-md);
+    border-radius: var(--border-radius-md);
+}
+.address-details {
+    display: flex;
     align-items: center;
     gap: var(--space-sm);
-    margin-top: var(--space-md);
+    font-size: var(--font-size-base);
+    color: var(--cor-texto-secundario);
+    text-align: center;
 }
-
-.directions-link svg {
-    transition: var(--transition-fast);
+.address-details svg {
+    color: var(--cor-destaque);
+    flex-shrink: 0;
 }
-
-.directions-link:hover svg {
-    transform: rotate(45deg);
+.cta-directions {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: var(--space-sm); background-color: var(--cor-destaque);
+    color: var(--cor-texto-principal); font-weight: var(--font-weight-bold);
+    text-decoration: none; padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--border-radius-sm); transition: var(--transition-fast);
+    white-space: nowrap; width: 100%;
 }
+.cta-directions:hover {
+    background-color: var(--cor-texto-principal);
+    color: var(--cor-destaque); transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(1, 55, 197, 0.5);
+}
+.cta-directions svg { transition: var(--transition-fast); }
+.cta-directions:hover svg { transform: rotate(45deg); }
 
-/* Remove a animação de pulso do botão antigo, caso ainda exista */
-@keyframes pulse {
-    from { box-shadow: none; }
-    to { box-shadow: none; }
+/* Layout Desktop */
+@media (min-width: 992px) {
+    .quote-generator-container {
+        grid-template-columns: 1.5fr 1fr;
+        align-items: flex-start;
+    }
+    .map-info-box {
+        flex-direction: row;
+        padding: var(--space-sm) var(--space-md);
+    }
+    .address-details { text-align: left; }
+    .cta-directions { width: auto; }
 }
 
 /* =================================================================== */
@@ -1238,6 +1383,7 @@ body {
     text-align: center;
     margin-top: var(--space-section);
     border-top: 1px solid rgba(1, 55, 197, 0.1);
+    background: #06080f;
 }
 .footer-container {
     display: flex;
@@ -1248,8 +1394,105 @@ body {
     margin: 0 auto;
     padding: 0 var(--space-lg);
 }
-.footer .header-logo { font-size: var(--font-size-lg); }
+.footer-logo img {
+    max-height: 45px;
+    opacity: 0.8;
+}
 .footer p {
     font-size: var(--font-size-sm);
     color: var(--cor-texto-secundario);
+}
+.footer-socials {
+    display: flex;
+    gap: var(--space-md);
+}
+.footer-socials a {
+    color: var(--cor-texto-secundario);
+    transition: var(--transition-fast);
+}
+.footer-socials a:hover {
+    color: var(--cor-destaque);
+    transform: translateY(-3px);
+}
+
+/* =================================================================== */
+/* ============== BOTÃO FLUTUANTE DE WHATSAPP (REFINADO) ============= */
+/* =================================================================== */
+.floating-cta-container {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    
+    /* Estado inicial: escondido */
+    opacity: 0;
+    transform: translateY(50px); /* Começa um pouco mais para baixo */
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação mais suave e elástica */
+}
+
+.floating-cta-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* BALÃO DE CONVERSA COM ESTILO WHATSAPP */
+.chat-bubble {
+    background: #25D366; /* Fundo branco, como uma mensagem recebida */
+    color: #ffffff; /* Cor de texto escura do WhatsApp */
+    padding: 12px var(--space-md);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    position: relative;
+    white-space: nowrap;
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: right center; /* Animação de "sumiço" parte da direita */
+    transition: all 0.4s ease;
+}
+
+/* A "cauda" do balão, agora branca */
+.chat-bubble::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -8px; /* Ajuste fino na posição */
+    transform: translateY(-50%);
+    width: 0; 
+    height: 0; 
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #25D366; /* Cor igual ao fundo do balão */
+}
+
+/* Estado para esconder o balão */
+.chat-bubble.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+/* Botão do WhatsApp */
+.floating-whatsapp-btn {
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: var(--transition-fast);
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.floating-whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
 }
