@@ -669,7 +669,6 @@ body {
     text-align: center;
     margin-top: 50px;
 }
-/* #load-more-btn styles removed as it was an empty ruleset */
 
 
 /* =================================================================== */
@@ -680,22 +679,20 @@ body {
     text-align: center;
     padding: 40px 20px;
     margin-top: 50px;
-    /* Cores e bordas herdadas dos elementos da sua galeria/botões */
     background-color: var(--cor-fundo-secundario);
     border: 1px solid var(--cor-borda);
     border-radius: var(--border-radius-lg);
     color: var(--cor-texto-principal);
     font-size: var(--font-size-md);
     line-height: 1.6;
-    animation: fadeIn 0.8s ease-out; /* Adiciona uma animação suave de fade in */
+    animation: fadeIn 0.8s ease-out;
 }
 
 .no-items-message p {
-    margin-bottom: 25px; /* Espaço entre o texto e o botão */
-    color: var(--cor-texto-secundario); /* Cor para a descrição, em harmonia com seu tema */
+    margin-bottom: 25px;
+    color: var(--cor-texto-secundario);
 }
 
-/* Reutiliza o estilo do botão CTA secundário para o botão de reset */
 .no-items-message .cta-secondary.reset-filter-btn {
     background-color: var(--cor-fundo-secundario);
     border: 1px solid var(--cor-borda);
@@ -718,7 +715,6 @@ body {
     box-shadow: 0 8px 25px -8px var(--cor-destaque-transparente);
 }
 
-/* Animação de fade-in para a mensagem */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -726,7 +722,7 @@ body {
 
 
 /* ====================================================== */
-/*                  MODO DETALHE (MODAL)                  */
+/*                  MODO DETALHE (MODAL)                  */
 /* ====================================================== */
 
 .gallery-detail-modal {
@@ -798,52 +794,72 @@ body {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    flex-shrink: 0; /* Impede que o slider encolha */
+    flex-shrink: 0;
     background-color: #000;
+    /* NOVO: Impede a rolagem da página quando o usuário arrasta o slider no mobile */
+    touch-action: none; /* ESSENCIAL PARA MOBILE! */
 }
 
-.before-after-slider img,
-.after-image-container {
+/* Estas classes são para as imagens DENTRO DO SLIDER DO MODAL */
+.image-before-modal,
+.image-after-modal {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* NOVO: Garante que eventos de clique/toque passem para o slider-range abaixo */
+    pointer-events: none; 
 }
 
-.after-image-container {
-    overflow: hidden;
+/* Container da imagem 'depois' que será recortada */
+.after-image-container-modal {
+    overflow: hidden; /* Corta a parte da imagem 'depois' que não deve aparecer */
+    position: absolute; /* Para que o clip-path funcione */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* NOVO: Otimização para animações com clip-path */
+    will-change: clip-path; 
 }
 
+/* O input range que o JavaScript usa para controlar o slider */
 .slider-range {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0; /* Ocupa todo o espaço do pai (.before-after-slider) */
     margin: 0;
-    appearance: none;
-    -webkit-appearance: none;
-    background: transparent;
-    cursor: col-resize;
-    z-index: 10;
+    appearance: none; /* Remove estilos padrão do input range */
+    -webkit-appearance: none; /* Para navegadores Webkit */
+    background: transparent; /* Torna o input invisível */
+    cursor: col-resize; /* Cursor de redimensionamento horizontal */
+    z-index: 10; /* Fica acima das imagens */
+    /* NOVO: Garante que o input range seja clicável/arrastável */
+    pointer-events: auto; 
 }
+
+/* Estilo do polegar/handle do input range (para ocultá-lo) */
 .slider-range::-webkit-slider-thumb { -webkit-appearance: none; }
 .slider-range::-moz-range-thumb { -moz-appearance: none; }
 .slider-range::-ms-thumb { appearance: none; }
 
 
+/* A barra visual que o usuário vê e arrasta */
 .slider-handle {
     position: absolute;
     top: 0;
-    left: 50%;
-    width: 4px;
+    left: 50%; /* Posição inicial no meio */
+    width: 4px; /* Largura da barra */
     height: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    transform: translateX(-50%);
-    pointer-events: none; /* Permite clicar através dele */
-    z-index: 5;
+    background: rgba(255, 255, 255, 0.8); /* Cor da barra */
+    transform: translateX(-50%); /* Centraliza a barra */
+    pointer-events: none; /* Garante que os eventos passem para o slider-range */
+    z-index: 5; /* Abaixo do input range, mas acima das imagens */
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
+
+/* As setas dentro do handle */
 .handle-arrows {
     position: absolute;
     top: 50%;
@@ -857,6 +873,8 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    /* NOVO: Garante que os eventos passem para o slider-range */
+    pointer-events: none; 
 }
 .handle-arrows::before, .handle-arrows::after {
     content: '';
@@ -912,22 +930,20 @@ body {
 }
 
 #load-more-btn {
-    /* Estilo base - igual aos botões de filtro inativos */
     background-color: var(--cor-fundo-secundario);
     border: 1px solid var(--cor-borda);
     color: var(--cor-texto-secundario);
     padding: 12px 28px;
     border-radius: var(--border-radius-lg);
-    font-family: var(--fonte-principal); /* Garante a fonte correta */
+    font-family: var(--fonte-principal);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-bold);
-    text-transform: uppercase; /* Deixa o texto em maiúsculas */
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 #load-more-btn:hover {
-    /* Efeito de hover - igual aos botões de filtro */
     background-color: var(--cor-destaque);
     color: #FFF;
     border-color: var(--cor-destaque);

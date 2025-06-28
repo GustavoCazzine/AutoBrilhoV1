@@ -152,40 +152,38 @@
                     <button id="load-more-btn" class="cta-secondary">Ver Mais Projetos</button>
                 </div>
             </div>
-        </section>
 
-        <div id="gallery-detail-modal" class="gallery-detail-modal">
-            <div class="modal-overlay"></div>
-            <div class="modal-content">
-                <button id="modal-close-btn" class="modal-close-btn" aria-label="Fechar">&times;</button>
-                
-                <div id="before-after-slider" class="before-after-slider">
-                    <div id="after-image-container" class="after-image-container">
-                        <img id="modal-after-img" src="" alt="Resultado do serviço">
-                    </div>
-                    <img id="modal-before-img" src="" alt="Veículo antes do serviço">
-                    <input type="range" min="0" max="100" value="50" id="slider-range" class="slider-range" aria-label="Controle Antes e Depois">
-                    <div id="slider-handle" class="slider-handle">
-                        <div class="handle-arrows"></div>
-                    </div>
-                </div>
-
-                <div class="modal-details">
-                    <h3 id="modal-title"></h3>
-                    <p id="modal-vehicle" class="modal-vehicle"></p>
-
-                    <div class="detail-block">
-                        <h4>O Desafio:</h4>
-                        <p id="modal-challenge"></p>
+            <div id="gallery-detail-modal" class="gallery-detail-modal">
+                <div class="modal-overlay"></div>
+                <div class="modal-content">
+                    <button id="modal-close-btn" class="modal-close-btn">X</button>
+                    
+                    <div class="before-after-slider">
+                        <img id="modal-before-img" class="image-before-modal" src="" alt="Imagem Antes">
+                        <div id="after-image-container" class="after-image-container-modal">
+                            <img id="modal-after-img" class="image-after-modal" src="" alt="Imagem Depois">
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="slider-range" id="slider-range">
+                        <div class="slider-handle" id="slider-handle">
+                            <div class="handle-arrows"></div>
+                        </div>
                     </div>
 
-                    <div class="detail-block">
-                        <h4>Nossa Solução:</h4>
-                        <p id="modal-solution"></p>
+                    <div class="modal-details">
+                        <h3 id="modal-title">Título do Projeto</h3>
+                        <p id="modal-vehicle" class="modal-vehicle">Nome do Veículo</p>
+                        <div class="detail-block">
+                            <h4>Desafio</h4>
+                            <p id="modal-challenge">Descrição do desafio enfrentado.</p>
+                        </div>
+                        <div class="detail-block">
+                            <h4>Solução</h4>
+                            <p id="modal-solution">A solução aplicada para o desafio.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <section id="prova-social" class="social-proof-section">
             <div class="container">
