@@ -1305,7 +1305,14 @@ body {
 .toggle-custom-quote:hover { border-color: var(--cor-destaque); background-color: var(--cor-fundo-hover); }
 .toggle-custom-quote .arrow-icon { width: 24px; height: 24px; fill: currentColor; transition: transform 0.4s ease; }
 .toggle-custom-quote.active .arrow-icon { transform: rotate(180deg); }
-.custom-quote-content { max-height: 0; overflow: hidden; transition: max-height 0.7s ease-in-out; border: 1px solid var(--cor-borda); border-top: none; border-radius: 0 0 var(--border-radius-md) var(--border-radius-md); }
+.custom-quote-content { 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.7s ease-in-out; 
+    border: 1px solid var(--cor-borda); 
+    border-top: none; 
+    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md); 
+}
 .custom-quote-content.active { border-color: var(--cor-destaque); } /* Borda fica azul quando ativo */
 
 /* ====================================================== */
@@ -1325,20 +1332,73 @@ body {
 
 .servicos-radios { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
 .servicos-radios div { position: relative; }
-.servicos-radios input[type="radio"] { position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+.servicos-radios input[type="radio"] { position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer; z-index: 1; /* Garante que o input seja clicável */ }
 .servicos-radios label { display: block; background: transparent; border: 1px solid var(--cor-borda); color: var(--cor-texto-secundario); padding: var(--space-sm); border-radius: var(--border-radius-md); transition: var(--transition-fast); font-size: var(--font-size-sm); font-weight: var(--font-weight-bold); text-align: center; width: 100%; }
 .servicos-radios input[type="radio"]:hover + label { border-color: var(--cor-destaque); color: var(--cor-texto-principal); }
 .servicos-radios input[type="radio"]:checked + label { background-color: var(--cor-destaque); border-color: var(--cor-destaque); color: #FFF; }
 
 .combo-options { display: flex; flex-direction: column; gap: var(--space-sm); }
-.service-group { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--cor-borda); border-radius: var(--border-radius-md); padding: var(--space-md); transition: all 0.3s ease; }
-.service-group .group-title { display: flex; align-items: center; font-size: var(--font-size-md); font-weight: var(--font-weight-bold); cursor: pointer; width: 100%; }
-.group-title input[type="checkbox"] { margin-right: var(--space-sm); width: 20px; height: 20px; accent-color: var(--cor-destaque); }
-.sub-options { max-height: 0; overflow: hidden; padding-left: 34px; transition: all 0.4s ease-out; opacity: 0; }
-.service-group input[type="checkbox"]:checked ~ .sub-options { max-height: 300px; margin-top: var(--space-md); opacity: 1; }
-.sub-options p { font-size: var(--font-size-sm); color: var(--cor-texto-secundario); margin-bottom: var(--space-sm); }
-.sub-options label { display: flex; align-items: center; margin-bottom: var(--space-xs); font-size: var(--font-size-base); color: var(--cor-texto-secundario); cursor: pointer; }
-.sub-options input { margin-right: var(--space-sm); flex-shrink: 0; }
+.service-group { 
+    background: rgba(0, 0, 0, 0.2); 
+    border: 1px solid var(--cor-borda); 
+    border-radius: var(--border-radius-md); 
+    padding: var(--space-md); 
+    transition: all 0.3s ease; 
+}
+.service-group .group-title { 
+    display: flex; 
+    align-items: center; 
+    font-size: var(--font-size-md); 
+    font-weight: var(--font-weight-bold); 
+    cursor: pointer; 
+    width: 100%; 
+    color: var(--cor-texto-principal); /* Cor para o título principal do grupo */
+}
+.group-title input[type="checkbox"] { 
+    margin-right: var(--space-sm); 
+    width: 20px; 
+    height: 20px; 
+    accent-color: var(--cor-destaque); 
+    flex-shrink: 0; /* Impede que o checkbox encolha */
+}
+.sub-options { 
+    max-height: 0; 
+    overflow: hidden; 
+    padding-left: 34px; /* Alinha com o texto do checkbox principal */
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out, margin-top 0.4s ease-out; 
+    opacity: 0; 
+    margin-top: 0; /* Começa sem margem */
+}
+/* A classe '.active' e '.max-height' não são mais aplicadas pelo CSS puro, mas sim pelo JS.
+   A transição é feita diretamente nas propriedades `max-height`, `opacity` e `margin-top` via JS. */
+
+.sub-options p { 
+    font-size: var(--font-size-sm); 
+    color: var(--cor-texto-secundario); 
+    margin-bottom: var(--space-sm); 
+    margin-top: var(--space-sm); /* Adiciona um pequeno espaço antes do parágrafo */
+}
+.sub-options label { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: var(--space-xs); 
+    font-size: var(--font-size-base); 
+    color: var(--cor-texto-secundario); 
+    cursor: pointer; 
+}
+.sub-options input[type="radio"], 
+.sub-options input[type="checkbox"] { 
+    margin-right: var(--space-sm); 
+    flex-shrink: 0; 
+    accent-color: var(--cor-destaque); /* Garante a cor de destaque para os rádios e checkboxes internos */
+}
+/* Estilo para quando um radio/checkbox dentro de sub-options é selecionado */
+.sub-options input[type="radio"]:checked + label,
+.sub-options input[type="checkbox"]:checked + label {
+    color: var(--cor-destaque); /* Destaca o texto da opção selecionada */
+    font-weight: var(--font-weight-medium);
+}
+
 
 .quote-preview { display: flex; flex-direction: column; }
 .quote-preview h4 { font-size: var(--font-size-md); font-weight: var(--font-weight-bold); margin-bottom: var(--space-sm); }
@@ -1471,7 +1531,7 @@ body {
 .chat-bubble {
     background: #25D366;
     color: white;
-    padding: 12px var(--space-md);
+    padding: 12px var(--space-xs);
     border-radius: var(--border-radius-md);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     position: relative;
@@ -1499,7 +1559,7 @@ body {
     width: 0; height: 0; 
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-left: 8px solid #FFF;
+    border-left: 8px solid #25D366;
 }
 
 .chat-bubble.hidden {

@@ -242,43 +242,45 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const DADOS_COMBOS = [
-        {
-            icon: 'sun',
-            title: 'Pacote Renovação e Brilho',
-            description: 'Ideal para quem quer valorizar o carro para uma venda ou simplesmente devolver aquele brilho de carro bem cuidado.',
-            services: [
-                'Lavagem técnica detalhada',
-                'Descontaminação da pintura',
-                'Polimento Comercial (foco em brilho)',
-                'Aplicação de Selante (proteção de até 6 meses)'
-            ],
-            whatsappMessage: 'Olá, Auto Brilho! Tenho interesse no Pacote Renovação e Brilho.'
-        },
-        {
-            icon: 'shield-check',
-            title: 'Pacote Proteção Cerâmica',
-            description: 'A melhor escolha para proteção de longo prazo contra as agressões do dia a dia, mantendo o carro limpo por mais tempo.',
-            services: [
-                'Lavagem e descontaminação completa',
-                'Polimento Técnico (preparação e correção)',
-                'Vitrificação Cerâmica (proteção de 1 a 3 anos)',
-                'Cristalização do para-brisa'
-            ],
-            whatsappMessage: 'Olá, Auto Brilho! Tenho interesse no Pacote Proteção Cerâmica.'
-        },
-        {
-            icon: 'award',
-            title: 'Pacote Detalhamento Premium',
-            description: 'A experiência definitiva para entusiastas. Cuidado completo, por dentro e por fora, para um resultado superior ao de fábrica.',
-            services: [
-                'Todos os itens do Pacote Proteção Cerâmica',
-                'Higienização Detalhada do Interior',
-                'Hidratação e proteção de bancos de couro',
-                'Vitrificação de Plásticos e Faróis'
-            ],
-            whatsappMessage: 'Olá, Auto Brilho! Tenho interesse no Pacote Detalhamento Premium.'
-        }
+    {
+        icon: 'sparkles',
+        title: 'Pacote Renovação e Brilho',
+        description: 'Perfeito para quem quer destacar o carro visualmente, seja para venda, troca ou para recuperar o brilho de um carro bem cuidado.',
+        services: [
+        'Lavagem Técnica Detalhada',
+        'Descontaminação da Pintura',
+        'Polimento Comercial (realce e valorização)',
+        'Finalização com Cera Protetora (até 6 meses)'
+        ],
+        whatsappMessage: 'Olá! Tenho interesse no Pacote Renovação e Brilho.'
+    },
+    {
+        icon: 'shield-check',
+        title: 'Pacote Proteção Cerâmica',
+        description: 'Indicado para quem busca proteção de médio a longo prazo, com estética impecável e resistência contra os agentes do dia a dia.',
+        services: [
+        'Lavagem Técnica Detalhada',
+        'Descontaminação da Pintura',
+        'Polimento Técnico (correção e nivelamento)',
+        'Vitrificação da Pintura (proteção de até 3 anos)',
+        'Cristalização de Para-brisa'
+        ],
+        whatsappMessage: 'Olá! Tenho interesse no Pacote Proteção Cerâmica.'
+    },
+    {
+        icon: 'award',
+        title: 'Pacote Detalhamento Premium',
+        description: 'Um cuidado completo e superior ao padrão de fábrica. Ideal para quem exige o máximo em estética, proteção e conforto.',
+        services: [
+        'Todos os itens do Pacote Proteção Cerâmica',
+        'Higienização de Couro e Bancos de Tecido',
+        'Hidratação de Couro Profissional',
+        'Vitrificação de Plásticos Externos'
+        ],
+        whatsappMessage: 'Olá! Tenho interesse no Pacote Detalhamento Premium.'
+    }
     ];
+
 
     const DADOS_MARCAS = [
         { name: 'Menzerna', imgSrc: 'assets/img/logos/menzerna-logo.png' },
@@ -735,7 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================================================
-    // ============= FUNÇÃO CONTATOS   (VERSÃO ATUALIZADA) ===============
+    // ============= FUNÇÃO GERADOR DE ORÇAMENTO PERSONALIZADO =========
     // ===================================================================
         
     function initQuoteGenerator() {
@@ -749,52 +751,111 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!messagePreview || !generateBtn) return;
 
         function updatePreviewMessage() {
-            const modelo = quoteGenerator.querySelector('#veiculo-modelo')?.value.trim() || '';
-            const ano = quoteGenerator.querySelector('#veiculo-ano')?.value.trim() || '';
+            const modelo = quoteGenerator.querySelector('#veiculo-modelo')?.value.trim() || 'Não informado';
+            const ano = quoteGenerator.querySelector('#veiculo-ano')?.value.trim() || 'Não informado';
             const observacoes = quoteGenerator.querySelector('#observacoes')?.value.trim() || '';
             const localInput = quoteGenerator.querySelector('input[name="local-atendimento"]:checked');
             const local = localInput ? localInput.value : 'não informado';
             
             let servicosSelecionados = [];
-            quoteGenerator.querySelectorAll('input[name="servico"]:checked').forEach(cb => {
-                let serviceText = cb.value;
-                const serviceGroup = cb.closest('.service-group');
-                if(serviceGroup) {
-                    const subOptions = serviceGroup.querySelector('.sub-options');
-                    if (subOptions) {
-                        const selectedRadio = subOptions.querySelector('input[type="radio"]:checked');
-                        const selectedCheckboxes = subOptions.querySelectorAll('input[type="checkbox"]:checked');
-                        if (selectedRadio) {
-                            serviceText += ` (${selectedRadio.value})`;
-                        } else if (selectedCheckboxes.length > 0) {
-                            const additionalTexts = Array.from(selectedCheckboxes).map(addCb => addCb.value);
-                            serviceText += `: ${additionalTexts.join(', ')}`;
-                        }
+
+            // Iterar sobre cada grupo de serviço principal
+            quoteGenerator.querySelectorAll('.service-group').forEach(group => {
+                const mainCheckbox = group.querySelector('input[name="servico_principal"]');
+                if (mainCheckbox && mainCheckbox.checked) {
+                    let serviceGroupName = mainCheckbox.value;
+                    const subOptionsContainer = group.querySelector('.sub-options');
+                    
+                    let selectedSubOptions = [];
+
+                    // Coletar sub-opções (radio buttons ou checkboxes)
+                    subOptionsContainer.querySelectorAll('input[type="radio"]:checked').forEach(subInput => {
+                        selectedSubOptions.push(subInput.value);
+                    });
+                    subOptionsContainer.querySelectorAll('input[type="checkbox"]:checked').forEach(subInput => {
+                        selectedSubOptions.push(subInput.value);
+                    });
+
+                    if (selectedSubOptions.length > 0) {
+                        servicosSelecionados.push(`${serviceGroupName}: ${selectedSubOptions.join(', ')}`);
+                    } else {
+                        servicosSelecionados.push(serviceGroupName); // Se o checkbox principal estiver marcado, mas nenhuma sub-opção for selecionada
                     }
                 }
-                servicosSelecionados.push(serviceText);
             });
 
-            let message = `Olá, Auto Brilho! Gostaria de uma análise para o meu veículo.\n\n`;
-            if (modelo) message += `*Veículo:* ${modelo} (${ano || 'Ano não informado'})\n`;
-            if (local) message += `*Local:* Atendimento ${local}\n`;
+            let message = `Olá, Auto Brilho! Gostaria de um orçamento para o meu veículo.\n\n`;
+            message += `*Veículo:* ${modelo} (${ano})\n`;
+            message += `*Local:* Atendimento ${local}\n`;
+            
             if (servicosSelecionados.length > 0) {
                 message += `*Serviços de Interesse:*\n- ${servicosSelecionados.join('\n- ')}\n`;
+            } else {
+                message += `*Serviços de Interesse:* Nenhum serviço específico selecionado (apenas análise geral).\n`;
             }
+
             if (observacoes) {
                 message += `\n*Observações:* ${observacoes}`;
             }
+            
             messagePreview.textContent = message;
         }
         
+        // Adiciona event listeners para todos os inputs e textareas para atualizar a prévia
         allInputs.forEach(input => input.addEventListener('input', updatePreviewMessage));
+        
+        // Adiciona event listeners para os checkboxes de grupo para mostrar/esconder sub-opções
+        document.querySelectorAll('.service-group .group-title input[name="servico_principal"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const subOptions = this.closest('.service-group').querySelector('.sub-options');
+                if (subOptions) {
+                    if (this.checked) {
+                        subOptions.style.maxHeight = subOptions.scrollHeight + "px"; // Expande para o conteúdo
+                        subOptions.style.opacity = 1;
+                        subOptions.style.marginTop = 'var(--space-md)'; // Garante o espaçamento
+                    } else {
+                        subOptions.style.maxHeight = 0;
+                        subOptions.style.opacity = 0;
+                        subOptions.style.marginTop = 0;
+                        // Opcional: desmarcar sub-opções se o grupo principal for desmarcado
+                        subOptions.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(subInput => {
+                            subInput.checked = false;
+                        });
+                    }
+                }
+                updatePreviewMessage(); // Atualiza a mensagem ao mudar a visibilidade/seleção
+                // Reajusta a altura do accordion pai se estiver aberto
+                const customQuoteContent = document.getElementById('custom-quote-content');
+                if (customQuoteContent && customQuoteContent.classList.contains('active')) {
+                    customQuoteContent.style.maxHeight = customQuoteContent.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Event listener para as sub-opções, para que a prévia seja atualizada
+        document.querySelectorAll('.sub-options input').forEach(subInput => {
+            subInput.addEventListener('change', updatePreviewMessage);
+        });
+
         generateBtn.addEventListener('click', () => {
             const message = messagePreview.textContent;
-            const finalLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            const finalLink = `${BASE_WHATSAPP_URL}${encodeURIComponent(message)}`;
             window.open(finalLink, '_blank');
         });
 
+        // Chama a função pela primeira vez para exibir a mensagem inicial
         updatePreviewMessage();
+
+        // Esconde as sub-opções inicialmente se não estiverem marcadas
+        document.querySelectorAll('.service-group').forEach(group => {
+            const mainCheckbox = group.querySelector('.group-title input[name="servico_principal"]');
+            const subOptions = group.querySelector('.sub-options');
+            if (mainCheckbox && subOptions && !mainCheckbox.checked) {
+                subOptions.style.maxHeight = 0;
+                subOptions.style.opacity = 0;
+                subOptions.style.marginTop = 0;
+            }
+        });
     }
 
     // ===================================================================

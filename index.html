@@ -26,30 +26,30 @@
     <link rel="stylesheet" href="style.css">
 
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "AutomotiveBusiness",
-        "name": "Auto Brilho Estética Automotiva",
-        "image": "https://www.seusite.com.br/assets/img/logopng.png",
-        "url": "https://www.seusite.com.br",
-        "telephone": "+55 19 99304-0543",
-        "description": "Estética automotiva premium em Piracicaba, especializada em vitrificação cerâmica, polimento técnico e higienização detalhada.",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Sua Rua, 123",
-            "addressLocality": "Piracicaba",
-            "addressRegion": "SP",
-            "postalCode": "13400-000",
-            "addressCountry": "BR"
-        },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" ],
-            "opens": "08:00",
-            "closes": "18:00"
-        } 
-    }
-    </script>
+        {
+            "@context": "https://schema.org",
+            "@type": "AutomotiveBusiness",
+            "name": "Auto Brilho Estética Automotiva",
+            "image": "https://www.autobrilhopiracicaba.com.br/assets/img/logopng.png",
+            "url": "https://www.autobrilhopiracicaba.com.br",
+            "telephone": "+55 19 99304-0543",
+            "description": "Estética automotiva premium em Piracicaba, especializada em vitrificação cerâmica, polimento técnico e higienização detalhada.",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rua João Botene, 807 - Vila Monteiro",
+                "addressLocality": "Piracicaba",
+                "addressRegion": "SP",
+                "postalCode": "13418-555",
+                "addressCountry": "BR"
+            },
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" ],
+                "opens": "08:00",
+                "closes": "18:00"
+            } 
+        }
+        </script>
 </head>
 <body>
     <div id="floating-cta-container" class="floating-cta-container">
@@ -302,10 +302,53 @@
                                 <div class="input-group">
                                     <label>Serviços de Interesse</label>
                                     <div class="combo-options">
-                                        <div class="service-group"><label class="group-title"><input type="checkbox" name="servico" value="Polimento">Polimento</label><div class="sub-options"><p>Escolha o nível:</p><label><input type="radio" name="polimento_level" value="Comercial (Brilho e Valorização)">Comercial (Brilho e Valorização)</label><label><input type="radio" name="polimento_level" value="Técnico (Correção Completa)">Técnico (Correção Completa)</label></div></div>
-                                        <div class="service-group"><label class="group-title"><input type="checkbox" name="servico" value="Vitrificação de Pintura">Vitrificação de Pintura</label><div class="sub-options"><p>Escolha a proteção:</p><label><input type="radio" name="vitrificacao_level" value="Proteção de 2 Anos">2 Anos</label><label><input type="radio" name="vitrificacao_level" value="Proteção de 3 Anos">3 Anos</label><label><input type="radio" name="vitrificacao_level" value="Premium (Pacote Completo)">Premium (Completo)</label></div></div>
-                                        <div class="service-group"><label class="group-title"><input type="checkbox" name="servico" value="Higienização Interna">Higienização Interna</label><div class="sub-options"><p>Selecione o tipo de banco:</p><label><input type="radio" name="higienizacao_level" value="Bancos de Tecido">Tecido</label><label><input type="radio" name="higienizacao_level" value="Bancos de Couro (c/ hidratação)">Couro (c/ hidratação)</label></div></div>
-                                        <div class="service-group"><label class="group-title"><input type="checkbox" name="servico" value="Detalhes Adicionais">Detalhes Adicionais</label><div class="sub-options"><p>Selecione os adicionais:</p><label><input type="checkbox" name="adicionais" value="Cristalização do Pára-brisa"> Cristalização do Pára-brisa</label><label><input type="checkbox" name="adicionais" value="Tratamento de Motor"> Tratamento de Motor</label><label><input type="checkbox" name="adicionais" value="Vitrificação dos Plásticos"> Vitrificação dos Plásticos</label></div></div>
+                                        <div class="service-group">
+                                            <label class="group-title">
+                                                <input type="checkbox" name="servico_principal" value="Polimento">
+                                                Polimento
+                                            </label>
+                                            <div class="sub-options">
+                                                <p>Escolha o tipo:</p>
+                                                <label><input type="radio" name="polimento_type" value="Polimento Comercial (Brilho e Valorização)"> Comercial (Brilho e Valorização)</label>
+                                                <label><input type="radio" name="polimento_type" value="Polimento Técnico (Correção Profunda)"> Técnico (Correção Profunda)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="service-group">
+                                            <label class="group-title">
+                                                <input type="checkbox" name="servico_principal" value="Vitrificação">
+                                                Vitrificação
+                                            </label>
+                                            <div class="sub-options">
+                                                <p>Escolha o tipo:</p>
+                                                <label><input type="radio" name="vitrificacao_type" value="Vitrificação da Pintura"> da Pintura</label>
+                                                <label><input type="radio" name="vitrificacao_type" value="Vitrificação de Plásticos"> de Plásticos</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="service-group">
+                                            <label class="group-title">
+                                                <input type="checkbox" name="servico_principal" value="Higienização Interna">
+                                                Higienização Interna
+                                            </label>
+                                            <div class="sub-options">
+                                                <p>Tipo de bancos:</p>
+                                                <label><input type="radio" name="higienizacao_type" value="Higienização de Bancos de Tecido"> Tecido</label>
+                                                <label><input type="radio" name="higienizacao_type" value="Higienização de Couro com Hidratação"> Couro com Hidratação</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="service-group">
+                                            <label class="group-title">
+                                                <input type="checkbox" name="servico_principal" value="Proteções e Detalhes Adicionais">
+                                                Proteções e Detalhes Adicionais
+                                            </label>
+                                            <div class="sub-options">
+                                                <p>Escolha os adicionais:</p>
+                                                <label><input type="checkbox" name="adicionais_type" value="Cristalização de Para-brisa"> Cristalização de Para-brisa</label>
+                                                <label><input type="checkbox" name="adicionais_type" value="Tratamento de Motor"> Tratamento de Motor</label>
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="input-group">
@@ -351,8 +394,7 @@
             </div>
 
             <div class="footer-socials">
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Nosso Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Nosso Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                <a href="https://www.instagram.com/autobrilho_lavacarr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Nosso Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
             </div>
 
             <div class="footer-bottom">
