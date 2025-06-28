@@ -7,13 +7,13 @@
     <title>Auto Brilho - Estética Automotiva de Elite em Piracicaba</title>
     <meta name="description" content="Especialistas em vitrificação, polimento técnico e higienização detalhada em Piracicaba. Devolvemos o brilho e o valor que seu veículo merece.">
 
-    <link rel="preload" as="image" href="assets/img/ImgHero.png"> <link rel="preload" as="font" href="https://fonts.gstatic.com/s/orbitron/v31/y_6Mn-A71I0I_7HQnf4VF5d_2v4.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="assets/img/ImgHero.png">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/web-app-manifest-512x512.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/web-app-manifest-192x192.png">
-    <link rel="manifest" href="/site.webmanifest">
-    
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+
     <meta property="og:title" content="Auto Brilho - Estética Automotiva de Elite">
     <meta property="og:description" content="Transformamos seu veículo com serviços de vitrificação, polimento e higienização de alta performance.">
     <meta property="og:image" content="https://www.seusite.com.br/assets/img/social-share.jpg"> <meta property="og:url" content="https://www.seusite.com.br">
@@ -65,7 +65,7 @@
     <header class="header">
         <div class="header-container">
             <a href="#hero" class="header-logo">
-                <img src="./assets/img/logopng.png" alt="Auto Brilho Logo">
+                <img src="/assets/img/logopng.png" alt="Auto Brilho Logo" >
             </a>
             
             <button id="hamburger-btn" class="hamburger-btn">
@@ -81,9 +81,10 @@
         <nav class="mobile-nav">
             <a href="#hero" class="nav-link">Início</a>
             <a href="#servicos" class="nav-link">Serviços</a>
-            <a href="#combo-builder" class="nav-link">Orçamento</a>
             <a href="#galeria" class="nav-link">Galeria</a>
-            <a href="#contato" class="nav-link">Contato</a>
+            <a href="#prova-social" class="nav-link">Depoimentos</a>
+            <a href="#diferenciais" class="nav-link">Diferenciais</a>
+            <a href="#contato" class="nav-link">Contato & Orçamento</a>
         </nav>
     </div>
 
@@ -117,7 +118,6 @@
                     <h2 class="section-title">Soluções em Detalhamento</h2>
                     <p class="section-subtitle">Descubra como nossa precisão técnica pode proteger e rejuvenescer seu veículo.</p>
                 </div>
-                
                 <div class="servicos-showcase-container">
                     <div class="servicos-menu"></div>
                     <div class="servicos-display"></div>
@@ -132,16 +132,13 @@
                     <h2 class="section-title">A Prova está nos Detalhes</h2>
                     <p class="section-subtitle">Transformações reais, resultados impecáveis. Clique em um projeto para ver a mágica acontecer.</p>
                 </div>
-
                 <div class="gallery-filters">
                     <button class="filter-btn active" data-filter="todos">Todos</button>
                     <button class="filter-btn" data-filter="vitrificacao">Vitrificação</button>
                     <button class="filter-btn" data-filter="polimento">Polimento</button>
                     <button class="filter-btn" data-filter="interiores">Interiores</button>
                 </div>
-
                 <div class="gallery-grid"></div>
-
                 <div class="load-more-container">
                     <button id="load-more-btn" class="cta-secondary">Ver Mais Projetos</button>
                 </div>
@@ -197,6 +194,13 @@
                         <h3>Atendimento Consultivo</h3>
                         <p>O melhor serviço é aquele que atende à sua necessidade. Conversamos com você para entender seu uso e suas expectativas, oferecendo uma solução honesta e personalizada.</p>
                     </div>
+                    <div class="diferencial-item">
+                        <div class="diferencial-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/><path d="M9 22V12h6v10"/><path d="m2 10.45 10-7 10 7"/></svg>
+                        </div>
+                        <h3>Comodidade Total: Atendemos a Domicílio</h3>
+                        <p>Levamos nossa estrutura e expertise até você. Realizamos o detalhamento completo na sua casa, condomínio ou trabalho com a mesma qualidade e segurança do nosso estúdio.</p>
+                    </div>
                 </div>
 
                 <div class="product-showcase-container">
@@ -236,24 +240,26 @@
                         </div>
                         
                         <div class="input-group">
-                            <label>Serviços de Interesse (selecione um ou mais)</label>
-                            <div class="servicos-checkboxes">
+                            <label>Local de Atendimento</label>
+                            <div class="servicos-radios">
                                 <div>
-                                    <input type="checkbox" id="serv-vitrificacao-contato" name="servico-interesse" value="Vitrificação">
-                                    <label for="serv-vitrificacao-contato">Vitrificação</label>
+                                    <input type="radio" id="local-estudio" name="local-atendimento" value="no estúdio" checked>
+                                    <label for="local-estudio">Em nosso estúdio</label>
                                 </div>
                                 <div>
-                                    <input type="checkbox" id="serv-polimento-contato" name="servico-interesse" value="Polimento Técnico">
-                                    <label for="serv-polimento-contato">Polimento Técnico</label>
+                                    <input type="radio" id="local-domicilio" name="local-atendimento" value="a domicílio">
+                                    <label for="local-domicilio">A domicílio (consulte)</label>
                                 </div>
-                                <div>
-                                    <input type="checkbox" id="serv-higienizacao-contato" name="servico-interesse" value="Higienização Interna">
-                                    <label for="serv-higienizacao-contato">Higienização Interna</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="serv-rodas-contato" name="servico-interesse" value="Proteção de Rodas">
-                                    <label for="serv-rodas-contato">Proteção de Rodas</label>
-                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Serviços de Interesse</label>
+                            <div class="combo-options">
+                                <div class="service-group"><label class="group-title"><input type="checkbox" name="servico" value="Polimento">Polimento</label><div class="sub-options"><p>Escolha o nível:</p><label><input type="radio" name="polimento_level" value="Comercial (Brilho e Valorização)">Comercial (Brilho e Valorização)</label><label><input type="radio" name="polimento_level" value="Técnico (Correção Completa)">Técnico (Correção Completa)</label></div></div>
+                                <div class="service-group"><label class="group-title"><input type="checkbox" name="servico" value="Vitrificação de Pintura">Vitrificação de Pintura</label><div class="sub-options"><p>Escolha a proteção:</p><label><input type="radio" name="vitrificacao_level" value="Proteção de 2 Anos">2 Anos</label><label><input type="radio" name="vitrificacao_level" value="Proteção de 3 Anos">3 Anos</label><label><input type="radio" name="vitrificacao_level" value="Premium (Pacote Completo)">Premium (Completo)</label></div></div>
+                                <div class="service-group"><label class="group-title"><input type="checkbox" name="servico" value="Higienização Interna">Higienização Interna</label><div class="sub-options"><p>Selecione o tipo de banco:</p><label><input type="radio" name="higienizacao_level" value="Bancos de Tecido">Tecido</label><label><input type="radio" name="higienizacao_level" value="Bancos de Couro (c/ hidratação)">Couro (c/ hidratação)</label></div></div>
+                                <div class="service-group"><label class="group-title"><input type="checkbox" name="servico" value="Detalhes Adicionais">Detalhes Adicionais</label><div class="sub-options"><p>Selecione os adicionais:</p><label><input type="checkbox" name="adicionais" value="Cristalização do Pára-brisa"> Cristalização do Pára-brisa</label><label><input type="checkbox" name="adicionais" value="Tratamento de Motor"> Tratamento de Motor</label><label><input type="checkbox" name="adicionais" value="Vitrificação dos Plásticos"> Vitrificação dos Plásticos</label></div></div>
                             </div>
                         </div>
 
@@ -279,16 +285,16 @@
                     <h3 class="subsection-title">Nossa Localização</h3>
                     <div class="map-embed">
                         <iframe 
-                            src="https://www.google.com/maps?q=Engenho+Central,Piracicaba,SP&output=embed&z=15"
+                            src="https://maps.google.com/maps?q=Rua+Joao+Botene,807,Vila+Monteiro,Piracicaba,SP&t=&z=15&ie=UTF8&iwloc=&output=embed"
                             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                     <div class="map-info-box">
                         <div class="address-details">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            <span>Av. Dr. Maurice Allain, 454 - Vila Rezende, Piracicaba - SP</span>
+                            <span>Rua João Botene, 807 - Vila Monteiro, Piracicaba-SP</span>
                         </div>
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Engenho+Central,Piracicaba,SP" target="_blank" class="cta-directions">
+                        <a href="https://maps.google.com/maps?daddr=Rua+Joao+Botene,807,Vila+Monteiro,Piracicaba,SP" target="_blank" class="cta-directions">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
                             <span>Traçar Rota</span>
                         </a>
@@ -300,7 +306,7 @@
         <footer class="footer">
             <div class="footer-container">
                 <a href="#hero" class="footer-logo">
-                    <img src="./assets/img/logopng.png" alt="Auto Brilho Logo">
+                    <img src="/assets/img/logopng.png" alt="Auto Brilho Logo">
                 </a>
                 <div class="footer-socials">
                     <a href="#" aria-label="Nosso Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>

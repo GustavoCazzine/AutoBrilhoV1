@@ -6,10 +6,10 @@
 :root {
     /* Cores */
     --cor-fundo: #00040F;
-    --cor-destaque: #0137c5;
+    --cor-destaque: #009CE5;
     --cor-texto-principal: #F0F5F9;
     --cor-texto-secundario: #C9D6DE;
-    --cor-gradiente-b: #29ABE2;
+    --cor-gradiente-b: #006797;
 
     /* Tipografia */
     --fonte-principal: 'Rajdhani', sans-serif;
@@ -670,7 +670,7 @@ body {
     /* Cria a forma diagonal */
     clip-path: polygon(0 100%, 100% 0, 100% 100%); 
     /* Usa a mesma imagem de fundo da próxima seção */
-    background-image: linear-gradient(to top, rgba(8,10,19,0.9), rgba(8,10,19,0.8)), url('assets/img/fundo-diferenciais.png');
+    background-image: linear-gradient(to top, rgba(8,10,19,0.9), rgba(8,10,19,0.8)), url('assets/img/Img2.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -715,7 +715,7 @@ body {
 .testimonial-card {
     width: 360px; /* Largura fixa para cada card */
     flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(1, 55, 197, 0.15);
     border: 1px solid rgba(1, 55, 197, 0.15);
     border-radius: var(--border-radius-md);
     padding: var(--space-lg);
@@ -725,17 +725,6 @@ body {
     cursor: pointer;
 }
 
-/* Efeito de destaque no card sob o mouse */
-.testimonial-carousel:hover .testimonial-card {
-    opacity: 0.4;
-    transform: scale(0.98);
-}
-.testimonial-carousel .testimonial-card:hover {
-    opacity: 1;
-    background: rgba(1, 22, 64, 0.4);
-    border-color: rgba(1, 55, 197, 0.5);
-    transform: scale(1);
-}
 
 .testimonial-header {
     display: flex;
@@ -978,181 +967,7 @@ body {
 
 
 /* =================================================================== */
-/* ============ CONTATO & GERADOR DE ORÇAMENTO (REFINADO) ============ */
-/* =================================================================== */
-
-.contato-section {
-    padding: var(--space-section) 0;
-    /* Adicionando o fundo blueprint para consistência */
-    position: relative;
-    background-color: var(--cor-fundo);
-}
-.contato-section.blueprint-bg::after {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-    background-image: 
-        linear-gradient(rgba(1, 55, 197, 0.05) 1px, transparent 1px),
-        linear-gradient(to right, rgba(1, 55, 197, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px; opacity: 0.5;
-}
-.contato-section .container {
-    position: relative;
-    z-index: 1;
-}
-
-.quote-generator-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-}
-
-/* Campos de Formulário */
-.input-group {
-    margin-bottom: var(--space-lg);
-}
-.input-group label {
-    display: block;
-    font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-base);
-    margin-bottom: var(--space-sm);
-    color: var(--cor-texto-secundario);
-}
-.input-group input[type="text"],
-.input-group input[type="number"],
-.input-group textarea {
-    width: 100%;
-    padding: 14px;
-    background: rgba(0,0,0,0.2);
-    border: 1px solid rgba(1, 55, 197, 0.3);
-    border-radius: var(--border-radius-sm);
-    color: var(--cor-texto-principal);
-    font-family: var(--fonte-principal);
-    font-size: var(--font-size-base);
-    transition: var(--transition-fast);
-}
-.input-group input:focus,
-.input-group textarea:focus {
-    outline: none;
-    border-color: var(--cor-destaque);
-    box-shadow: 0 0 15px rgba(1, 55, 197, 0.5);
-    background: rgba(1, 55, 197, 0.05);
-}
-.input-group textarea { resize: vertical; }
-
-/* Checkboxes Customizados */
-.servicos-checkboxes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: var(--space-sm);
-}
-.servicos-checkboxes label {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(1, 55, 197, 0.2);
-    padding: var(--space-sm);
-    border-radius: var(--border-radius-sm);
-    cursor: pointer;
-    transition: var(--transition-fast);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-regular);
-}
-.servicos-checkboxes label:hover {
-    background: rgba(1, 55, 197, 0.1);
-    border-color: var(--cor-destaque);
-}
-/* Esconde o checkbox padrão */
-.servicos-checkboxes input[type="checkbox"] { display: none; }
-/* Cria o nosso próprio checkbox */
-.servicos-checkboxes label::before {
-    content: '';
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--cor-texto-secundario);
-    border-radius: 3px;
-    margin-right: var(--space-sm);
-    flex-shrink: 0;
-    transition: var(--transition-fast);
-}
-/* Estilo quando está selecionado */
-.servicos-checkboxes input[type="checkbox"]:checked + label {
-    color: var(--cor-texto-principal);
-}
-.servicos-checkboxes input[type="checkbox"]:checked + label::before {
-    background-color: var(--cor-destaque);
-    border-color: var(--cor-destaque);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-/* Prévia da Mensagem */
-.quote-preview {
-    background: rgba(1, 22, 64, 0.2);
-    border: 1px solid rgba(1, 55, 197, 0.2);
-    padding: var(--space-lg);
-    border-radius: var(--border-radius-md);
-    position: sticky;
-    top: 120px;
-}
-.quote-preview h4 {
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-bold);
-    margin-bottom: var(--space-sm);
-}
-.whatsapp-preview-box {
-    background-color: var(--cor-fundo);
-    border-radius: var(--border-radius-sm);
-    padding: var(--space-md);
-    min-height: 150px;
-    font-size: var(--font-size-base);
-    color: var(--cor-texto-secundario);
-    white-space: pre-wrap;
-    line-height: 1.6;
-    margin-bottom: var(--space-lg);
-    border: 1px solid transparent;
-    transition: var(--transition-smooth);
-}
-/* Animação de feedback quando a prévia atualiza */
-.whatsapp-preview-box.updated {
-    border-color: var(--cor-destaque);
-    box-shadow: 0 0 15px rgba(1, 55, 197, 0.5);
-}
-
-/* Botão Final com Animação */
-#generate-whatsapp-btn {
-    width: 100%;
-    padding: 14px 28px;
-    font-size: var(--font-size-base);
-    text-transform: uppercase;
-    animation: pulse 2s infinite; /* Animação de pulsação */
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(1, 55, 197, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(1, 55, 197, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(1, 55, 197, 0); }
-}
-
-/* Informações de Contato Adicionais */
-.contato-info-footer {
-    text-align: center;
-    margin-top: var(--space-xl);
-    padding-top: var(--space-lg);
-    border-top: 1px solid rgba(1, 55, 197, 0.1);
-    color: var(--cor-texto-secundario);
-    font-size: var(--font-size-sm);
-}
-.contato-info-footer a {
-    color: var(--cor-destaque);
-    font-weight: var(--font-weight-bold);
-    text-decoration: none;
-    transition: var(--transition-fast);
-}
-.contato-info-footer a:hover { filter: brightness(1.2); }
-.contato-info-footer span { display: block; margin-top: var(--space-xs); }
-
-/* =================================================================== */
-/* ============= CONTATO, MAPA E RODAPÉ (ESTILO FINAL) ================ */
+/* ============= CONTATO & ORÇAMENTO (ESTILO MOBILE-FIRST) ============ */
 /* =================================================================== */
 
 .contato-section {
@@ -1164,7 +979,7 @@ body {
     z-index: 1;
 }
 
-/* Gerador de Orçamento */
+/* Container principal do gerador de orçamento */
 .quote-generator-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -1176,11 +991,11 @@ body {
     border-radius: var(--border-radius-md);
 }
 
-/* Campos de Formulário com Espaçamento Refinado */
+/* Campos de Formulário com espaçamento refinado */
 .input-group {
-    margin-bottom: var(--space-md); /* Espaçamento reduzido */
+    margin-bottom: var(--space-md);
 }
-.input-group label {
+.input-group > label {
     display: block;
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-base);
@@ -1192,7 +1007,7 @@ body {
 .input-group textarea {
     width: 100%;
     padding: 14px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.3);
     border: 1px solid rgba(1, 55, 197, 0.3);
     border-radius: var(--border-radius-sm);
     color: var(--cor-texto-principal);
@@ -1205,19 +1020,74 @@ body {
     outline: none;
     border-color: var(--cor-destaque);
     box-shadow: 0 0 15px rgba(1, 55, 197, 0.5);
-    background: rgba(1, 55, 197, 0.05);
+    background: rgba(1, 55, 197, 0.1);
 }
 .input-group textarea { resize: vertical; }
 
-/* Checkboxes Customizados */
-.servicos-checkboxes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+/* Estilo para o acordeão de serviços */
+.combo-options {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
 }
-.servicos-checkboxes div { /* Wrapper para o input+label */
+.service-group {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(1, 55, 197, 0.1);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-md);
+    transition: var(--transition-smooth);
+}
+.service-group .group-title {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    width: 100%;
+}
+.group-title input[type="checkbox"] { margin-right: var(--space-sm); width: 20px; height: 20px; accent-color: var(--cor-destaque); }
+.sub-options {
+    max-height: 0;
+    overflow: hidden;
+    padding-left: 40px;
+    transition: max-height 0.4s ease-out, margin-top 0.4s ease-out, opacity 0.4s ease-out;
+    opacity: 0;
+}
+.service-group input[type="checkbox"]:checked ~ .sub-options {
+    max-height: 300px;
+    margin-top: var(--space-md);
+    opacity: 1;
+}
+.sub-options p {
+    font-size: var(--font-size-sm);
+    color: var(--cor-texto-secundario);
+    margin-bottom: var(--space-sm);
+}
+.sub-options label {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-base);
+    color: var(--cor-texto-secundario);
+    cursor: pointer;
+}
+.sub-options input[type="radio"],
+.sub-options input[type="checkbox"] {
+    margin-right: var(--space-sm);
+    flex-shrink: 0;
+}
+
+/* Estilo para os radio buttons de "Local de Atendimento" */
+.servicos-radios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+}
+.servicos-radios div,
+.servicos-checkboxes div {
     position: relative;
 }
+.servicos-radios input[type="radio"],
 .servicos-checkboxes input[type="checkbox"] {
     position: absolute;
     opacity: 0;
@@ -1225,6 +1095,7 @@ body {
     height: 100%;
     cursor: pointer;
 }
+.servicos-radios label,
 .servicos-checkboxes label {
     display: block;
     background: transparent;
@@ -1238,18 +1109,20 @@ body {
     text-align: center;
     width: 100%;
 }
+.servicos-radios input[type="radio"]:hover + label,
 .servicos-checkboxes input[type="checkbox"]:hover + label {
     border-color: var(--cor-destaque);
     color: var(--cor-texto-principal);
 }
+.servicos-radios input[type="radio"]:checked + label,
 .servicos-checkboxes input[type="checkbox"]:checked + label {
     background-color: var(--cor-destaque);
     border-color: var(--cor-destaque);
     color: var(--cor-texto-principal);
-    box-shadow: 0 0 15px rgba(1, 55, 197, 0.4);
 }
 
-/* Prévia da Mensagem */
+
+/* Prévia da Mensagem (Caixa da Direita) */
 .quote-preview {
     display: flex;
     flex-direction: column;
@@ -1263,7 +1136,7 @@ body {
     background-color: var(--cor-fundo);
     border-radius: var(--border-radius-sm);
     padding: var(--space-md);
-    min-height: 180px;
+    min-height: 200px;
     font-size: var(--font-size-base);
     color: var(--cor-texto-secundario);
     white-space: pre-wrap;
@@ -1272,10 +1145,6 @@ body {
     transition: var(--transition-smooth);
     flex-grow: 1;
 }
-.whatsapp-preview-box.updated {
-    border-color: var(--cor-destaque);
-    box-shadow: 0 0 15px rgba(1, 55, 197, 0.5);
-}
 #generate-whatsapp-btn {
     width: 100%;
     margin-top: var(--space-md);
@@ -1283,8 +1152,11 @@ body {
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-bold);
     text-transform: uppercase;
-    background: #25D366;
+    
+    /* Cores familiares do WhatsApp */
+    background: #25D366; 
     color: #fff;
+    
     border: none;
     border-radius: var(--border-radius-sm);
     cursor: pointer;
@@ -1294,12 +1166,22 @@ body {
     gap: var(--space-sm);
     transition: var(--transition-fast);
 }
+
 #generate-whatsapp-btn:hover {
-    background: #128C7E;
-    transform: scale(1.02);
-    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    background: #128C7E; /* Tom mais escuro do WhatsApp para o hover */
+    transform: scale(1.02) translateY(-2px); /* Efeito sutil de elevação */
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
 }
-#generate-whatsapp-btn svg { fill: currentColor; }
+
+#generate-whatsapp-btn svg {
+    fill: currentColor;
+}
+
+/* Remove a animação de pulso antiga, se existir */
+@keyframes pulse { 
+    from { box-shadow: none; }
+    to { box-shadow: none; }
+}
 
 /* Bloco do Mapa e Endereço */
 .map-container {
@@ -1311,7 +1193,7 @@ body {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 60%;
+    padding-bottom: 75%; /* Ajustado para um formato mais alto */
     border-radius: var(--border-radius-md);
     overflow: hidden;
     border: 1px solid rgba(1, 55, 197, 0.2);
@@ -1360,20 +1242,6 @@ body {
 }
 .cta-directions svg { transition: var(--transition-fast); }
 .cta-directions:hover svg { transform: rotate(45deg); }
-
-/* Layout Desktop */
-@media (min-width: 992px) {
-    .quote-generator-container {
-        grid-template-columns: 1.5fr 1fr;
-        align-items: flex-start;
-    }
-    .map-info-box {
-        flex-direction: row;
-        padding: var(--space-sm) var(--space-md);
-    }
-    .address-details { text-align: left; }
-    .cta-directions { width: auto; }
-}
 
 /* =================================================================== */
 /* ======================== RODAPÉ (VERSÃO FINAL) ==================== */
