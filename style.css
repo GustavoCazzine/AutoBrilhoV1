@@ -914,28 +914,37 @@ body {
     width: 100%;
     overflow: hidden;
     position: relative;
-    /* Efeito de degradê nas laterais para suavizar o corte */
     -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
     mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+    
+    /* NOVO: Adicionado para os dois scrollers funcionarem juntos */
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .testimonial-scroller {
     display: flex;
+    flex-shrink: 0; /* Impede que o trilho encolha */
     width: max-content;
     gap: var(--space-lg);
-    /* Animação mais lenta para facilitar a leitura inicial */
-    animation: scroll-testimonials 40s linear infinite;
+    
+    /* MUDANÇA PRINCIPAL: Nova animação mais rápida e suave */
+    animation: scroll-seamless 20s linear infinite;
 }
 
 /* Pausa a animação ao passar o mouse. Essencial para usabilidade! */
-.testimonial-carousel:hover .testimonial-scroller,
-.testimonial-scroller:hover {
+.testimonial-carousel:hover .testimonial-scroller {
     animation-play-state: paused;
 }
 
-@keyframes scroll-testimonials {
-    from { transform: translateX(0%); }
-    to { transform: translateX(-50%); } /* Animação correta para o conteúdo duplicado */
+@keyframes scroll-seamless {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        /* Move o trilho exatamente a sua própria largura para a esquerda */
+        transform: translateX(-100%);
+    }
 }
 
 /* --- CARD DE DEPOIMENTO (ESTILO REFINADO) --- */
@@ -1164,10 +1173,7 @@ body {
     flex-shrink: 0;
     width: max-content;
     gap: 80px;
-    animation: seamless-scroll 30s linear infinite;
-}
-.product-logos:hover .logos-scroller {
-    animation-play-state: paused; /* Pausa ao passar o mouse */
+    animation: seamless-scroll 25s linear infinite;
 }
 
 @keyframes seamless-scroll {
@@ -1371,7 +1377,7 @@ body {
 }
 
 .footer-logo img {
-    max-height: 45px;
+    max-height: 55px;
     opacity: 0.8;
     transition: opacity 0.3s ease;
 }

@@ -181,6 +181,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    const DADOS_MARCAS = [
+        { name: 'Menzerna', imgSrc: 'assets/img/logos/menzerna-logo.png' },
+        { name: 'CarPro', imgSrc: 'assets/img/logos/carpro-logo.png' },
+        { name: 'Rupes', imgSrc: 'assets/img/logos/rupes-logo.png' },
+        { name: 'Vonixx', imgSrc: 'assets/img/logos/vonixx-logo.png'} ,
+        { name: 'Koch Chemie', imgSrc: 'assets/img/logos/koch-chemie-logo.png' },
+        { name: 'Nasiol', imgSrc: 'assets/img/logos/nasiol-logo.png' },
+        { name: 'Soft99', imgSrc: 'assets/img/logos/soft99-logo.png' },
+        { name: '3M', imgSrc: 'assets/img/logos/3m-logo.png' },
+        { name: 'Gyeon', imgSrc: 'assets/img/logos/gyeon-logo.png' },
+        
+    ];
+
     // ===================================================================
     // ======================== FUNÇÕES UTILITÁRIAS ======================
     // ===================================================================
@@ -489,32 +502,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===================================================================
     // ============= FUNÇÃO DOS FEEDBACKS (VERSÃO ATUALIZADA) ===============
     // ===================================================================
-    
     function initTestimonialCarousel() {
         const carouselContainer = document.querySelector('.testimonial-carousel');
-        
-        // ESTA É A LINHA CORRIGIDA
-        if (!carouselContainer || !DADOS_DEPOIMENTOS || DADOS_DEPOIMENTOS.length === 0) {
-            // Se não encontrar o container ou os dados, a função para aqui.
+
+        // Verificação de segurança, garantindo que tudo que precisamos existe
+        if (!carouselContainer || typeof DADOS_DEPOIMENTOS === 'undefined' || DADOS_DEPOIMENTOS.length === 0) {
+            console.error("Carrossel de depoimentos não pôde ser iniciado: contêiner ou dados não encontrados.");
             return;
         }
 
-        carouselContainer.innerHTML = '';
-        const scroller = document.createElement('div');
-        scroller.className = 'testimonial-scroller';
-        
+        carouselContainer.innerHTML = ''; // Limpa o container para começar
+
+        // Função para gerar o HTML de um único card de depoimento
         const createTestimonialCardHTML = (testimonial) => {
             let sourceHTML = '';
             if (testimonial.source) {
                 if (testimonial.source.url) {
-                    sourceHTML = `<a href="${testimonial.source.url}" class="testimonial-source" target="_blank" rel="noopener noreferrer">
-                                    Avaliação via ${testimonial.source.name}
-                                </a>`;
+                    sourceHTML = `<a href="${testimonial.source.url}" class="testimonial-source" target="_blank" rel="noopener noreferrer">Avaliação via ${testimonial.source.name}</a>`;
                 } else {
                     sourceHTML = `<span class="testimonial-source">Via ${testimonial.source.name}</span>`;
                 }
             }
-
             return `
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -533,14 +541,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>`;
         };
 
+        // --- LÓGICA DO CARROSSEL INFINITO COM DOIS TRILHOS ---
+
+        // 1. Cria o PRIMEIRO trilho e o popula com os depoimentos
+        const scroller1 = document.createElement('div');
+        scroller1.className = 'testimonial-scroller';
         DADOS_DEPOIMENTOS.forEach(testimonial => {
-            scroller.innerHTML += createTestimonialCardHTML(testimonial);
+            scroller1.innerHTML += createTestimonialCardHTML(testimonial);
         });
+
+        // 2. Cria o SEGUNDO trilho (cópia exata) para o efeito de loop
+        const scroller2 = document.createElement('div');
+        scroller2.className = 'testimonial-scroller';
+        scroller2.setAttribute('aria-hidden', 'true'); // Oculta para leitores de tela para não ler conteúdo duplicado
         DADOS_DEPOIMENTOS.forEach(testimonial => {
-            scroller.innerHTML += createTestimonialCardHTML(testimonial);
+            scroller2.innerHTML += createTestimonialCardHTML(testimonial);
         });
-        
-        carouselContainer.appendChild(scroller);
+
+        // 3. Adiciona os dois trilhos ao contêiner principal
+        carouselContainer.appendChild(scroller1);
+        carouselContainer.appendChild(scroller2);
     }
 
     // ===================================================================
