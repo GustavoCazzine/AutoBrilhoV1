@@ -929,7 +929,7 @@ body {
     gap: var(--space-lg);
     
     /* MUDANÇA PRINCIPAL: Nova animação mais rápida e suave */
-    animation: scroll-seamless 20s linear infinite;
+    animation: scroll-seamless 35s linear infinite;
 }
 
 /* Pausa a animação ao passar o mouse. Essencial para usabilidade! */
