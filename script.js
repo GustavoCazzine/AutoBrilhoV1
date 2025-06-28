@@ -8,63 +8,162 @@ document.addEventListener('DOMContentLoaded', () => {
     const BASE_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
 
     const DADOS_SERVICOS = [
-        {
-            id: 'vitrificacao',
-            menuTitle: 'Vitrificação',
-            panelTitle: 'Proteção Extrema e Brilho de Espelho',
-            description: 'Cria uma camada de vidro líquido sobre a pintura, oferecendo proteção extrema e um brilho espelhado que dura por anos.',
-            benefits: [
-                { icon: 'shield-check', text: 'Proteção superior contra micro-riscos, raios UV e seiva.' },
-                { icon: 'droplet', text: 'Efeito super-hidrofóbico que repele água e sujeira.' },
-                { icon: 'award', text: 'Intensifica a cor e proporciona um brilho incomparável.' }
-            ],
-            processSteps: [
-                { icon: 'polisher', title: 'Polimento Técnico Prévio' },
-                { icon: 'spray', title: 'Descontaminação Química' },
-                { icon: 'layers', title: 'Aplicação do Nano-Revestimento' },
-                { icon: 'search', title: 'Cura e Inspeção Final' }
-            ],
-            ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o serviço de Vitrificação.'
-        },
-        {
-            id: 'polimento',
-            menuTitle: 'Polimento Técnico',
-            panelTitle: 'A Pintura Perfeita, Livre de Riscos e Manchas',
-            description: 'Processo técnico de correção que remove com segurança defeitos como marcas de lavagem, hologramas e riscos, restaurando o brilho original de fábrica.',
-            benefits: [
-                { icon: 'search', text: 'Remoção de até 95% das imperfeições visíveis.' },
-                { icon: 'layers', text: 'Nivelamento preciso para um reflexo puro e sem distorções.' },
-                { icon: 'sun', text: 'Revitalização completa da cor e do brilho.' }
-            ],
-            processSteps: [
-                { icon: 'wash', title: 'Lavagem Técnica Detalhada' },
-                { icon: 'clay-bar', title: 'Descontaminação de Pintura' },
-                { icon: 'tape', title: 'Mascaramento de Proteção' },
-                { icon: 'polisher', title: 'Execução do Polimento' },
-                { icon: 'shield-check', title: 'Inspeção Final e Proteção' }
-            ],
-            ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o serviço de Polimento Técnico.'
-        },
-        {
-            id: 'higienizacao',
-            menuTitle: 'Higienização Detalhada',
-            panelTitle: 'Saúde e Renovação para o Interior',
-            description: 'Limpeza e descontaminação profunda do interior, eliminando ácaros, bactérias e odores para um ambiente renovado, seguro e agradável.',
-            benefits: [
-                { icon: 'shield-off', text: 'Eliminação de 99,9% de ácaros, fungos e bactérias.' },
-                { icon: 'wind', text: 'Neutralização completa de odores desagradáveis.' },
-                { icon: 'award', text: 'Renovação da aparência de tecidos, couro e plásticos.' }
-            ],
-            processSteps: [
-                { icon: 'vacuum', title: 'Aspiração Profunda' },
-                { icon: 'spray', title: 'Limpeza e Esfregação' },
-                { icon: 'extractor', title: 'Extração de Sujeira' },
-                { icon: 'search', title: 'Limpeza de Detalhes' },
-                { icon: 'droplet', title: 'Condicionamento e Proteção' }
-            ],
-            ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o serviço de Higienização Detalhada.'
-        }
+    // VITRIFICAÇÃO
+    {
+        id: 'vitrificacao-pintura',
+        menuTitle: 'Vitrificação da Pintura',
+        panelTitle: 'Blindagem Rígida com Brilho Espelhado por Anos',
+        description: 'Nano-revestimento de alto desempenho que cria uma camada vítrea sobre a pintura, repelindo sujeira e protegendo contra danos causados por raios UV, seiva, fezes de aves e lavagens constantes.',
+        benefits: [
+        { icon: 'shield-check', text: 'Proteção avançada com durabilidade de até 3 anos.' },
+        { icon: 'droplet', text: 'Efeito hidrofóbico: repele água e sujeira com facilidade.' },
+        { icon: 'sun', text: 'Barreira contra raios solares, evitando oxidação da pintura.' }
+        ],
+        processSteps: [
+        { icon: 'wash', title: 'Lavagem Técnica Detalhada' },
+        { icon: 'clay-bar', title: 'Descontaminação de Pintura' },
+        { icon: 'polisher', title: 'Correção de Pintura (se necessário)' },
+        { icon: 'layers', title: 'Aplicação do Nano Revestimento' },
+        { icon: 'search', title: 'Cura e Inspeção Final' }
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o serviço de Vitrificação da Pintura.'
+    },
+    {
+        id: 'vitrificacao-plasticos',
+        menuTitle: 'Vitrificação de Plásticos',
+        panelTitle: 'Plásticos Renovados e Protegidos por Muito Mais Tempo',
+        description: 'Camada protetora aplicada sobre plásticos externos que evita o desbotamento e ressecamento causado por exposição ao sol, chuva e poluição.',
+        benefits: [
+        { icon: 'sun', text: 'Protege contra ação solar e intempéries.' },
+        { icon: 'refresh-cw', text: 'Recupera a cor original dos plásticos externos.' },
+        { icon: 'layers', text: 'Cria um escudo resistente contra desgaste prematuro.' }
+        ],
+        processSteps: [
+        { icon: 'brush', title: 'Limpeza e Preparo da Superfície' },
+        { icon: 'spray', title: 'Aplicação do Vitrificador' },
+        { icon: 'clock', title: 'Cura do Produto' },
+        { icon: 'search', title: 'Inspeção Final' }
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma avaliação para a Vitrificação dos Plásticos.'
+    },
+
+    // POLIMENTO
+    {
+        id: 'polimento-tecnico',
+        menuTitle: 'Polimento Técnico',
+        panelTitle: 'Riscos Corrigidos e Brilho de Fábrica Restaurado',
+        description: 'Processo de correção que remove com segurança defeitos na pintura, como riscos, marcas de lavagem e hologramas, devolvendo o acabamento original com alto brilho.',
+        benefits: [
+        { icon: 'search', text: 'Eliminação de até 95% das imperfeições visuais.' },
+        { icon: 'layers', text: 'Reflexo puro e pintura nivelada com precisão.' },
+        { icon: 'sun', text: 'Revitaliza a pintura com proteção ao verniz original.' }
+        ],
+        processSteps: [
+        { icon: 'wash', title: 'Lavagem Técnica Detalhada' },
+        { icon: 'clay-bar', title: 'Descontaminação de Pintura' },
+        { icon: 'tape', title: 'Mascaramento de Áreas Sensíveis' },
+        { icon: 'polisher', title: 'Execução do Polimento Técnico' },
+        { icon: 'shield-check', title: 'Inspeção Final com Proteção' }
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o serviço de Polimento Técnico.'
+    },
+    {
+        id: 'polimento-comercial',
+        menuTitle: 'Polimento Comercial',
+        panelTitle: 'Pintura Renovada e Pronta para Venda ou Troca',
+        description: 'Ideal para valorizar o veículo na hora da venda. Remove micro riscos, devolve o brilho e melhora visualmente o estado geral da pintura.',
+        benefits: [
+        { icon: 'sparkles', text: 'Revitaliza o brilho sem remover camadas de verniz.' },
+        { icon: 'eye', text: 'Melhora imediata na aparência para negociações.' },
+        { icon: 'dollar-sign', text: 'Aumenta o valor percebido do veículo.' }
+        ],
+        processSteps: [
+        { icon: 'wash', title: 'Lavagem e Análise Inicial' },
+        { icon: 'spray', title: 'Descontaminação Leve' },
+        { icon: 'polisher', title: 'Polimento de Realce' },
+        { icon: 'droplet', title: 'Finalização com Cera' }
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o Polimento Comercial.'
+    },
+
+    // HIGIENIZAÇÃO
+    {
+        id: 'higienizacao-couro',
+        menuTitle: 'Higienização de Couro',
+        panelTitle: 'Couro Renovado com Hidratação Profunda',
+        description: 'Remove sujeiras acumuladas e devolve a flexibilidade natural do couro, prevenindo rachaduras, ressecamento e desgaste visual.',
+        benefits: [
+        { icon: 'shield-off', text: 'Elimina fungos, ácaros e bactérias.' },
+        { icon: 'droplet', text: 'Hidrata profundamente para manter a flexibilidade.' },
+        { icon: 'award', text: 'Restaura o toque e visual original do couro.' }
+        ],
+        processSteps: [
+        { icon: 'vacuum', title: 'Aspiração Detalhada' },
+        { icon: 'spray', title: 'Aplicação do Produto Limpeza' },
+        { icon: 'brush', title: 'Esfregação Técnica' },
+        { icon: 'droplet', title: 'Hidratação com Produto Profissional' }
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma avaliação para a Higienização de Couro.'
+    },
+    {
+        id: 'higienizacao-tecido',
+        menuTitle: 'Higienização de Bancos de Tecido',
+        panelTitle: 'Tecidos Livres de Manchas, Odores e Impurezas',
+        description: 'Limpeza profunda nos bancos de pano, removendo manchas, odores e microorganismos, promovendo conforto e saúde no interior do carro.',
+        benefits: [
+        { icon: 'wind', text: 'Neutralização completa de odores.' },
+        { icon: 'shield-off', text: 'Eliminação de bactérias, fungos e ácaros.' },
+        { icon: 'award', text: 'Restaura a aparência original dos bancos.' }
+        ],
+        processSteps: [
+        { icon: 'vacuum', title: 'Aspiração Profunda' },
+        { icon: 'spray', title: 'Aplicação de Detergente Técnico' },
+        { icon: 'extractor', title: 'Extração de Sujeira e Umidade' },
+        { icon: 'fan', title: 'Secagem com Ar Forçado' }
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma avaliação para a Higienização dos Bancos de Tecido.'
+    },
+
+    // 🧩 PROTEÇÕES ESPECIAIS
+    {
+        id: 'cristalizacao-parabrisa',
+        menuTitle: 'Cristalização de Para-brisa',
+        panelTitle: 'Visibilidade Máxima com Repelência Instantânea',
+        description: 'Tratamento repelente que facilita a dispersão da água em alta velocidade, melhorando a visibilidade e segurança em dias chuvosos.',
+        benefits: [
+        { icon: 'umbrella', text: 'Repele água, sujeira e óleo.' },
+        { icon: 'eye', text: 'Visão clara mesmo sob chuva intensa.' },
+        { icon: 'clock', text: 'Efeito duradouro com proteção contínua.' }
+        ],
+        processSteps: [
+        { icon: 'spray', title: 'Limpeza Técnica do Vidro' },
+        { icon: 'layers', title: 'Aplicação do Cristalizador' },
+        { icon: 'clock', title: 'Tempo de Cura Controlado' },
+        { icon: 'search', title: 'Inspeção Final' }
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma avaliação para a Cristalização de Para-brisa.'
+    },
+    {
+        id: 'tratamento-motor',
+        menuTitle: 'Tratamento de Motor',
+        panelTitle: 'Desempenho Protegido Contra o Desgaste Extremo',
+        description: 'Aplicação de uma película protetora que reduz o atrito entre peças móveis, principalmente em partidas a frio e uso intenso.',
+        benefits: [
+        { icon: 'zap', text: 'Protege o motor em altas temperaturas.' },
+        { icon: 'engine', text: 'Reduz o desgaste interno por atrito.' },
+        { icon: 'clock', text: 'Prolonga a vida útil dos componentes internos.' }
+        ],
+        processSteps: [
+        { icon: 'search', title: 'Análise Técnica Inicial' },
+        { icon: 'spray', title: 'Aplicação do Produto Protetor' },
+        { icon: 'clock', title: 'Ativação do Tratamento' },
+        { icon: 'check-circle', title: 'Finalização e Verificação' }
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o Tratamento de Motor.'
+    }
     ];
+
+
     
     const DADOS_GALERIA = [
         {
