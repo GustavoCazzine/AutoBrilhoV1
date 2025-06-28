@@ -134,12 +134,19 @@
                 </div>
                 <div class="gallery-filters">
                     <button class="filter-btn active" data-filter="todos">Todos</button>
-                    <button class="filter-btn" data-filter="vitrificacao">Vitrificação</button>
-                    <button class="filter-btn" data-filter="polimento">Polimento</button>
-                    <button class="filter-btn" data-filter="interiores">Interiores</button>
+                    <button class="filter-btn" data-filter="lavagens">Lavagens</button>
+                    <button class="filter-btn" data-filter="polimentos">Polimentos</button>
+                    <button class="filter-btn" data-filter="vitrificacoes">Vitrificações</button>
+                    <button class="filter-btn" data-filter="higienizacoes">Higienização Interna</button>
+                    <button class="filter-btn" data-filter="adicionais">Adicionais</button>
                 </div>
                 
                 <div class="gallery-grid"></div>
+
+                <div id="no-items-message" class="no-items-message" style="display: none;">
+                    <p>Nenhum projeto encontrado para esta categoria. Estamos sempre atualizando nossa galeria com novos trabalhos!</p>
+                    <button class="cta-secondary reset-filter-btn">Ver todos os projetos</button>
+                </div>
 
                 <div class="load-more-container">
                     <button id="load-more-btn" class="cta-secondary">Ver Mais Projetos</button>
@@ -202,7 +209,7 @@
 
                 <div class="specialist-block">
                     <div class="specialist-photo">
-                        <img src="assets/img/cliente1.jpg" alt="[Seu Nome], especialista e fundador da Auto Brilho">
+                        <img src="assets/img/feedbacks/cliente1.jpg" alt="[Seu Nome], especialista e fundador da Auto Brilho">
                     </div>
                     <div class="specialist-text">
                         <h3>Apaixonado por Carros, Comprometido com a Perfeição</h3>
@@ -302,6 +309,17 @@
                                 <div class="input-group">
                                     <label>Serviços de Interesse</label>
                                     <div class="combo-options">
+                                        <div class="service-group">
+                                            <label class="group-title">
+                                                <input type="checkbox" name="servico_principal" value="Lavagem">
+                                                Lavagem
+                                            </label>
+                                            <div class="sub-options">
+                                                <p>Escolha o tipo:</p>
+                                                <label><input type="radio" name="lavagem_type" value="Lavagem Técnica"> Técnica</label>
+                                                <label><input type="radio" name="lavagem_type" value="Lavagem Detalhada"> Detalhada</label>
+                                            </div>
+                                        </div>
                                         <div class="service-group">
                                             <label class="group-title">
                                                 <input type="checkbox" name="servico_principal" value="Polimento">

@@ -672,6 +672,59 @@ body {
 /* #load-more-btn styles removed as it was an empty ruleset */
 
 
+/* =================================================================== */
+/* ============= MENSAGEM DE GALERIA VAZIA ========================= */
+/* =================================================================== */
+
+.no-items-message {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+    /* Cores e bordas herdadas dos elementos da sua galeria/botões */
+    background-color: var(--cor-fundo-secundario);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--border-radius-lg);
+    color: var(--cor-texto-principal);
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    animation: fadeIn 0.8s ease-out; /* Adiciona uma animação suave de fade in */
+}
+
+.no-items-message p {
+    margin-bottom: 25px; /* Espaço entre o texto e o botão */
+    color: var(--cor-texto-secundario); /* Cor para a descrição, em harmonia com seu tema */
+}
+
+/* Reutiliza o estilo do botão CTA secundário para o botão de reset */
+.no-items-message .cta-secondary.reset-filter-btn {
+    background-color: var(--cor-fundo-secundario);
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto-secundario);
+    padding: 12px 28px;
+    border-radius: var(--border-radius-lg);
+    font-family: var(--fonte-principal);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.no-items-message .cta-secondary.reset-filter-btn:hover {
+    background-color: var(--cor-destaque);
+    color: #FFF;
+    border-color: var(--cor-destaque);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px -8px var(--cor-destaque-transparente);
+}
+
+/* Animação de fade-in para a mensagem */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
 /* ====================================================== */
 /*                  MODO DETALHE (MODAL)                  */
 /* ====================================================== */
@@ -1166,6 +1219,15 @@ body {
     position: relative;
     -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
     mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+    /* Adicione estas propriedades para a animação inicial */
+    opacity: 0;
+    transform: translateY(20px); /* Começa 20px abaixo */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Transição suave */
+}
+
+.product-logos.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .logos-scroller {
@@ -1197,6 +1259,7 @@ body {
     filter: brightness(0) invert(1) grayscale(1) opacity(0.5);
     transition: all 0.3s ease;
 }
+
 .logo-item:hover img {
     opacity: 1;
 }

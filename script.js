@@ -8,6 +8,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const BASE_WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
 
     const DADOS_SERVICOS = [
+    // LAVAGEM
+    {
+        id: 'lavagem-tecnica',
+        menuTitle: 'Lavagem Técnica',
+        panelTitle: 'Limpeza Profunda e Segura para o Seu Veículo',
+        description: 'Processo de lavagem que utiliza técnicas e produtos específicos para limpar o veículo de forma detalhada, preservando a pintura e os componentes.',
+        benefits: [
+        { icon: 'shield-check', text: 'Remoção segura de sujeiras sem danificar a pintura.' }, // Usando shield-check para proteção
+        { icon: 'sparkles', text: 'Brilho intenso e duradouro pós-lavagem.' }, // Usando sparkles para brilho
+        { icon: 'droplet', text: 'Utilização de produtos de pH neutro e ceras protetoras.' } // Usando droplet para líquidos/produtos
+        ],
+        processSteps: [
+        { icon: 'droplet', title: 'Pré-lavagem com jatos suaves' }, // Água/líquido
+        { icon: 'brush', title: 'Aplicação de shampoo automotivo' }, // Escova/aplicação
+        { icon: 'glove', title: 'Lavagem manual com luva de microfibra' }, // Luva
+        { icon: 'droplet', title: 'Enxágue completo' }, // Água/líquido
+        { icon: 'dry', title: 'Secagem com toalhas de microfibra' } // Secagem
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma Lavagem Técnica.'
+    },
+    {
+        id: 'lavagem-detalhada',
+        menuTitle: 'Lavagem Detalhada',
+        panelTitle: 'Cada Detalhe Impecável, por Dentro e por Fora',
+        description: 'Lavagem que vai além, focando nos mínimos detalhes internos e externos, garantindo uma limpeza completa e um acabamento premium.',
+        benefits: [
+        { icon: 'search', text: 'Limpeza minuciosa em cada canto do veículo.' }, // Busca/detalhe
+        { icon: 'award', text: 'Interior e exterior com aparência e cheiro de novo.' }, // Qualidade/novo
+        { icon: 'protect', text: 'Cuidado extra com as superfícies mais delicadas.' } // Proteção
+        ],
+        processSteps: [
+        { icon: 'car-wash', title: 'Lavagem externa com produtos premium' }, // Carro/lavagem
+        { icon: 'brush', title: 'Limpeza detalhada de rodas e caixas de roda' }, // Escova/limpeza
+        { icon: 'vacuum', title: 'Aspiração e limpeza interna completa' }, // Aspirador
+        { icon: 'brush', title: 'Limpeza de painel, portas e console' }, // Escova/limpeza
+        { icon: 'sparkles', title: 'Aplicação de condicionadores e protetores' } // Brilho/finalização
+        ],
+        ctaMessage: 'Olá! Gostaria de agendar uma Lavagem Detalhada.'
+    },
     // VITRIFICAÇÃO
     {
         id: 'vitrificacao-pintura',
@@ -20,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
         { icon: 'sun', text: 'Barreira contra raios solares, evitando oxidação da pintura.' }
         ],
         processSteps: [
-        { icon: 'wash', title: 'Lavagem Técnica Detalhada' },
-        { icon: 'clay-bar', title: 'Descontaminação de Pintura' },
-        { icon: 'polisher', title: 'Correção de Pintura (se necessário)' },
-        { icon: 'layers', title: 'Aplicação do Nano Revestimento' },
-        { icon: 'search', title: 'Cura e Inspeção Final' }
+        { icon: 'car-wash', title: 'Lavagem Técnica Detalhada' }, // Carro/lavagem
+        { icon: 'hand-sparkles', title: 'Descontaminação de Pintura' }, // Mão/brilho
+        { icon: 'polisher', title: 'Correção de Pintura (se necessário)' }, // Politriz
+        { icon: 'layers', title: 'Aplicação do Nano Revestimento' }, // Camadas
+        { icon: 'search', title: 'Cura e Inspeção Final' } // Busca/inspeção
         ],
         ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o serviço de Vitrificação da Pintura.'
     },
@@ -35,14 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
         description: 'Camada protetora aplicada sobre plásticos externos que evita o desbotamento e ressecamento causado por exposição ao sol, chuva e poluição.',
         benefits: [
         { icon: 'sun', text: 'Protege contra ação solar e intempéries.' },
-        { icon: 'refresh-cw', text: 'Recupera a cor original dos plásticos externos.' },
-        { icon: 'layers', text: 'Cria um escudo resistente contra desgaste prematuro.' }
+        { icon: 'sync', text: 'Recupera a cor original dos plásticos externos.' }, // Recarregar/sincronizar
+        { icon: 'layers', text: 'Cria um escudo resistente contra desgaste prematuro.' } // Camadas
         ],
         processSteps: [
-        { icon: 'brush', title: 'Limpeza e Preparo da Superfície' },
-        { icon: 'spray', title: 'Aplicação do Vitrificador' },
-        { icon: 'clock', title: 'Cura do Produto' },
-        { icon: 'search', title: 'Inspeção Final' }
+        { icon: 'brush', title: 'Limpeza e Preparo da Superfície' }, // Escova
+        { icon: 'spray-can', title: 'Aplicação do Vitrificador' }, // Spray
+        { icon: 'hourglass', title: 'Cura do Produto' }, // Ampulheta
+        { icon: 'search', title: 'Inspeção Final' } // Busca/inspeção
         ],
         ctaMessage: 'Olá! Gostaria de agendar uma avaliação para a Vitrificação dos Plásticos.'
     },
@@ -54,16 +93,16 @@ document.addEventListener('DOMContentLoaded', () => {
         panelTitle: 'Riscos Corrigidos e Brilho de Fábrica Restaurado',
         description: 'Processo de correção que remove com segurança defeitos na pintura, como riscos, marcas de lavagem e hologramas, devolvendo o acabamento original com alto brilho.',
         benefits: [
-        { icon: 'search', text: 'Eliminação de até 95% das imperfeições visuais.' },
-        { icon: 'layers', text: 'Reflexo puro e pintura nivelada com precisão.' },
-        { icon: 'sun', text: 'Revitaliza a pintura com proteção ao verniz original.' }
+        { icon: 'search', text: 'Eliminação de até 95% das imperfeições visuais.' }, // Busca/inspeção
+        { icon: 'layers', text: 'Reflexo puro e pintura nivelada com precisão.' }, // Camadas
+        { icon: 'sun', text: 'Revitaliza a pintura com proteção ao verniz original.' } // Sol
         ],
         processSteps: [
-        { icon: 'wash', title: 'Lavagem Técnica Detalhada' },
-        { icon: 'clay-bar', title: 'Descontaminação de Pintura' },
-        { icon: 'tape', title: 'Mascaramento de Áreas Sensíveis' },
-        { icon: 'polisher', title: 'Execução do Polimento Técnico' },
-        { icon: 'shield-check', title: 'Inspeção Final com Proteção' }
+        { icon: 'car-wash', title: 'Lavagem Técnica Detalhada' }, // Carro/lavagem
+        { icon: 'hand-sparkles', title: 'Descontaminação de Pintura' }, // Mão/brilho
+        { icon: 'tape', title: 'Mascaramento de Áreas Sensíveis' }, // Fita
+        { icon: 'polisher', title: 'Execução do Polimento Técnico' }, // Politriz
+        { icon: 'shield-check', title: 'Inspeção Final com Proteção' } // Escudo/check
         ],
         ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o serviço de Polimento Técnico.'
     },
@@ -73,15 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
         panelTitle: 'Pintura Renovada e Pronta para Venda ou Troca',
         description: 'Ideal para valorizar o veículo na hora da venda. Remove micro riscos, devolve o brilho e melhora visualmente o estado geral da pintura.',
         benefits: [
-        { icon: 'sparkles', text: 'Revitaliza o brilho sem remover camadas de verniz.' },
-        { icon: 'eye', text: 'Melhora imediata na aparência para negociações.' },
-        { icon: 'dollar-sign', text: 'Aumenta o valor percebido do veículo.' }
+        { icon: 'sparkles', text: 'Revitaliza o brilho sem remover camadas de verniz.' }, // Brilho
+        { icon: 'eye', text: 'Melhora imediata na aparência para negociações.' }, // Olho
+        { icon: 'dollar-sign', text: 'Aumenta o valor percebido do veículo.' } // Dinheiro
         ],
         processSteps: [
-        { icon: 'wash', title: 'Lavagem e Análise Inicial' },
-        { icon: 'spray', title: 'Descontaminação Leve' },
-        { icon: 'polisher', title: 'Polimento de Realce' },
-        { icon: 'droplet', title: 'Finalização com Cera' }
+        { icon: 'car-wash', title: 'Lavagem e Análise Inicial' }, // Carro/lavagem
+        { icon: 'hand-sparkles', title: 'Descontaminação Leve' }, // Mão/brilho
+        { icon: 'polisher', title: 'Polimento de Realce' }, // Politriz
+        { icon: 'droplet', title: 'Finalização com Cera' } // Líquido/gota
         ],
         ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o Polimento Comercial.'
     },
@@ -93,15 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
         panelTitle: 'Couro Renovado com Hidratação Profunda',
         description: 'Remove sujeiras acumuladas e devolve a flexibilidade natural do couro, prevenindo rachaduras, ressecamento e desgaste visual.',
         benefits: [
-        { icon: 'shield-off', text: 'Elimina fungos, ácaros e bactérias.' },
-        { icon: 'droplet', text: 'Hidrata profundamente para manter a flexibilidade.' },
-        { icon: 'award', text: 'Restaura o toque e visual original do couro.' }
+        { icon: 'bacteria', text: 'Elimina fungos, ácaros e bactérias.' }, // Bactérias
+        { icon: 'droplet', text: 'Hidrata profundamente para manter a flexibilidade.' }, // Líquido/gota
+        { icon: 'award', text: 'Restaura o toque e visual original do couro.' } // Qualidade
         ],
         processSteps: [
-        { icon: 'vacuum', title: 'Aspiração Detalhada' },
-        { icon: 'spray', title: 'Aplicação do Produto Limpeza' },
-        { icon: 'brush', title: 'Esfregação Técnica' },
-        { icon: 'droplet', title: 'Hidratação com Produto Profissional' }
+        { icon: 'vacuum', title: 'Aspiração Detalhada' }, // Aspirador
+        { icon: 'spray-can', title: 'Aplicação do Produto Limpeza' }, // Spray
+        { icon: 'brush', title: 'Esfregação Técnica' }, // Escova
+        { icon: 'droplet', title: 'Hidratação com Produto Profissional' } // Líquido/gota
         ],
         ctaMessage: 'Olá! Gostaria de agendar uma avaliação para a Higienização de Couro.'
     },
@@ -111,15 +150,15 @@ document.addEventListener('DOMContentLoaded', () => {
         panelTitle: 'Tecidos Livres de Manchas, Odores e Impurezas',
         description: 'Limpeza profunda nos bancos de pano, removendo manchas, odores e microorganismos, promovendo conforto e saúde no interior do carro.',
         benefits: [
-        { icon: 'wind', text: 'Neutralização completa de odores.' },
-        { icon: 'shield-off', text: 'Eliminação de bactérias, fungos e ácaros.' },
-        { icon: 'award', text: 'Restaura a aparência original dos bancos.' }
+        { icon: 'wind', text: 'Neutralização completa de odores.' }, // Vento
+        { icon: 'bacteria', text: 'Eliminação de bactérias, fungos e ácaros.' }, // Bactérias
+        { icon: 'award', text: 'Restaura a aparência original dos bancos.' } // Qualidade
         ],
         processSteps: [
-        { icon: 'vacuum', title: 'Aspiração Profunda' },
-        { icon: 'spray', title: 'Aplicação de Detergente Técnico' },
-        { icon: 'extractor', title: 'Extração de Sujeira e Umidade' },
-        { icon: 'fan', title: 'Secagem com Ar Forçado' }
+        { icon: 'vacuum', title: 'Aspiração Profunda' }, // Aspirador
+        { icon: 'spray-can', title: 'Aplicação de Detergente Técnico' }, // Spray
+        { icon: 'sweeper', title: 'Extração de Sujeira e Umidade' }, // Extrator/limpador
+        { icon: 'fan', title: 'Secagem com Ar Forçado' } // Ventilador
         ],
         ctaMessage: 'Olá! Gostaria de agendar uma avaliação para a Higienização dos Bancos de Tecido.'
     },
@@ -131,15 +170,15 @@ document.addEventListener('DOMContentLoaded', () => {
         panelTitle: 'Visibilidade Máxima com Repelência Instantânea',
         description: 'Tratamento repelente que facilita a dispersão da água em alta velocidade, melhorando a visibilidade e segurança em dias chuvosos.',
         benefits: [
-        { icon: 'umbrella', text: 'Repele água, sujeira e óleo.' },
-        { icon: 'eye', text: 'Visão clara mesmo sob chuva intensa.' },
-        { icon: 'clock', text: 'Efeito duradouro com proteção contínua.' }
+        { icon: 'umbrella', text: 'Repele água, sujeira e óleo.' }, // Guarda-chuva
+        { icon: 'eye', text: 'Visão clara mesmo sob chuva intensa.' }, // Olho
+        { icon: 'hourglass', text: 'Efeito duradouro com proteção contínua.' } // Ampulheta
         ],
         processSteps: [
-        { icon: 'spray', title: 'Limpeza Técnica do Vidro' },
-        { icon: 'layers', title: 'Aplicação do Cristalizador' },
-        { icon: 'clock', title: 'Tempo de Cura Controlado' },
-        { icon: 'search', title: 'Inspeção Final' }
+        { icon: 'spray-can', title: 'Limpeza Técnica do Vidro' }, // Spray
+        { icon: 'layers', title: 'Aplicação do Cristalizador' }, // Camadas
+        { icon: 'hourglass', title: 'Tempo de Cura Controlado' }, // Ampulheta
+        { icon: 'search', title: 'Inspeção Final' } // Busca/inspeção
         ],
         ctaMessage: 'Olá! Gostaria de agendar uma avaliação para a Cristalização de Para-brisa.'
     },
@@ -149,54 +188,92 @@ document.addEventListener('DOMContentLoaded', () => {
         panelTitle: 'Desempenho Protegido Contra o Desgaste Extremo',
         description: 'Aplicação de uma película protetora que reduz o atrito entre peças móveis, principalmente em partidas a frio e uso intenso.',
         benefits: [
-        { icon: 'zap', text: 'Protege o motor em altas temperaturas.' },
-        { icon: 'engine', text: 'Reduz o desgaste interno por atrito.' },
-        { icon: 'clock', text: 'Prolonga a vida útil dos componentes internos.' }
+        { icon: 'bolt', text: 'Protege o motor em altas temperaturas.' }, // Raio/energia
+        { icon: 'engine', text: 'Reduz o desgaste interno por atrito.' }, // Motor
+        { icon: 'hourglass', text: 'Prolonga a vida útil dos componentes internos.' } // Ampulheta
         ],
         processSteps: [
-        { icon: 'search', title: 'Análise Técnica Inicial' },
-        { icon: 'spray', title: 'Aplicação do Produto Protetor' },
-        { icon: 'clock', title: 'Ativação do Tratamento' },
-        { icon: 'check-circle', title: 'Finalização e Verificação' }
+        { icon: 'search', title: 'Análise Técnica Inicial' }, // Busca/inspeção
+        { icon: 'spray-can', title: 'Aplicação do Produto Protetor' }, // Spray
+        { icon: 'hourglass', title: 'Ativação do Tratamento' }, // Ampulheta
+        { icon: 'check-circle', title: 'Finalização e Verificação' } // Check/círculo
         ],
         ctaMessage: 'Olá! Gostaria de agendar uma avaliação para o Tratamento de Motor.'
     }
     ];
 
-
-    
     const DADOS_GALERIA = [
         {
-            categoria: 'vitrificacao',
-            imageBefore: 'https://images.pexels.com/photos/17589574/pexels-photo-17589574/free-photo-of-porsche-911-carrera-s-preto-e-branco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            imageAfter: 'https://images.pexels.com/photos/6871787/pexels-photo-6871787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            alt: 'Porsche 911 com pintura vitrificada',
-            titulo: 'Brilho Espelhado e Proteção de Longa Duração',
-            veiculo: 'Porsche 911 Carrera S',
-            desafio: 'Cliente buscava a máxima proteção para a pintura nova, evitando os danos do dia a dia e mantendo o brilho profundo da cor preta.',
-            solucao: 'Realizamos um polimento de preparação e aplicamos um vitrificador cerâmico com durabilidade de 5 anos, garantindo proteção hidrofóbica e contra micro-riscos.'
+            // Agora 'lavagens' engloba 'lavagem-detalhada' e 'lavagem-tecnica'
+            categoria: ['lavagens', 'lavagem-detalhada'], // Pode manter a subcategoria se quiser filtros mais específicos no futuro
+            imageBefore: '/assets/img/gallery/creta.jpg',
+            imageAfter: '/assets/img/gallery/creta2.jpg',
+            alt: 'Lavagem detalhada do Hyundai Creta Comfort',
+            titulo: 'Lavagem Detalhada a Domicílio',
+            veiculo: 'Hyundai Creta Comfort',
+            desafio: 'O cliente buscava uma limpeza externa minuciosa sem precisar sair de casa. O veículo apresentava sujeiras de chuva e fuligem urbana acumulada em áreas detalhadas.',
+            solucao: 'Executamos uma lavagem detalhada com produtos automotivos de alta performance, utilizando técnica de duas etapas e microfibra. Todo o atendimento foi realizado na residência do cliente, com comodidade e zero impacto no ambiente.'
         },
         {
-            categoria: 'polimento',
-            imageBefore: 'https://images.pexels.com/photos/3354641/pexels-photo-3354641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            imageAfter: 'https://images.pexels.com/photos/9514022/pexels-photo-9514022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            alt: 'Reflexo em Lamborghini após polimento',
-            titulo: 'Restauração Completa da Pintura',
-            veiculo: 'Lamborghini Huracán',
-            desafio: 'A pintura apresentava marcas de lavagem incorreta (swirls) e alguns riscos superficiais, o que comprometia o reflexo e a aparência do veículo.',
-            solucao: 'Executamos um polimento técnico completo em 3 etapas (corte, refino e lustro), removendo 98% dos defeitos e restaurando o brilho de fábrica.'
+            categoria: ['lavagens', 'lavagem-detalhada'],
+            imageBefore: '/assets/img/gallery/lavasimples.jpg',
+            imageAfter: '/assets/img/gallery/lavasimples2.jpg',
+            alt: 'Lavagem externa do Hyundai Santa Fé',
+            titulo: 'Lavagem Externa',
+            veiculo: 'Hyundai Santa Fé',
+            desafio: 'Veículo com sujeira superficial acumulada por uso urbano e exposição ao tempo, afetando o brilho natural da pintura.',
+            solucao: 'Realizamos uma lavagem completa com shampoo neutro, enxágue pressurizado e secagem com toalhas de microfibra, restaurando o brilho e a presença do SUV com segurança.'
         },
         {
-            categoria: 'interiores',
-            imageBefore: 'https://images.pexels.com/photos/16188905/pexels-photo-16188905/free-photo-of-assentos-bancos-assentos-de-couro-bancos-de-couro.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            imageAfter: 'https://images.pexels.com/photos/7091427/pexels-photo-7091427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            alt: 'Limpeza de interior de couro',
-            titulo: 'Renovação e Higienização de Couro',
-            veiculo: 'Mercedes-Benz Classe C',
-            desafio: 'Os bancos de couro claro estavam com brilho de sujeira e aspecto de ressecado, além do acúmulo de bactérias invisíveis.',
-            solucao: 'Realizamos uma higienização profunda com produtos de pH neutro específicos para couro, seguida de uma hidratação completa para devolver a maciez e proteção.'
+            categoria: ['higienizacoes'], // Simplificado para higienizações
+            imageBefore: '/assets/img/gallery/higiinterna.jpg',
+            imageAfter: '/assets/img/gallery/higiinterna2.jpg',
+            alt: 'Higienização interna do Hyundai HB20X',
+            titulo: 'Higienização Interna Profunda',
+            veiculo: 'Hyundai HB20X',
+            desafio: 'O interior apresentava acúmulo de sujeira em áreas de uso frequente, como volante, painel e bancos, além de odor causado por umidade e bactérias invisíveis.',
+            solucao: 'Realizamos uma higienização completa com vaporização e produtos antibacterianos, eliminando impurezas, maus odores e devolvendo o aspecto renovado ao interior do veículo.'
         },
-        // Adicione mais projetos aqui seguindo a mesma estrutura
+        {
+            categoria: ['lavagens', 'polimentos'], // Combinação de lavagem e polimento
+            imageBefore: '/assets/img/gallery/onix.jpg',
+            imageAfter: '/assets/img/gallery/onix2.jpg',
+            alt: 'Lavagem completa e polimento técnico do Chevrolet Onix',
+            titulo: 'Lavagem Detalhada + Polimento Técnico',
+            veiculo: 'Chevrolet Onix',
+            desafio: 'O veículo apresentava acúmulo de sujeira em áreas de difícil acesso, motor com poeira incrustada e a pintura já começava a mostrar sinais de opacidade e micro riscos.',
+            solucao: 'Realizamos uma lavagem detalhada em todo o veículo, incluindo o cofre do motor com segurança. Finalizamos com um polimento técnico que restaurou o brilho e reduziu as imperfeições da pintura, devolvendo o aspecto de carro novo.'
+        },
+        {
+            categoria: ['lavagens', 'lavagem-tecnica'],
+            imageBefore: '/assets/img/gallery/chevro.jpg',
+            imageAfter: '/assets/img/gallery/chevro2.jpg',
+            alt: 'Lavagem técnica em Chevrolet S10 4x4',
+            titulo: 'Lavagem Técnica',
+            veiculo: 'Chevrolet S10 4x4',
+            desafio: 'A S10 apresentava acúmulo de sujeira em áreas críticas como rodas, para-lamas internos e grade frontal, comuns após uso em estrada ou áreas rurais.',
+            solucao: 'Aplicamos uma lavagem técnica completa com foco nos detalhes, remoção de sujeiras pesadas e revitalização visual. O resultado foi um acabamento de alto padrão, sem comprometer a pintura ou partes sensíveis.'
+        },
+        {
+            categoria: ['lavagens', 'lavagem-tecnica'],
+            imageBefore: '/assets/img/gallery/nivus.jpg',
+            imageAfter: '/assets/img/gallery/nivus2.jpg',
+            alt: 'Lavagem técnica em Volkswagen Nivus',
+            titulo: 'Lavagem Técnica',
+            veiculo: 'Volkswagen Nivus',
+            desafio: 'O veículo apresentava marcas de uso diário, acúmulo de sujeiras em detalhes da carroceria e rodas sem o brilho original.',
+            solucao: 'Realizamos uma lavagem técnica completa com foco na remoção precisa das impurezas, aplicação de produtos específicos para revitalizar o acabamento e garantir brilho duradouro com segurança para a pintura.'
+        },
+        {
+            categoria: ['lavagens', 'lavagem-detalhada'],
+            imageBefore: '/assets/img/gallery/hrv.jpg',
+            imageAfter: '/assets/img/gallery/hrv2.jpg',
+            alt: 'Lavagem detalhada em Honda HR-V',
+            titulo: 'Lavagem Detalhada a Domicílio',
+            veiculo: 'Honda HR-V',
+            desafio: 'O veículo apresentava sujeira acumulada nos detalhes da carroceria e rodas, com aspecto opaco causado por lavagens anteriores incorretas.',
+            solucao: 'Nossa equipe foi até o local do cliente e realizou uma lavagem detalhada completa, utilizando produtos neutros e equipamentos profissionais para devolver o brilho e a proteção da pintura, sem comprometer o acabamento.'
+        },
     ];
 
     const DADOS_DEPOIMENTOS = [
@@ -206,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quote: 'Serviço impecável! O brilho da vitrificação é inacreditável, meu carro parece um espelho.', 
             authorName: 'Carlos Monteiro', 
             authorDetail: 'Proprietário de um Audi A4', 
-            authorImg: 'assets/img/cliente1.jpg',
+            authorImg: 'assets/img/feedbacks/cliente1.jpg',
             source: {
                 name: 'Google',
                 // IMPORTANTE: Substitua pela URL real da sua página de reviews do Google!
@@ -219,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quote: 'Atendimento nota 10 e o resultado do polimento superou todas as minhas expectativas. Recomendo de olhos fechados!', 
             authorName: 'Juliana Alves', 
             authorDetail: 'Proprietária de uma BMW X1', 
-            authorImg: 'assets/img/cliente2.jpg',
+            authorImg: 'assets/img/feedbacks/cliente2.jpg',
             source: {
                 name: 'Google',
                 // IMPORTANTE: Substitua pela URL real da sua página de reviews do Google!
@@ -232,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quote: 'Profissionalismo raro de se encontrar. Cuidaram do meu carro como se fosse deles. A higienização interna deixou o carro com cheiro de novo.', 
             authorName: 'Roberta Dias', 
             authorDetail: 'Proprietária de uma Toyota Hilux', 
-            authorImg: 'assets/img/cliente3.jpg',
+            authorImg: 'assets/img/feedbacks/cliente3.jpg',
             source: {
                 name: 'Google',
                 // IMPORTANTE: Substitua pela URL real da sua página de reviews do Google!
@@ -242,45 +319,44 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const DADOS_COMBOS = [
-    {
-        icon: 'sparkles',
-        title: 'Pacote Renovação e Brilho',
-        description: 'Perfeito para quem quer destacar o carro visualmente, seja para venda, troca ou para recuperar o brilho de um carro bem cuidado.',
-        services: [
-        'Lavagem Técnica Detalhada',
-        'Descontaminação da Pintura',
-        'Polimento Comercial (realce e valorização)',
-        'Finalização com Cera Protetora (até 6 meses)'
-        ],
-        whatsappMessage: 'Olá! Tenho interesse no Pacote Renovação e Brilho.'
-    },
-    {
-        icon: 'shield-check',
-        title: 'Pacote Proteção Cerâmica',
-        description: 'Indicado para quem busca proteção de médio a longo prazo, com estética impecável e resistência contra os agentes do dia a dia.',
-        services: [
-        'Lavagem Técnica Detalhada',
-        'Descontaminação da Pintura',
-        'Polimento Técnico (correção e nivelamento)',
-        'Vitrificação da Pintura (proteção de até 3 anos)',
-        'Cristalização de Para-brisa'
-        ],
-        whatsappMessage: 'Olá! Tenho interesse no Pacote Proteção Cerâmica.'
-    },
-    {
-        icon: 'award',
-        title: 'Pacote Detalhamento Premium',
-        description: 'Um cuidado completo e superior ao padrão de fábrica. Ideal para quem exige o máximo em estética, proteção e conforto.',
-        services: [
-        'Todos os itens do Pacote Proteção Cerâmica',
-        'Higienização de Couro e Bancos de Tecido',
-        'Hidratação de Couro Profissional',
-        'Vitrificação de Plásticos Externos'
-        ],
-        whatsappMessage: 'Olá! Tenho interesse no Pacote Detalhamento Premium.'
-    }
+        {
+            icon: 'sparkles', // Ícone para brilho e renovação
+            title: 'Pacote Renovação e Brilho',
+            description: 'Perfeito para quem quer destacar o carro visualmente, seja para venda, troca ou para recuperar o brilho de um carro bem cuidado.',
+            services: [
+            'Lavagem Detalhada', // Usando "Lavagem Detalhada" do DADOS_SERVICOS
+            'Descontaminação de Pintura', // Nome do passo de processo em Vitrificação/Polimento
+            'Polimento Comercial', // Nome do serviço
+            'Finalização com Cera Protetora (até 6 meses)' // Descrição do processo, não um serviço individual
+            ],
+            whatsappMessage: 'Olá! Tenho interesse no Pacote Renovação e Brilho.'
+        },
+        {
+            icon: 'shield-check', // Ícone para proteção
+            title: 'Pacote Proteção Cerâmica',
+            description: 'Indicado para quem busca proteção de médio a longo prazo, com estética impecável e resistência contra os agentes do dia a dia.',
+            services: [
+            'Lavagem Técnica', // Usando "Lavagem Técnica" do DADOS_SERVICOS
+            'Descontaminação de Pintura', // Nome do passo de processo
+            'Polimento Técnico', // Nome do serviço
+            'Vitrificação da Pintura', // Nome do serviço
+            'Cristalização de Para-brisa' // Nome do serviço
+            ],
+            whatsappMessage: 'Olá! Tenho interesse no Pacote Proteção Cerâmica.'
+        },
+        {
+            icon: 'award', // Ícone para qualidade premium
+            title: 'Pacote Detalhamento Premium',
+            description: 'Um cuidado completo e superior ao padrão de fábrica. Ideal para quem exige o máximo em estética, proteção e conforto.',
+            services: [
+            'Todos os itens do Pacote Proteção Cerâmica', // Mantendo para indicar abrangência
+            'Higienização de Couro', // Nome do serviço
+            'Higienização de Bancos de Tecido', // Nome do serviço (adicionei ambos se for o caso)
+            'Vitrificação de Plásticos' // Nome do serviço
+            ],
+            whatsappMessage: 'Olá! Tenho interesse no Pacote Detalhamento Premium.'
+        }
     ];
-
 
     const DADOS_MARCAS = [
         { name: 'Menzerna', imgSrc: 'assets/img/logos/menzerna-logo.png' },
@@ -377,19 +453,34 @@ document.addEventListener('DOMContentLoaded', () => {
             'search': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
             'layers': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>',
             'award': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 17 17 23 15.79 13.88"></polyline></svg>',
-            'shield-off': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.69 14a6.9 6.9 0 0 0 .31-2V5l-8-3-8 3v7c0 6 8 10 8 10"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>',
+            'protect': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>', // Ícone de escudo simples para proteção
             'wind': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg>',
             'droplet': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg>',
+            'sync': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"></path><path d="m16.24 7.76 2.83-2.83"></path><path d="M20 12h-4"></path><path d="m16.24 16.24 2.83 2.83"></path><path d="M12 20v-4"></path><path d="m7.76 16.24-2.83 2.83"></path><path d="M4 12h4"></path><path d="m7.76 7.76-2.83-2.83"></path></svg>', // Ícone para 'refresh-cw'
+            'sparkles': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.8 4.6L5 9.5l4.2 1.9L12 16l1.8-4.6L19 9.5l-4.2-1.9L12 3Z"/><path d="m20 16-1.2 3L15 20l3-1.2L20 22l1.2-3L24 16l-3 1.2Z"/><path d="M5 19l-1-2.5L1.5 15l2.5-1L5 11.5l1 2.5L8.5 15l-2.5 1L5 19Z"/></svg>', // Ícone para 'sparkles'
+            'eye': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
+            'dollar-sign': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>',
+            'umbrella': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12V2C6.5 2 2 6.5 2 12a10 10 0 0 0 20 0c0-5.5-4.5-10-10-10Z"/><path d="M12 2v20"/></svg>',
+            'bolt': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7Z"/></svg>', // Ícone para 'zap'
+            'engine': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4H9.5L6 7l2 6h8l2-6Z"/><path d="M2 20h20"/><path d="M12 13V7"/><path d="m14 13 2 5-2 2-2-2-2-5Z"/></svg>', // Ícone para 'engine'
+            'check-circle': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
+            'bacteria': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.05L7.95 2.05A10.05 10.05 0 0 0 2.05 12.1L2.05 12A10.05 10.05 0 0 0 12.1 21.95L12 21.95A10.05 10.05 0 0 0 21.95 11.9L21.95 12A10.05 10.05 0 0 0 11.9 2.05L12 2.05A10.05 10.05 0 0 0 8 2.05Z"/><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M12 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg>', // Ícone para 'bacteria'
 
-            // Ícones de Processo
-            'wash': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 15c.7-1.2 1-2.5.7-3.9-.6-2.4-3.4-4-6.2-4.2-1.5-.1-2.9.3-4.2 1.1-1.3.8-2.3 2-2.8 3.4-1.2 3.2.7 6.5 3.9 7.7.8.3 1.6.4 2.4.4.7 0 1.4-.1 2.1-.4 1.1-.4 2.1-1.1 2.8-2.1z"></path><path d="M7 21a9 9 0 0 0 11-11c0-1-1-2-2-2s-2 1-2 2a5 5 0 0 1-8 5c0 1-1 2-2 2s-2-1-2-2a9 9 0 0 0 5 11z"></path></svg>',
-            'clay-bar': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12.38A10 10 0 1 1 12.62 22a10 10 0 0 1-10.62-9.62z"></path><path d="M12.62 2a10 10 0 0 0-10.62 9.62"></path><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"></path></svg>',
+            // Ícones de Processo (Novos ou Padronizados)
+            'car-wash': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="15" rx="2"/><path d="M7 19v-2"/><path d="M12 19v-2"/><path d="M17 19v-2"/><path d="M4 11h16"/><path d="M4 15h16"/><line x1="8" y1="5" x2="8" y2="19"/><line x1="16" y1="5" x2="16" y2="19"/></svg>', // Carro com lavagem
+            'glove': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10V5c0-1.1.9-2 2-2s2 .9 2 2v5"/><path d="M10 21V10c0-1.1-.9-2-2-2s-2 .9-2 2v11"/><path d="M6 15h12c1.1 0 2-.9 2-2s-.9-2-2-2H6c-1.1 0-2 .9-2 2s.9 2 2 2z"/><line x1="10" y1="15" x2="10" y2="21"/><line x1="14" y1="15" x2="14" y2="21"/></svg>', // Luva
+            'dry': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg>', // Secagem
+            'hand-sparkles': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17.5V9a2.5 2.5 0 0 1 2.5-2.5h10A2.5 2.5 0 0 1 19 9v8.5a2.5 2.5 0 0 1-2.5 2.5h-10A2.5 2.5 0 0 1 2 17.5Z"/><path d="M22 13 19 10"/><path d="M18.5 16.5 19 17.5"/><path d="M16 20.5 19 17.5"/><path d="M14 17 19 12"/><path d="M17 19 19 17"/></svg>', // Mão com brilho (para descontaminação/preparo)
             'tape': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 7.85 16.15 3.41a2 2 0 0 0-2.83 0L3.41 13.32a2 2 0 0 0 0 2.83l4.44 4.44a2 2 0 0 0 2.83 0L20.59 10.68a2 2 0 0 0 0-2.83z"></path><path d="m9.5 12.5 5-5"></path><path d="M14.5 7.5 11 11"></path><path d="M12 2h4v4h-4z"></path><path d="m15 13.5-5 5"></path></svg>',
             'polisher': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v4"></path><path d="M12 20v2"></path><path d="m4.93 4.93 2.83 2.83"></path><path d="m16.24 16.24 2.83 2.83"></path><path d="M2 12h4"></path><path d="M20 12h2"></path><path d="m4.93 19.07 2.83-2.83"></path><path d="m16.24 7.76 2.83-2.83"></path></svg>',
-            'spray': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 17-4.2 3.4a1 1 0 0 1-1.6-1.2L10 14"></path><path d="m16 15 3.4-4.2a1 1 0 0 0-1.2-1.6L14 10"></path><path d="M21 3h-5"></path><path d="M16 3h-2"></path><path d="M12 3H9"></path><path d="M9 21H4"></path><path d="M4 16v-2"></path><path d="M4 12V9"></path></svg>',
+            'spray-can': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v6"/><path d="M2 17h20"/><path d="M2 21h20"/><path d="M7 17v4"/><path d="M17 17v4"/><path d="M12 3v4"/><path d="M12 17v4"/></svg>', // Lata de spray
             'vacuum': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8c-1.7-1.7-4-2.7-6.5-2.9"></path><path d="M3.2 16.8c0 2.2 1.8 4 4 4h10"></path><path d="M5 12a7 7 0 1 0 14 0h-4a3 3 0 0 1-6 0H5Z"></path><path d="M18.8 5.2c1.7 1.7 2.9 4 3.2 6.5"></path></svg>',
-            'extractor': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 2.2c-1.3.4-2.5.9-3.5 1.7C4.1 6 2 10.3 2 15h12c0-4.7-2.1-9-5.1-11.1-1-.7-2.1-1.2-3.3-1.7Z"></path><path d="M5.5 15a7.5 7.5 0 0 0 15 0H5.5Z"></path><path d="m22 15-1.5-1.5"></path><path d="m22 11-1.5-1.5"></path></svg>'
+            'sweeper': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.8 2.2C15.9-.6 11.2-.6 8.3 2.2L3.6 7c-2.9 2.9-2.9 7.6 0 10.5L12 22l8.4-8.4c2.9-2.9 2.9-7.6 0-10.5Z"/><path d="M8 2.5v15"/><path d="M16 2.5v15"/></svg>', // Extrator/Limpador (genérico)
+            'fan': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v1m0 4v.75"/><path d="M17.5 4.5l-.75.75"/><path d="M6.5 19.5l.75-.75"/><path d="M3 12h1m4 .25h.75"/><path d="M20 12h1m-4 .25h-.75"/><path d="M4.5 6.5l.75-.75"/><path d="M19.5 17.5l-.75.75"/></svg>', // Ventilador
+            'hourglass': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22V2L7 12Z"/><path d="M7 2v20L17 12Z"/></svg>', // Ampulheta para tempo/cura
+            'brush': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9.06 11.5c-.86-.86-.06-2.12.93-2.92.8-.64 2.05-1.07 3.04-.68.86-.33 1.9-.38 2.54.46.73.91.43 2.15-.38 2.96-.8.81-2.05 1.07-3.04.68-.86.33-1.9.38-2.54-.46-.73-.91-.43-2.15.38-2.96Z"/><path d="M15.5 13.5 17 15l2-2 1.5 1.5c.2-.2.5-.3.8-.3.3 0 .6.1.8.3L22 17l-1 1-1.5-1.5c-.2.2-.5.3-.8.3-.3 0-.6-.1-.8-.3L18 17l-1.5 1.5z"/><path d="m11 7-4 4-2-2 4-4Z"/></svg>' // Pincel/Escova
         };
+
 
         function renderServiceContent(service) {
             let processHtml = '';
@@ -459,6 +550,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const galleryGrid = document.querySelector('.gallery-grid');
         const filterButtons = document.querySelectorAll('.filter-btn');
         const loadMoreBtn = document.getElementById('load-more-btn');
+        const noItemsMessage = document.getElementById('no-items-message'); // SELETOR ADICIONADO!
+        const resetFilterBtn = noItemsMessage ? noItemsMessage.querySelector('.reset-filter-btn') : null; // SELETOR ADICIONADO!
         
         // --- Seletores do Novo "Modo Detalhe" ---
         const detailModal = document.getElementById('gallery-detail-modal');
@@ -475,16 +568,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const sliderHandle = document.getElementById('slider-handle');
 
         // --- Validação ---
-        if (!galleryGrid || !loadMoreBtn || !detailModal) {
+        if (!galleryGrid || !loadMoreBtn || !detailModal || !noItemsMessage) { // Valida o novo elemento também
             console.error("Elementos essenciais da galeria não encontrados.");
             return;
         }
 
         // --- Configurações ---
-        const ITEMS_PER_LOAD = 4; // Aumentei um pouco o padrão
+        const ITEMS_PER_LOAD = 4;
         let currentFilter = 'todos';
         let itemsShown = 0;
-        let allGalleryItems = []; // Array para guardar os dados e facilitar o acesso
 
         // --- Funções do Slider ---
         function updateSlider(value) {
@@ -492,9 +584,11 @@ document.addEventListener('DOMContentLoaded', () => {
             sliderHandle.style.left = `${value}%`;
         }
 
-        sliderRange.addEventListener('input', (e) => {
-            updateSlider(e.target.value);
-        });
+        if (sliderRange) {
+            sliderRange.addEventListener('input', (e) => {
+                updateSlider(e.target.value);
+            });
+        }
 
         // --- Funções do Modal ---
         function openDetailModal(itemData) {
@@ -505,12 +599,13 @@ document.addEventListener('DOMContentLoaded', () => {
             modalBeforeImg.src = itemData.imageBefore;
             modalAfterImg.src = itemData.imageAfter;
             
-            // Reseta o slider para a posição inicial (meio)
-            sliderRange.value = 50;
-            updateSlider(50);
+            if (sliderRange) {
+                sliderRange.value = 50;
+                updateSlider(50);
+            }
             
             detailModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Impede o scroll da página ao fundo
+            document.body.style.overflow = 'hidden';
         }
 
         function closeDetailModal() {
@@ -523,29 +618,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- Funções da Galeria ---
         function createGalleryItemHTML(itemData, index) {
-            // Agora o subtitulo é o 'veiculo'
             return `
                 <div class="gallery-item" data-index="${index}">
                     <img src="${itemData.imageBefore}" alt="${itemData.alt}" loading="lazy">
                     <div class="gallery-item-info">
                         <h3>${itemData.titulo}</h3>
                         <p>${itemData.veiculo}</p>
-                        <span class="view-result-prompt">Ver Transformação</span>
                     </div>
                 </div>
             `;
         }
 
         function populateGrid() {
-            allGalleryItems = DADOS_GALERIA; // Carrega os dados
-            galleryGrid.innerHTML = allGalleryItems.map((itemData, index) => createGalleryItemHTML(itemData, index)).join('');
+            galleryGrid.innerHTML = DADOS_GALERIA.map((itemData, index) => createGalleryItemHTML(itemData, index)).join('');
             
-            // Adiciona o evento de clique na grade
             galleryGrid.addEventListener('click', (e) => {
                 const clickedItem = e.target.closest('.gallery-item');
                 if (clickedItem) {
                     const itemIndex = parseInt(clickedItem.dataset.index, 10);
-                    const itemData = allGalleryItems[itemIndex];
+                    const itemData = DADOS_GALERIA[itemIndex]; 
                     if (itemData) {
                         openDetailModal(itemData);
                     }
@@ -554,27 +645,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function showItems() {
-            const filteredItems = allGalleryItems.filter(item => 
-                currentFilter === 'todos' || item.categoria === currentFilter
-            );
-
-            const gridItems = galleryGrid.querySelectorAll('.gallery-item');
-            
-            gridItems.forEach(gridItem => {
-                const itemIndex = parseInt(gridItem.dataset.index, 10);
-                const itemData = allGalleryItems[itemIndex];
-                
-                // Verifica se o item pertence ao filtro atual
-                const isInFilter = filteredItems.includes(itemData);
-                
-                // Verifica se o item está dentro do limite a ser exibido
-                const itemPositionInFilteredList = filteredItems.indexOf(itemData);
-                const shouldBeVisible = isInFilter && itemPositionInFilteredList < itemsShown;
-
-                gridItem.style.display = shouldBeVisible ? 'block' : 'none';
+            const filteredItems = DADOS_GALERIA.filter(item => {
+                if (currentFilter === 'todos') {
+                    return true;
+                }
+                if (Array.isArray(item.categoria)) {
+                    return item.categoria.includes(currentFilter);
+                }
+                return item.categoria === currentFilter;
             });
 
-            loadMoreBtn.style.display = itemsShown >= filteredItems.length ? 'none' : 'block';
+            const allGridItems = galleryGrid.querySelectorAll('.gallery-item');
+            
+            allGridItems.forEach(gridItem => {
+                gridItem.style.display = 'none';
+            });
+
+            filteredItems.slice(0, itemsShown).forEach(itemData => {
+                const itemIndex = DADOS_GALERIA.indexOf(itemData);
+                const gridItem = galleryGrid.querySelector(`.gallery-item[data-index="${itemIndex}"]`);
+                if (gridItem) {
+                    gridItem.style.display = 'block';
+                }
+            });
+
+            // Lógica para exibir/esconder a mensagem de "nenhum item" e o botão "Ver Mais"
+            if (filteredItems.length === 0) {
+                noItemsMessage.style.display = 'block'; // Mostra a mensagem
+                loadMoreBtn.style.display = 'none';      // Esconde o botão "Ver Mais"
+            } else {
+                noItemsMessage.style.display = 'none';   // Esconde a mensagem
+                loadMoreBtn.style.display = itemsShown >= filteredItems.length ? 'none' : 'block'; // Mostra "Ver Mais" se houver mais itens
+            }
         }
 
         function handleFilterClick(e) {
@@ -582,7 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.currentTarget.classList.add('active');
             
             currentFilter = e.currentTarget.dataset.filter;
-            itemsShown = ITEMS_PER_LOAD; // Reseta a contagem
+            itemsShown = ITEMS_PER_LOAD;
             showItems();
         }
 
@@ -591,10 +693,28 @@ document.addEventListener('DOMContentLoaded', () => {
             showItems();
         }
 
+        // --- NOVO: Função para resetar o filtro para 'todos' ---
+        function resetFilterToAll() {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Ativa o botão 'Todos'
+            const allButton = document.querySelector('.filter-btn[data-filter="todos"]');
+            if (allButton) {
+                allButton.classList.add('active');
+            }
+            currentFilter = 'todos';
+            itemsShown = ITEMS_PER_LOAD;
+            showItems();
+        }
+
         // --- INICIALIZAÇÃO ---
         filterButtons.forEach(button => button.addEventListener('click', handleFilterClick));
         loadMoreBtn.addEventListener('click', loadMoreItems);
         
+        // Adiciona listener ao botão de reset na mensagem de "nenhum item"
+        if (resetFilterBtn) { // Verifica se o botão existe antes de adicionar o listener
+            resetFilterBtn.addEventListener('click', resetFilterToAll);
+        }
+
         populateGrid();
         itemsShown = ITEMS_PER_LOAD;
         showItems();
@@ -667,25 +787,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===================================================================
     // ============= FUNÇÃO DOS LOGOS  (VERSÃO ATUALIZADA) ===============
     // ===================================================================
+    function initProductShowcase() {
+        const productLogosContainer = document.querySelector('.product-logos');
+        
+        // Cria o elemento que vai rolar
+        const logosScroller = document.createElement('div');
+        logosScroller.className = 'logos-scroller';
 
-    function initLogoCarousel() {
-            const logosContainer = document.querySelector('.product-logos');
-            if (!logosContainer || DADOS_MARCAS.length === 0) return;
-            
-            logosContainer.innerHTML = '';
-            const scroller = document.createElement('div');
-            scroller.className = 'logos-scroller';
-            
-            const populateLogoScroller = (data) => {
-                data.forEach(logo => {
-                    scroller.innerHTML += `<div class="logo-item"><img src="${logo.imgSrc}" alt="Logo ${logo.name}" loading="lazy"></div>`;
-                });
-            }
-
-            populateLogoScroller(DADOS_MARCAS);
-            populateLogoScroller(DADOS_MARCAS); // Duplica para efeito infinito
-            logosContainer.appendChild(scroller);
+        if (!productLogosContainer) {
+            console.error("Container de logos de produtos (.product-logos) não encontrado.");
+            return;
         }
+
+        // Popula o scroller com as logos do seu DADOS_MARCAS
+        // E duplica o conteúdo para criar o efeito de loop infinito (seamless)
+        // Ao ter duas cópias das logos dentro do mesmo elemento de rolagem,
+        // a animação CSS pode fazer um loop suave.
+        const allLogosToDisplay = [...DADOS_MARCAS, ...DADOS_MARCAS]; 
+
+        allLogosToDisplay.forEach(marca => {
+            const logoItem = document.createElement('div');
+            logoItem.className = 'logo-item';
+            const img = document.createElement('img');
+            img.src = marca.imgSrc;
+            img.alt = `Logo ${marca.name}`; // Acessibilidade: usar o nome da marca como alt text
+            logoItem.appendChild(img);
+            logosScroller.appendChild(logoItem);
+        });
+
+        productLogosContainer.appendChild(logosScroller);
+
+
+        // Observador para adicionar a classe 'is-visible' quando a seção entra no viewport
+        // Isso aciona a animação de fade-in e slide-up para o container das logos.
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Quando o elemento está visível, adicione a classe
+                    productLogosContainer.classList.add('is-visible');
+                    // Pare de observar após a primeira vez que ele se torna visível para não repetir a animação
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // A animação começa quando 10% do elemento estiver visível na tela
+        });
+
+        // Começa a observar o container das logos
+        observer.observe(productLogosContainer);
+    }
 
     // ===================================================================
     // ============= FUNÇÃO DOS COMBOS   (VERSÃO ATUALIZADA) ===============
@@ -747,8 +897,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const allInputs = quoteGenerator.querySelectorAll('input, textarea');
         const messagePreview = document.getElementById('whatsapp-message-preview');
         const generateBtn = document.getElementById('generate-whatsapp-btn');
-        
-        if(!messagePreview || !generateBtn) return;
+
+        if (!messagePreview || !generateBtn) return;
 
         function updatePreviewMessage() {
             const modelo = quoteGenerator.querySelector('#veiculo-modelo')?.value.trim() || 'Não informado';
@@ -756,25 +906,47 @@ document.addEventListener('DOMContentLoaded', () => {
             const observacoes = quoteGenerator.querySelector('#observacoes')?.value.trim() || '';
             const localInput = quoteGenerator.querySelector('input[name="local-atendimento"]:checked');
             const local = localInput ? localInput.value : 'não informado';
-            
+
             let servicosSelecionados = [];
 
-            // Iterar sobre cada grupo de serviço principal
+            // --- Adição para o grupo de Lavagem ---
+            const lavagemGroup = quoteGenerator.querySelector('.service-group:has(input[value="Lavagem"])');
+            if (lavagemGroup) { // Verifica se o grupo de lavagem existe
+                const mainCheckbox = lavagemGroup.querySelector('input[name="servico_principal"]');
+                if (mainCheckbox && mainCheckbox.checked) {
+                    const selectedLavagemType = lavagemGroup.querySelector('input[name="lavagem_type"]:checked');
+                    if (selectedLavagemType) {
+                        servicosSelecionados.push(selectedLavagemType.value);
+                    } else {
+                        servicosSelecionados.push("Lavagem (tipo não especificado)");
+                    }
+                }
+            }
+            // --- Fim da adição para Lavagem ---
+
+
+            // Iterar sobre cada grupo de serviço principal (mantido como estava, mas a ordem pode importar para a mensagem)
+            // Para garantir que a lavagem apareça primeiro, se desejar, mova o bloco 'lavagemGroup' para o início.
             quoteGenerator.querySelectorAll('.service-group').forEach(group => {
                 const mainCheckbox = group.querySelector('input[name="servico_principal"]');
+                // Evita processar novamente o grupo de "Lavagem" se ele já foi tratado acima
+                if (mainCheckbox && mainCheckbox.value === "Lavagem") return; 
+
                 if (mainCheckbox && mainCheckbox.checked) {
                     let serviceGroupName = mainCheckbox.value;
                     const subOptionsContainer = group.querySelector('.sub-options');
-                    
+
                     let selectedSubOptions = [];
 
-                    // Coletar sub-opções (radio buttons ou checkboxes)
-                    subOptionsContainer.querySelectorAll('input[type="radio"]:checked').forEach(subInput => {
-                        selectedSubOptions.push(subInput.value);
-                    });
-                    subOptionsContainer.querySelectorAll('input[type="checkbox"]:checked').forEach(subInput => {
-                        selectedSubOptions.push(subInput.value);
-                    });
+                    if (subOptionsContainer) { // Garante que há sub-opções para coletar
+                        // Coletar sub-opções (radio buttons ou checkboxes)
+                        subOptionsContainer.querySelectorAll('input[type="radio"]:checked').forEach(subInput => {
+                            selectedSubOptions.push(subInput.value);
+                        });
+                        subOptionsContainer.querySelectorAll('input[type="checkbox"]:checked').forEach(subInput => {
+                            selectedSubOptions.push(subInput.value);
+                        });
+                    }
 
                     if (selectedSubOptions.length > 0) {
                         servicosSelecionados.push(`${serviceGroupName}: ${selectedSubOptions.join(', ')}`);
@@ -787,7 +959,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let message = `Olá, Auto Brilho! Gostaria de um orçamento para o meu veículo.\n\n`;
             message += `*Veículo:* ${modelo} (${ano})\n`;
             message += `*Local:* Atendimento ${local}\n`;
-            
+
             if (servicosSelecionados.length > 0) {
                 message += `*Serviços de Interesse:*\n- ${servicosSelecionados.join('\n- ')}\n`;
             } else {
@@ -797,9 +969,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (observacoes) {
                 message += `\n*Observações:* ${observacoes}`;
             }
-            
+
             messagePreview.textContent = message;
         }
+
         
         // Adiciona event listeners para todos os inputs e textareas para atualizar a prévia
         allInputs.forEach(input => input.addEventListener('input', updatePreviewMessage));
@@ -879,7 +1052,7 @@ document.addEventListener('DOMContentLoaded', () => {
     safeInit('ContactSection', initContactSection);
     safeInit('QuoteGenerator', initQuoteGenerator); // Mantenha esta chamada!
     safeInit('Gallery', initGallery);
-    safeInit('TestimonialCarousel', initTestimonialCarousel);
+    safeInit('ProductShowCase', initProductShowcase);
     safeInit('LogoCarousel', initLogoCarousel);
     safeInit('CtaLinks', setupCtaLinks);
 });
