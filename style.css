@@ -190,7 +190,7 @@ body {
     background-color: var(--cor-fundo);
     background-image:
         linear-gradient(to top, rgba(8, 10, 19, 1) 0%, rgba(8, 10, 19, 0.7) 50%, transparent 100%),
-        url('../assets/img/ImgHero1.png'); /* Caminho corrigido para CSS */
+        url('../assets/img/ImgHero2.png'); /* Caminho corrigido para CSS */
     background-size: cover;
     background-position: center center;
     padding: 0 var(--space-lg);
