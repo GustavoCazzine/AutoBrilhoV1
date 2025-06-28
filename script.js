@@ -550,13 +550,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const galleryGrid = document.querySelector('.gallery-grid');
         const filterButtons = document.querySelectorAll('.filter-btn');
         const loadMoreBtn = document.getElementById('load-more-btn');
-        const noItemsMessage = document.getElementById('no-items-message'); // SELETOR ADICIONADO!
-        const resetFilterBtn = noItemsMessage ? noItemsMessage.querySelector('.reset-filter-btn') : null; // SELETOR ADICIONADO!
+        const noItemsMessage = document.getElementById('no-items-message');
+        const resetFilterBtn = noItemsMessage ? noItemsMessage.querySelector('.reset-filter-btn') : null;
         
-        // --- Seletores do Novo "Modo Detalhe" ---
+        // --- Seletores do Modo Detalhe (Modal) ---
         const detailModal = document.getElementById('gallery-detail-modal');
         const modalCloseBtn = document.getElementById('modal-close-btn');
-        const modalOverlay = detailModal.querySelector('.modal-overlay');
+        const modalOverlay = detailModal ? detailModal.querySelector('.modal-overlay') : null;
         const modalTitle = document.getElementById('modal-title');
         const modalVehicle = document.getElementById('modal-vehicle');
         const modalChallenge = document.getElementById('modal-challenge');
@@ -566,32 +566,73 @@ document.addEventListener('DOMContentLoaded', () => {
         const sliderRange = document.getElementById('slider-range');
         const afterImageContainer = document.getElementById('after-image-container');
         const sliderHandle = document.getElementById('slider-handle');
+        const beforeAfterSlider = document.querySelector('.before-after-slider'); // O container do slider
 
-        // --- Validação ---
-        if (!galleryGrid || !loadMoreBtn || !detailModal || !noItemsMessage) { // Valida o novo elemento também
-            console.error("Elementos essenciais da galeria não encontrados.");
-            return;
+        // --- Validação Inicial dos Elementos Essenciais ---
+        if (!galleryGrid || !loadMoreBtn || !detailModal || !noItemsMessage || !modalOverlay || !beforeAfterSlider || !sliderRange || !afterImageContainer || !sliderHandle) {
+            console.error("Um ou mais elementos essenciais da galeria (ou modal) não foram encontrados. Verifique o HTML e os IDs/classes.");
+            return; // Interrompe a execução se faltar algum elemento crítico
         }
 
-        // --- Configurações ---
+        // --- Configurações da Galeria ---
         const ITEMS_PER_LOAD = 4;
         let currentFilter = 'todos';
-        let itemsShown = 0;
+        let itemsShown = 0; // Quantidade de itens visíveis na grade da galeria
 
-        // --- Funções do Slider ---
+        // --- Funções do Slider Antes/Depois no Modal ---
+        let isDragging = false; // Flag para controlar o arrasto do slider
+
         function updateSlider(value) {
+            // Atualiza o clipPath da imagem 'depois' e a posição do handle
             afterImageContainer.style.clipPath = `polygon(0 0, ${value}% 0, ${value}% 100%, 0 100%)`;
             sliderHandle.style.left = `${value}%`;
         }
 
-        if (sliderRange) {
-            sliderRange.addEventListener('input', (e) => {
-                updateSlider(e.target.value);
-            });
-        }
+        // Event listener principal para o input range (controle básico)
+        sliderRange.addEventListener('input', (e) => {
+            updateSlider(e.target.value);
+        });
 
-        // --- Funções do Modal ---
+        // Event listeners para arrastar o handle manualmente (para maior precisão e UX)
+        beforeAfterSlider.addEventListener('pointerdown', (e) => {
+            // Verifica se o clique foi no handle, no range ou no container do slider
+            if (e.target === sliderRange || e.target === sliderHandle || e.target === beforeAfterSlider) {
+                isDragging = true;
+                // Captura o ponteiro para que o arrasto continue mesmo se sair do elemento
+                beforeAfterSlider.setPointerCapture(e.pointerId);
+                // Impede o comportamento padrão de drag do navegador para a imagem
+                e.preventDefault(); 
+            }
+        });
+
+        beforeAfterSlider.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+
+            // Calcula a posição do ponteiro em relação ao container do slider
+            const sliderRect = beforeAfterSlider.getBoundingClientRect();
+            let clientX = e.clientX;
+
+            // Calcula a nova posição percentual do slider (entre 0 e 100)
+            let newX = clientX - sliderRect.left;
+            let newValue = (newX / sliderRect.width) * 100;
+
+            // Garante que o valor esteja entre 0 e 100
+            newValue = Math.max(0, Math.min(100, newValue));
+
+            // Atualiza o valor do input range e chama updateSlider
+            sliderRange.value = newValue; // Sincroniza o input range com o arrasto
+            updateSlider(newValue);
+        });
+
+        beforeAfterSlider.addEventListener('pointerup', (e) => {
+            isDragging = false;
+            // Libera a captura do ponteiro
+            beforeAfterSlider.releasePointerCapture(e.pointerId);
+        });
+
+        // --- Funções do Modal de Detalhes ---
         function openDetailModal(itemData) {
+            // Preenche o modal com os dados do item clicado
             modalTitle.textContent = itemData.titulo;
             modalVehicle.textContent = itemData.veiculo;
             modalChallenge.textContent = itemData.desafio;
@@ -599,25 +640,28 @@ document.addEventListener('DOMContentLoaded', () => {
             modalBeforeImg.src = itemData.imageBefore;
             modalAfterImg.src = itemData.imageAfter;
             
-            if (sliderRange) {
-                sliderRange.value = 50;
-                updateSlider(50);
-            }
+            // Reseta o slider para a posição inicial (50%) sempre que o modal é aberto
+            sliderRange.value = 50;
+            updateSlider(50);
             
+            // Ativa a visibilidade do modal e impede o scroll da página principal
             detailModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeDetailModal() {
+            // Remove a visibilidade do modal e permite o scroll da página principal
             detailModal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
+        // Event listeners para fechar o modal
         modalCloseBtn.addEventListener('click', closeDetailModal);
         modalOverlay.addEventListener('click', closeDetailModal);
 
-        // --- Funções da Galeria ---
+        // --- Funções de Renderização e Filtragem da Galeria ---
         function createGalleryItemHTML(itemData, index) {
+            // Cria o HTML para um item individual da galeria
             return `
                 <div class="gallery-item" data-index="${index}">
                     <img src="${itemData.imageBefore}" alt="${itemData.alt}" loading="lazy">
@@ -630,38 +674,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function populateGrid() {
+            // Preenche a grade da galeria com todos os itens do DADOS_GALERIA
             galleryGrid.innerHTML = DADOS_GALERIA.map((itemData, index) => createGalleryItemHTML(itemData, index)).join('');
             
+            // Adiciona um único event listener à grade para capturar cliques nos itens
             galleryGrid.addEventListener('click', (e) => {
                 const clickedItem = e.target.closest('.gallery-item');
                 if (clickedItem) {
                     const itemIndex = parseInt(clickedItem.dataset.index, 10);
                     const itemData = DADOS_GALERIA[itemIndex]; 
                     if (itemData) {
-                        openDetailModal(itemData);
+                        openDetailModal(itemData); // Abre o modal com os dados do item clicado
                     }
                 }
             });
         }
 
         function showItems() {
+            // Filtra os itens da galeria com base no filtro atual
             const filteredItems = DADOS_GALERIA.filter(item => {
                 if (currentFilter === 'todos') {
-                    return true;
+                    return true; // Se o filtro é 'todos', todos os itens são incluídos
                 }
                 if (Array.isArray(item.categoria)) {
+                    // Se a categoria é um array, verifica se o filtro atual está incluído em qualquer uma das categorias do item
                     return item.categoria.includes(currentFilter);
                 }
+                // Fallback para categorias que ainda são strings simples
                 return item.categoria === currentFilter;
             });
 
             const allGridItems = galleryGrid.querySelectorAll('.gallery-item');
             
+            // Primeiro, esconde todos os itens da grade
             allGridItems.forEach(gridItem => {
                 gridItem.style.display = 'none';
             });
 
+            // Depois, exibe apenas os itens que foram filtrados e estão dentro do limite de itens a serem mostrados
             filteredItems.slice(0, itemsShown).forEach(itemData => {
+                // Encontra o item correspondente na grade usando o data-index
                 const itemIndex = DADOS_GALERIA.indexOf(itemData);
                 const gridItem = galleryGrid.querySelector(`.gallery-item[data-index="${itemIndex}"]`);
                 if (gridItem) {
@@ -671,53 +723,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Lógica para exibir/esconder a mensagem de "nenhum item" e o botão "Ver Mais"
             if (filteredItems.length === 0) {
-                noItemsMessage.style.display = 'block'; // Mostra a mensagem
+                noItemsMessage.style.display = 'block'; // Mostra a mensagem de nenhum item
                 loadMoreBtn.style.display = 'none';      // Esconde o botão "Ver Mais"
             } else {
                 noItemsMessage.style.display = 'none';   // Esconde a mensagem
-                loadMoreBtn.style.display = itemsShown >= filteredItems.length ? 'none' : 'block'; // Mostra "Ver Mais" se houver mais itens
+                // Mostra o botão "Ver Mais" se ainda houver itens para carregar
+                loadMoreBtn.style.display = itemsShown >= filteredItems.length ? 'none' : 'block'; 
             }
         }
 
         function handleFilterClick(e) {
+            // Remove a classe 'active' de todos os botões de filtro e adiciona ao clicado
             filterButtons.forEach(btn => btn.classList.remove('active'));
             e.currentTarget.classList.add('active');
             
-            currentFilter = e.currentTarget.dataset.filter;
-            itemsShown = ITEMS_PER_LOAD;
-            showItems();
+            currentFilter = e.currentTarget.dataset.filter; // Atualiza o filtro atual
+            itemsShown = ITEMS_PER_LOAD; // Reseta a contagem de itens mostrados
+            showItems(); // Aplica o novo filtro e exibe os itens
         }
 
         function loadMoreItems() {
-            itemsShown += ITEMS_PER_LOAD;
-            showItems();
+            itemsShown += ITEMS_PER_LOAD; // Aumenta a contagem de itens a serem mostrados
+            showItems(); // Recarrega a exibição dos itens
         }
 
-        // --- NOVO: Função para resetar o filtro para 'todos' ---
+        // Função para resetar o filtro para 'todos'
         function resetFilterToAll() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Ativa o botão 'Todos'
             const allButton = document.querySelector('.filter-btn[data-filter="todos"]');
             if (allButton) {
-                allButton.classList.add('active');
+                allButton.classList.add('active'); // Ativa o botão 'Todos'
             }
-            currentFilter = 'todos';
-            itemsShown = ITEMS_PER_LOAD;
-            showItems();
+            currentFilter = 'todos'; // Define o filtro para 'todos'
+            itemsShown = ITEMS_PER_LOAD; // Reseta a contagem de itens
+            showItems(); // Exibe todos os itens
         }
 
-        // --- INICIALIZAÇÃO ---
-        filterButtons.forEach(button => button.addEventListener('click', handleFilterClick));
-        loadMoreBtn.addEventListener('click', loadMoreItems);
+        // --- INICIALIZAÇÃO DA GALERIA ---
+        filterButtons.forEach(button => button.addEventListener('click', handleFilterClick)); // Anexa listeners aos botões de filtro
+        loadMoreBtn.addEventListener('click', loadMoreItems); // Anexa listener ao botão "Ver Mais"
         
-        // Adiciona listener ao botão de reset na mensagem de "nenhum item"
-        if (resetFilterBtn) { // Verifica se o botão existe antes de adicionar o listener
+        if (resetFilterBtn) { // Anexa listener ao botão de reset (na mensagem de nenhum item)
             resetFilterBtn.addEventListener('click', resetFilterToAll);
         }
 
-        populateGrid();
-        itemsShown = ITEMS_PER_LOAD;
-        showItems();
+        populateGrid(); // Preenche a grade da galeria com os itens iniciais
+        itemsShown = ITEMS_PER_LOAD; // Define a quantidade inicial de itens a serem mostrados
+        showItems(); // Exibe os itens de acordo com o filtro e limite inicial
     }
 
     // ===================================================================
@@ -1053,6 +1105,5 @@ document.addEventListener('DOMContentLoaded', () => {
     safeInit('QuoteGenerator', initQuoteGenerator); // Mantenha esta chamada!
     safeInit('Gallery', initGallery);
     safeInit('ProductShowCase', initProductShowcase);
-    safeInit('LogoCarousel', initLogoCarousel);
     safeInit('CtaLinks', setupCtaLinks);
 });
