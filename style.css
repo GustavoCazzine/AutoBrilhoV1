@@ -190,7 +190,7 @@ body {
     background-color: var(--cor-fundo);
     background-image:
         linear-gradient(to top, rgba(8, 10, 19, 1) 0%, rgba(8, 10, 19, 0.7) 50%, transparent 100%),
-        url('../assets/img/ImgHero.png'); /* Caminho corrigido para CSS */
+        url('../assets/img/ImgHero.avif'); /* Caminho corrigido para CSS */
     background-size: cover;
     background-position: center center;
     padding: 0 var(--space-lg);
@@ -1102,7 +1102,7 @@ body {
 .diferenciais-section {
     position: relative;
     padding: var(--space-section) 0;
-    background-image: linear-gradient(rgba(8, 10, 19, 0.85), rgba(8, 10, 19, 0.85)), url('assets/img/Img2.png');
+    background-image: linear-gradient(rgba(8, 10, 19, 0.85), rgba(8, 10, 19, 0.85)), url('assets/img/Img2.avif');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Efeito Parallax */

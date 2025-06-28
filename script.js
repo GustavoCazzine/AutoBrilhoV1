@@ -205,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const DADOS_GALERIA = [
         {
             categoria: ['lavagens', 'lavagem-detalhada'],
-            imageBefore: '/assets/img/gallery/creta.jpg',
-            imageAfter: '/assets/img/gallery/creta2.jpg',
+            imageBefore: '/assets/img/gallery/creta.avif',
+            imageAfter: '/assets/img/gallery/creta2.avif',
             alt: 'Lavagem detalhada do Hyundai Creta Comfort',
             titulo: 'Lavagem Detalhada a Domicílio',
             veiculo: 'Hyundai Creta Comfort',
@@ -215,8 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             categoria: ['lavagens', 'lavagem-detalhada'],
-            imageBefore: '/assets/img/gallery/lavasimples.jpg',
-            imageAfter: '/assets/img/gallery/lavasimples2.jpg',
+            imageBefore: '/assets/img/gallery/lavasimples.avif',
+            imageAfter: '/assets/img/gallery/lavasimples2.avif',
             alt: 'Lavagem externa do Hyundai Santa Fé',
             titulo: 'Lavagem Externa',
             veiculo: 'Hyundai Santa Fé',
@@ -225,8 +225,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             categoria: ['higienizacoes'],
-            imageBefore: '/assets/img/gallery/higiinterna.jpg',
-            imageAfter: '/assets/img/gallery/higiinterna2.jpg',
+            imageBefore: '/assets/img/gallery/higiinterna.avif',
+            imageAfter: '/assets/img/gallery/higiinterna2.avif',
             alt: 'Higienização interna do Hyundai HB20X',
             titulo: 'Higienização Interna Profunda',
             veiculo: 'Hyundai HB20X',
@@ -235,8 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             categoria: ['lavagens', 'polimentos'],
-            imageBefore: '/assets/img/gallery/onix.jpg',
-            imageAfter: '/assets/img/gallery/onix2.jpg',
+            imageBefore: '/assets/img/gallery/onix.avif',
+            imageAfter: '/assets/img/gallery/onix2.avif',
             alt: 'Lavagem completa e polimento técnico do Chevrolet Onix',
             titulo: 'Lavagem Detalhada + Polimento Técnico',
             veiculo: 'Chevrolet Onix',
@@ -245,8 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             categoria: ['lavagens', 'lavagem-tecnica'],
-            imageBefore: '/assets/img/gallery/chevro.jpg',
-            imageAfter: '/assets/img/gallery/chevro2.jpg',
+            imageBefore: '/assets/img/gallery/chevro.avif',
+            imageAfter: '/assets/img/gallery/chevro2.avif',
             alt: 'Lavagem técnica em Chevrolet S10 4x4',
             titulo: 'Lavagem Técnica',
             veiculo: 'Chevrolet S10 4x4',
@@ -255,8 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             categoria: ['lavagens', 'lavagem-tecnica'],
-            imageBefore: '/assets/img/gallery/nivus.jpg',
-            imageAfter: '/assets/img/gallery/nivus2.jpg',
+            imageBefore: '/assets/img/gallery/nivus.avif',
+            imageAfter: '/assets/img/gallery/nivus2.avif',
             alt: 'Lavagem técnica em Volkswagen Nivus',
             titulo: 'Lavagem Técnica',
             veiculo: 'Volkswagen Nivus',
@@ -265,8 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             categoria: ['lavagens', 'lavagem-detalhada'],
-            imageBefore: '/assets/img/gallery/hrv.jpg',
-            imageAfter: '/assets/img/gallery/hrv2.jpg',
+            imageBefore: '/assets/img/gallery/hrv.avif',
+            imageAfter: '/assets/img/gallery/hrv2.avif',
             alt: 'Lavagem detalhada em Honda HR-V',
             titulo: 'Lavagem Detalhada a Domicílio',
             veiculo: 'Honda HR-V',
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quote: 'Serviço impecável! O brilho da vitrificação é inacreditável, meu carro parece um espelho.', 
             authorName: 'Carlos Monteiro', 
             authorDetail: 'Proprietário de um Audi A4', 
-            authorImg: 'assets/img/feedbacks/cliente1.jpg',
+            authorImg: 'assets/img/feedbacks/cliente1.avif',
             source: {
                 name: 'Google',
                 // IMPORTANTE: Substitua pela URL real da sua página de reviews do Google!
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quote: 'Atendimento nota 10 e o resultado do polimento superou todas as minhas expectativas. Recomendo de olhos fechados!', 
             authorName: 'Juliana Alves', 
             authorDetail: 'Proprietária de uma BMW X1', 
-            authorImg: 'assets/img/feedbacks/cliente2.jpg',
+            authorImg: 'assets/img/feedbacks/cliente2.avif',
             source: {
                 name: 'Google',
                 // IMPORTANTE: Substitua pela URL real da sua página de reviews do Google!
@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quote: 'Profissionalismo raro de se encontrar. Cuidaram do meu carro como se fosse deles. A higienização interna deixou o carro com cheiro de novo.', 
             authorName: 'Roberta Dias', 
             authorDetail: 'Proprietária de uma Toyota Hilux', 
-            authorImg: 'assets/img/feedbacks/cliente3.jpg',
+            authorImg: 'assets/img/feedbacks/cliente3.avif',
             source: {
                 name: 'Google',
                 // IMPORTANTE: Substitua pela URL real da sua página de reviews do Google!
@@ -358,15 +358,15 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const DADOS_MARCAS = [
-        { name: 'Menzerna', imgSrc: 'assets/img/logos/menzerna-logo.png' },
-        { name: 'CarPro', imgSrc: 'assets/img/logos/carpro-logo.png' },
-        { name: 'Rupes', imgSrc: 'assets/img/logos/rupes-logo.png' },
-        { name: 'Vonixx', imgSrc: 'assets/img/logos/vonixx-logo.png'} ,
-        { name: 'Koch Chemie', imgSrc: 'assets/img/logos/koch-chemie-logo.png' },
-        { name: 'Nasiol', imgSrc: 'assets/img/logos/nasiol-logo.png' },
-        { name: 'Soft99', imgSrc: 'assets/img/logos/soft99-logo.png' },
-        { name: '3M', imgSrc: 'assets/img/logos/3m-logo.png' },
-        { name: 'Gyeon', imgSrc: 'assets/img/logos/gyeon-logo.png' },
+        { name: 'Menzerna', imgSrc: 'assets/img/logos/menzerna-logo.avif' },
+        { name: 'CarPro', imgSrc: 'assets/img/logos/carpro-logo.avif' },
+        { name: 'Rupes', imgSrc: 'assets/img/logos/rupes-logo.avif' },
+        { name: 'Vonixx', imgSrc: 'assets/img/logos/vonixx-logo.avif'} ,
+        { name: 'Koch Chemie', imgSrc: 'assets/img/logos/koch-chemie-logo.avif' },
+        { name: 'Nasiol', imgSrc: 'assets/img/logos/nasiol-logo.avif' },
+        { name: 'Soft99', imgSrc: 'assets/img/logos/soft99-logo.avif' },
+        { name: '3M', imgSrc: 'assets/img/logos/3m-logo.avif' },
+        { name: 'Gyeon', imgSrc: 'assets/img/logos/gyeon-logo.avif' },
         
     ];
 
