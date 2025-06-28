@@ -140,7 +140,7 @@
                     <button class="filter-btn" data-filter="higienizacoes">Higienização Interna</button>
                     <button class="filter-btn" data-filter="adicionais">Adicionais</button>
                 </div>
-                
+
                 <div class="gallery-grid"></div>
 
                 <div id="no-items-message" class="no-items-message" style="display: none;">
@@ -157,15 +157,24 @@
                 <div class="modal-overlay"></div>
                 <div class="modal-content">
                     <button id="modal-close-btn" class="modal-close-btn">X</button>
-                    
-                    <div class="before-after-slider">
-                        <img id="modal-before-img" class="image-before-modal" src="" alt="Imagem Antes">
-                        <div id="after-image-container" class="after-image-container-modal">
-                            <img id="modal-after-img" class="image-after-modal" src="" alt="Imagem Depois">
-                        </div>
-                        <input type="range" min="0" max="100" value="50" class="slider-range" id="slider-range">
-                        <div class="slider-handle" id="slider-handle">
-                            <div class="handle-arrows"></div>
+
+                    <div class="modal-image-container">
+                        <div class="comparison-container">
+                            <div class="image-container">
+                                <img class="image-before slider-image" src="" alt="Antes">
+                                <img class="image-after slider-image" src="" alt="Depois">
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="slider" aria-label="Comparação de imagem">
+                            <div class="slider-line" aria-hidden="true"></div>
+                            <div class="slider-button" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 256 256">
+                                    <line x1="128" y1="40" x2="128" y2="216" stroke="currentColor" stroke-width="16"/>
+                                    <line x1="96" y1="128" x2="16" y2="128" stroke="currentColor" stroke-width="16"/>
+                                    <polyline points="48 160 16 128 48 96" stroke="currentColor" stroke-width="16"/>
+                                    <line x1="160" y1="128" x2="240" y2="128" stroke="currentColor" stroke-width="16"/>
+                                    <polyline points="208 96 240 128 208 160" stroke="currentColor" stroke-width="16"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 

@@ -204,8 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const DADOS_GALERIA = [
         {
-            // Agora 'lavagens' engloba 'lavagem-detalhada' e 'lavagem-tecnica'
-            categoria: ['lavagens', 'lavagem-detalhada'], // Pode manter a subcategoria se quiser filtros mais específicos no futuro
+            categoria: ['lavagens', 'lavagem-detalhada'],
             imageBefore: '/assets/img/gallery/creta.jpg',
             imageAfter: '/assets/img/gallery/creta2.jpg',
             alt: 'Lavagem detalhada do Hyundai Creta Comfort',
@@ -225,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
             solucao: 'Realizamos uma lavagem completa com shampoo neutro, enxágue pressurizado e secagem com toalhas de microfibra, restaurando o brilho e a presença do SUV com segurança.'
         },
         {
-            categoria: ['higienizacoes'], // Simplificado para higienizações
+            categoria: ['higienizacoes'],
             imageBefore: '/assets/img/gallery/higiinterna.jpg',
             imageAfter: '/assets/img/gallery/higiinterna2.jpg',
             alt: 'Higienização interna do Hyundai HB20X',
@@ -235,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             solucao: 'Realizamos uma higienização completa com vaporização e produtos antibacterianos, eliminando impurezas, maus odores e devolvendo o aspecto renovado ao interior do veículo.'
         },
         {
-            categoria: ['lavagens', 'polimentos'], // Combinação de lavagem e polimento
+            categoria: ['lavagens', 'polimentos'],
             imageBefore: '/assets/img/gallery/onix.jpg',
             imageAfter: '/assets/img/gallery/onix2.jpg',
             alt: 'Lavagem completa e polimento técnico do Chevrolet Onix',
@@ -543,8 +542,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================================================
-    // ============= FUNÇÃO DA GALERIA (VERSÃO COMPLETA E ATUALIZADA) ====
+    // ============= FUNÇÃO DA GALERIA (VERSÃO ESTÁTICA) =================
     // ===================================================================
+
     function initGallery() {
         // --- Seletores dos Elementos HTML ---
         const galleryGrid = document.querySelector('.gallery-grid');
@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const loadMoreBtn = document.getElementById('load-more-btn');
         const noItemsMessage = document.getElementById('no-items-message');
         const resetFilterBtn = noItemsMessage ? noItemsMessage.querySelector('.reset-filter-btn') : null;
-        
+
         // --- Seletores do Modo Detalhe (Modal) ---
         const detailModal = document.getElementById('gallery-detail-modal');
         const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -561,74 +561,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalVehicle = document.getElementById('modal-vehicle');
         const modalChallenge = document.getElementById('modal-challenge');
         const modalSolution = document.getElementById('modal-solution');
-        const modalBeforeImg = document.getElementById('modal-before-img');
-        const modalAfterImg = document.getElementById('modal-after-img');
-        const sliderRange = document.getElementById('slider-range');
-        const afterImageContainer = document.getElementById('after-image-container');
-        const sliderHandle = document.getElementById('slider-handle');
-        const beforeAfterSlider = document.querySelector('.before-after-slider'); // O container pai do slider
 
         // --- Validação Inicial dos Elementos Essenciais ---
-        if (!galleryGrid || !loadMoreBtn || !detailModal || !noItemsMessage || !modalOverlay || 
-            !beforeAfterSlider || !sliderRange || !afterImageContainer || !sliderHandle || 
-            !modalTitle || !modalVehicle || !modalChallenge || !modalSolution || !modalBeforeImg || !modalAfterImg) {
+        if (!galleryGrid || !loadMoreBtn || !detailModal || !noItemsMessage || !modalOverlay ||
+            !modalTitle || !modalVehicle || !modalChallenge || !modalSolution) {
             console.error("Um ou mais elementos essenciais da galeria (ou modal) não foram encontrados. Verifique o HTML e os IDs/classes correspondentes.");
-            return; 
+            return;
         }
 
         // --- Configurações da Galeria ---
-        const ITEMS_PER_LOAD = 4; 
-        let currentFilter = 'todos'; 
-        let itemsShown = 0; 
-
-        // --- Funções do Slider Antes/Depois no Modal ---
-        let isDraggingSlider = false; // Flag para controlar o estado de arrasto do slider
-
-        /**
-         * Atualiza a posição visual do slider de antes/depois.
-         * @param {number} value - O valor percentual (0-100) da posição do slider.
-         */
-        function updateSliderPosition(value) {
-            const clampedValue = Math.max(0, Math.min(100, value));
-            afterImageContainer.style.clipPath = `polygon(0 0, ${clampedValue}% 0, ${clampedValue}% 100%, 0 100%)`;
-            sliderHandle.style.left = `${clampedValue}%`;
-            sliderRange.value = clampedValue; 
-        }
-
-        // --- HANDLERS DE EVENTOS DO SLIDER (DEFINIDOS UMA VEZ PARA REUSO) ---
-        function updateSliderPositionViaInput(e) {
-            updateSliderPosition(e.target.value);
-        }
-
-        function handlePointerDown(e) {
-            const targetClassList = e.target.classList;
-            if (targetClassList.contains('slider-range') || targetClassList.contains('slider-handle') || targetClassList.contains('before-after-slider') || e.target.closest('.before-after-slider')) {
-                isDraggingSlider = true;
-                beforeAfterSlider.setPointerCapture(e.pointerId);
-                e.preventDefault(); 
-
-                const rect = beforeAfterSlider.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const percentage = (clickX / rect.width) * 100;
-                updateSliderPosition(percentage);
-            }
-        }
-
-        function handlePointerMove(e) {
-            if (!isDraggingSlider) return;
-            e.preventDefault(); 
-
-            const rect = beforeAfterSlider.getBoundingClientRect();
-            const moveX = e.clientX - rect.left;
-            const percentage = (moveX / rect.width) * 100;
-
-            updateSliderPosition(percentage);
-        }
-
-        function handlePointerUp(e) {
-            isDraggingSlider = false;
-            beforeAfterSlider.releasePointerCapture(e.pointerId);
-        }
+        const ITEMS_PER_LOAD = 4;
+        let currentFilter = 'todos';
+        let itemsShown = 0;
 
         // --- Funções do Modal de Detalhes ---
         function openDetailModal(itemData) {
@@ -636,42 +580,40 @@ document.addEventListener('DOMContentLoaded', () => {
             modalVehicle.textContent = itemData.veiculo;
             modalChallenge.textContent = itemData.desafio;
             modalSolution.textContent = itemData.solucao;
-            modalBeforeImg.src = itemData.imageBefore;
-            modalAfterImg.src = itemData.imageAfter;
-            
-            updateSliderPosition(50);
-            
+
+            const beforeImg = detailModal.querySelector('.image-before');
+            const afterImg = detailModal.querySelector('.image-after');
+            const comparisonContainer = detailModal.querySelector('.comparison-container');
+            const slider = detailModal.querySelector('.slider');
+
+            if (beforeImg && afterImg && comparisonContainer && slider) {
+                beforeImg.src = itemData.imageBefore;
+                afterImg.src = itemData.imageAfter;
+                beforeImg.alt = `Antes - ${itemData.alt || ''}`;
+                afterImg.alt = `Depois - ${itemData.alt || ''}`;
+
+                slider.value = 50;
+                comparisonContainer.style.setProperty('--position', '50%');
+
+                slider.oninput = (e) => {
+                    comparisonContainer.style.setProperty('--position', `${e.target.value}%`);
+                };
+            } else {
+                console.warn("Elementos do comparador não encontrados no modal.");
+            }
+
             detailModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-
-            // --- ATIVAR LISTENERS DO SLIDER AQUI (Quando o modal está aberto) ---
-            sliderRange.addEventListener('input', updateSliderPositionViaInput); 
-            beforeAfterSlider.addEventListener('pointerdown', handlePointerDown);
-            beforeAfterSlider.addEventListener('pointermove', handlePointerMove);
-            beforeAfterSlider.addEventListener('pointerup', handlePointerUp);
-
-            // Opcional: Adicionar ou remover cursor CSS dinamicamente para o beforeAfterSlider
-            beforeAfterSlider.style.cursor = 'col-resize';
         }
 
         function closeDetailModal() {
             detailModal.classList.remove('active');
             document.body.style.overflow = 'auto';
-
-            // --- DESATIVAR LISTENERS DO SLIDER AQUI (Quando o modal é fechado) ---
-            sliderRange.removeEventListener('input', updateSliderPositionViaInput);
-            beforeAfterSlider.removeEventListener('pointerdown', handlePointerDown);
-            beforeAfterSlider.removeEventListener('pointermove', handlePointerMove);
-            beforeAfterSlider.removeEventListener('pointerup', handlePointerUp);
-
-            // Opcional: Remover cursor CSS dinamicamente
-            beforeAfterSlider.style.cursor = ''; // Volta ao padrão ou o que for definido no CSS base
         }
 
         modalCloseBtn.addEventListener('click', closeDetailModal);
         modalOverlay.addEventListener('click', closeDetailModal);
 
-        // --- Funções de Renderização e Filtragem da Galeria ---
         function createGalleryItemHTML(itemData, index) {
             return `
                 <div class="gallery-item" data-index="${index}">
@@ -686,12 +628,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function populateGrid() {
             galleryGrid.innerHTML = DADOS_GALERIA.map((itemData, index) => createGalleryItemHTML(itemData, index)).join('');
-            
+
             galleryGrid.addEventListener('click', (e) => {
                 const clickedItem = e.target.closest('.gallery-item');
                 if (clickedItem) {
                     const itemIndex = parseInt(clickedItem.dataset.index, 10);
-                    const itemData = DADOS_GALERIA[itemIndex]; 
+                    const itemData = DADOS_GALERIA[itemIndex];
                     if (itemData) {
                         openDetailModal(itemData);
                     }
@@ -701,17 +643,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function showItems() {
             const filteredItems = DADOS_GALERIA.filter(item => {
-                if (currentFilter === 'todos') {
-                    return true;
-                }
-                if (Array.isArray(item.categoria)) {
-                    return item.categoria.includes(currentFilter);
-                }
-                return item.categoria === currentFilter;
+                if (currentFilter === 'todos') return true;
+                return Array.isArray(item.categoria)
+                    ? item.categoria.includes(currentFilter)
+                    : item.categoria === currentFilter;
             });
 
             const allGridItems = galleryGrid.querySelectorAll('.gallery-item');
-            
             allGridItems.forEach(gridItem => {
                 gridItem.style.display = 'none';
             });
@@ -719,9 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
             filteredItems.slice(0, itemsShown).forEach(itemData => {
                 const itemIndex = DADOS_GALERIA.indexOf(itemData);
                 const gridItem = galleryGrid.querySelector(`.gallery-item[data-index="${itemIndex}"]`);
-                if (gridItem) {
-                    gridItem.style.display = 'block';
-                }
+                if (gridItem) gridItem.style.display = 'block';
             });
 
             if (filteredItems.length === 0) {
@@ -736,7 +672,6 @@ document.addEventListener('DOMContentLoaded', () => {
         function handleFilterClick(e) {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             e.currentTarget.classList.add('active');
-            
             currentFilter = e.currentTarget.dataset.filter;
             itemsShown = ITEMS_PER_LOAD;
             showItems();
@@ -750,26 +685,21 @@ document.addEventListener('DOMContentLoaded', () => {
         function resetFilterToAll() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             const allButton = document.querySelector('.filter-btn[data-filter="todos"]');
-            if (allButton) {
-                allButton.classList.add('active');
-            }
+            if (allButton) allButton.classList.add('active');
             currentFilter = 'todos';
             itemsShown = ITEMS_PER_LOAD;
             showItems();
         }
 
-        // --- INICIALIZAÇÃO GERAL DA GALERIA ---
         filterButtons.forEach(button => button.addEventListener('click', handleFilterClick));
         loadMoreBtn.addEventListener('click', loadMoreItems);
-        
-        if (resetFilterBtn) {
-            resetFilterBtn.addEventListener('click', resetFilterToAll);
-        }
+        if (resetFilterBtn) resetFilterBtn.addEventListener('click', resetFilterToAll);
 
         populateGrid();
         itemsShown = ITEMS_PER_LOAD;
         showItems();
     }
+
 
     // ===================================================================
     // ============= FUNÇÃO DOS FEEDBACKS (VERSÃO ATUALIZADA) ===============
@@ -1103,6 +1033,8 @@ document.addEventListener('DOMContentLoaded', () => {
     safeInit('ContactSection', initContactSection);
     safeInit('QuoteGenerator', initQuoteGenerator); // Mantenha esta chamada!
     safeInit('Gallery', initGallery);
+    safeInit('TestimonialCarousel', initTestimonialCarousel);
     safeInit('ProductShowCase', initProductShowcase);
     safeInit('CtaLinks', setupCtaLinks);
+    
 });
