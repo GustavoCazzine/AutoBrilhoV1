@@ -1393,7 +1393,6 @@ main {
 }
 .custom-quote-content.active {
     border-color: var(--cor-destaque);
-    max-height: none !important; /* Permite crescer sem limite ao abrir */
     overflow: visible;
 }
 
@@ -1448,11 +1447,7 @@ main {
     overflow: hidden; 
     padding-left: 34px; /* Alinha com o texto do checkbox principal */
     transition: max-height 0.4s ease-out, opacity 0.3s ease-out, margin-top 0.4s ease-out; 
-    opacity: 0; 
-    margin-top: 0; /* Começa sem margem */
 }
-/* A classe '.active' e '.max-height' não são mais aplicadas pelo CSS puro, mas sim pelo JS.
-   A transição é feita diretamente nas propriedades `max-height`, `opacity` e `margin-top` via JS. */
 
 .sub-options p { 
     font-size: var(--font-size-sm); 

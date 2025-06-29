@@ -824,10 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initContactSection() {
         const container = document.getElementById('combo-packages-container');
-
-        if (!container || !DADOS_COMBOS || DADOS_COMBOS.length === 0) {
-            return;
-        }
+        if (!container || !DADOS_COMBOS || !DADOS_COMBOS.length) return;
 
         const icons = {
             'sun': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>',
@@ -844,30 +841,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3 class="combo-title">${combo.title}</h3>
                 <p class="combo-description">${combo.description}</p>
                 <ul class="combo-services-list">
-                    ${combo.services.map(service => `<li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>${service}</li>`).join('')}
+                    ${combo.services.map(service => `<li><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"></polyline></svg>${service}</li>`).join('')}
                 </ul>
                 <a href="${whatsappURL}" target="_blank" rel="noopener noreferrer" class="cta-combo">Tenho Interesse</a>
             `;
             container.appendChild(comboCard);
         });
 
+        // Accordion toggle logic (corrigido e sem duplicidade)
         const toggleButton = document.getElementById('toggle-custom-quote');
         const content = document.getElementById('custom-quote-content');
         if (toggleButton && content) {
+            // Inicializa o estado fechado
+            content.style.maxHeight = '0px';
             toggleButton.addEventListener('click', () => {
                 toggleButton.classList.toggle('active');
                 content.classList.toggle('active');
-                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-                    content.style.maxHeight = null; // Recolhe
+                if (content.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
                 } else {
-                    // Ao abrir, recalcula a altura após um pequeno delay para garantir que o DOM renderize
-                    setTimeout(() => {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }, 0);
+                    content.style.maxHeight = '0px';
+                }
+            });
+            // Atualiza a altura ao redimensionar
+            window.addEventListener('resize', function() {
+                if (content.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
                 }
             });
         }
-
+    }
 
     // ===================================================================
     // ============= FUNÇÃO GERADOR DE ORÇAMENTO PERSONALIZADO =========
