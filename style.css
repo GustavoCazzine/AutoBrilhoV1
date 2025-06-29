@@ -45,13 +45,27 @@
 /* =================== ESTILOS GLOBAIS E RESET ======================= */
 /* =================================================================== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    height: 100%; /* Garante que o HTML ocupe 100% da viewport */
+}
 body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto-principal);
     font-family: var(--fonte-principal);
     overflow-x: hidden;
+    
+    display: flex;
+    flex-direction: column; 
+    min-height: 100vh; 
+
 }
+
+main {
+    flex: 1;
+}
+
 .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--space-md); }
 
 .visually-hidden {
@@ -1310,8 +1324,9 @@ body {
 /* =================================================================== */
 
 .contato-section {
-    padding: var(--space-section) 0 0 0;
+    padding: var(--space-section) 0 var(--space-section) 0;
     position: relative;
+    overflow: visible; /* Garante que nada seja cortado ao expandir */
 }
 
 /* --- PACOTES RECOMENDADOS (COMBOS) --- */
@@ -1376,7 +1391,11 @@ body {
     border-top: none; 
     border-radius: 0 0 var(--border-radius-md) var(--border-radius-md); 
 }
-.custom-quote-content.active { border-color: var(--cor-destaque); } /* Borda fica azul quando ativo */
+.custom-quote-content.active {
+    border-color: var(--cor-destaque);
+    max-height: none !important; /* Permite crescer sem limite ao abrir */
+    overflow: visible;
+}
 
 /* ====================================================== */
 /* --- ESTILOS DO FORMULÁRIO DETALHADO (RESTAURADOS) --- */

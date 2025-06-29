@@ -818,14 +818,13 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(productLogosContainer);
     }
 
-    // ===================================================================
-    // ============= FUNÇÃO DOS COMBOS   (VERSÃO ATUALIZADA) ===============
+ // ===================================================================
+    // ============= FUNÇÃO DOS COMBOS (VERSÃO ATUALIZADA) ===============
     // ===================================================================
 
     function initContactSection() {
         const container = document.getElementById('combo-packages-container');
-        
-        // ESTA É A VERIFICAÇÃO CORRIGIDA (SEM O "window.")
+
         if (!container || !DADOS_COMBOS || DADOS_COMBOS.length === 0) {
             return;
         }
@@ -839,7 +838,7 @@ document.addEventListener('DOMContentLoaded', () => {
         DADOS_COMBOS.forEach(combo => {
             const comboCard = document.createElement('div');
             comboCard.className = 'combo-card';
-            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(combo.whatsappMessage)}`;
+            const whatsappURL = `${BASE_WHATSAPP_URL}${encodeURIComponent(combo.whatsappMessage)}`;
             comboCard.innerHTML = `
                 <div class="combo-icon">${icons[combo.icon] || ''}</div>
                 <h3 class="combo-title">${combo.title}</h3>
@@ -858,19 +857,22 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleButton.addEventListener('click', () => {
                 toggleButton.classList.toggle('active');
                 content.classList.toggle('active');
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = null; // Recolhe
                 } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
+                    // Ao abrir, recalcula a altura após um pequeno delay para garantir que o DOM renderize
+                    setTimeout(() => {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }, 0);
                 }
             });
         }
-    }
+
 
     // ===================================================================
     // ============= FUNÇÃO GERADOR DE ORÇAMENTO PERSONALIZADO =========
     // ===================================================================
-        
+
     function initQuoteGenerator() {
         const quoteGenerator = document.querySelector('.quote-generator-container');
         if (!quoteGenerator) return;
@@ -878,8 +880,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const allInputs = quoteGenerator.querySelectorAll('input, textarea');
         const messagePreview = document.getElementById('whatsapp-message-preview');
         const generateBtn = document.getElementById('generate-whatsapp-btn');
+        const customQuoteContent = document.getElementById('custom-quote-content'); // Referência ao contêiner principal do acordeão
 
-        if (!messagePreview || !generateBtn) return;
+        if (!messagePreview || !generateBtn || !customQuoteContent) return;
 
         function updatePreviewMessage() {
             const modelo = quoteGenerator.querySelector('#veiculo-modelo')?.value.trim() || 'Não informado';
@@ -890,9 +893,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let servicosSelecionados = [];
 
-            // --- Adição para o grupo de Lavagem ---
+            // --- Adição para o grupo de Lavagem (garante a ordem se for importante) ---
             const lavagemGroup = quoteGenerator.querySelector('.service-group:has(input[value="Lavagem"])');
-            if (lavagemGroup) { // Verifica se o grupo de lavagem existe
+            if (lavagemGroup) {
                 const mainCheckbox = lavagemGroup.querySelector('input[name="servico_principal"]');
                 if (mainCheckbox && mainCheckbox.checked) {
                     const selectedLavagemType = lavagemGroup.querySelector('input[name="lavagem_type"]:checked');
@@ -905,13 +908,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             // --- Fim da adição para Lavagem ---
 
-
-            // Iterar sobre cada grupo de serviço principal (mantido como estava, mas a ordem pode importar para a mensagem)
-            // Para garantir que a lavagem apareça primeiro, se desejar, mova o bloco 'lavagemGroup' para o início.
+            // Iterar sobre cada grupo de serviço principal (excluindo Lavagem se já tratado)
             quoteGenerator.querySelectorAll('.service-group').forEach(group => {
                 const mainCheckbox = group.querySelector('input[name="servico_principal"]');
-                // Evita processar novamente o grupo de "Lavagem" se ele já foi tratado acima
-                if (mainCheckbox && mainCheckbox.value === "Lavagem") return; 
+                if (mainCheckbox && mainCheckbox.value === "Lavagem") return; // Evita reprocessar Lavagem
 
                 if (mainCheckbox && mainCheckbox.checked) {
                     let serviceGroupName = mainCheckbox.value;
@@ -919,8 +919,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let selectedSubOptions = [];
 
-                    if (subOptionsContainer) { // Garante que há sub-opções para coletar
-                        // Coletar sub-opções (radio buttons ou checkboxes)
+                    if (subOptionsContainer) {
                         subOptionsContainer.querySelectorAll('input[type="radio"]:checked').forEach(subInput => {
                             selectedSubOptions.push(subInput.value);
                         });
@@ -932,7 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (selectedSubOptions.length > 0) {
                         servicosSelecionados.push(`${serviceGroupName}: ${selectedSubOptions.join(', ')}`);
                     } else {
-                        servicosSelecionados.push(serviceGroupName); // Se o checkbox principal estiver marcado, mas nenhuma sub-opção for selecionada
+                        servicosSelecionados.push(serviceGroupName);
                     }
                 }
             });
@@ -954,19 +953,29 @@ document.addEventListener('DOMContentLoaded', () => {
             messagePreview.textContent = message;
         }
 
-        
+        // Função auxiliar para recalcular a altura do acordeão principal
+        function updateCustomQuoteContentHeight() {
+            if (customQuoteContent.classList.contains('active')) {
+                // Recalcula a altura total do conteúdo e aplica ao maxHeight
+                customQuoteContent.style.maxHeight = customQuoteContent.scrollHeight + "px";
+            }
+        }
+
         // Adiciona event listeners para todos os inputs e textareas para atualizar a prévia
-        allInputs.forEach(input => input.addEventListener('input', updatePreviewMessage));
-        
+        allInputs.forEach(input => input.addEventListener('input', () => {
+            updatePreviewMessage();
+            updateCustomQuoteContentHeight(); // Recalcula a altura ao digitar ou alterar qualquer campo
+        }));
+
         // Adiciona event listeners para os checkboxes de grupo para mostrar/esconder sub-opções
         document.querySelectorAll('.service-group .group-title input[name="servico_principal"]').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 const subOptions = this.closest('.service-group').querySelector('.sub-options');
                 if (subOptions) {
                     if (this.checked) {
-                        subOptions.style.maxHeight = subOptions.scrollHeight + "px"; // Expande para o conteúdo
+                        subOptions.style.maxHeight = subOptions.scrollHeight + "px";
                         subOptions.style.opacity = 1;
-                        subOptions.style.marginTop = 'var(--space-md)'; // Garante o espaçamento
+                        subOptions.style.marginTop = 'var(--space-md)';
                     } else {
                         subOptions.style.maxHeight = 0;
                         subOptions.style.opacity = 0;
@@ -977,18 +986,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
                 }
-                updatePreviewMessage(); // Atualiza a mensagem ao mudar a visibilidade/seleção
-                // Reajusta a altura do accordion pai se estiver aberto
-                const customQuoteContent = document.getElementById('custom-quote-content');
-                if (customQuoteContent && customQuoteContent.classList.contains('active')) {
-                    customQuoteContent.style.maxHeight = customQuoteContent.scrollHeight + "px";
-                }
+                updatePreviewMessage();
+                updateCustomQuoteContentHeight(); // CHAVE: Recalcula a altura do pai após a sub-opção mudar
             });
         });
 
-        // Event listener para as sub-opções, para que a prévia seja atualizada
+        // Event listener para as sub-opções, para que a prévia seja atualizada E a altura do pai recalculada
         document.querySelectorAll('.sub-options input').forEach(subInput => {
-            subInput.addEventListener('change', updatePreviewMessage);
+            subInput.addEventListener('change', () => {
+                updatePreviewMessage();
+                updateCustomQuoteContentHeight(); // CHAVE: Recalcula a altura do pai após a sub-opção ser marcada/desmarcada
+            });
         });
 
         generateBtn.addEventListener('click', () => {
@@ -1010,14 +1018,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 subOptions.style.marginTop = 0;
             }
         });
+
+        // Event listener para o botão principal do acordeão
+        const toggleButton = document.getElementById('toggle-custom-quote');
+        if (togtoggle-custom-quotegleButton) {
+            toggleButton.addEventListener('click', () => {
+                // A lógica de toggle da classe e maxHeight já está em initContactSection,
+                // mas é crucial que updateCustomQuoteContentHeight seja chamado após a abertura
+                // para garantir que o scrollHeight seja preciso.
+                // O initContactSection já tem o setTimeout para isso, mas se houver algum bug,
+                // poderíamos duplicar a chamada aqui com um pequeno setTimeout.
+                // Por enquanto, confiamos no initContactSection para lidar com a abertura.
+            });
+        }
     }
 
     // ===================================================================
     // ============= INICIALIZAÇÃO ROBUSTA DOS MÓDULOS =================
     // ===================================================================
-
-    // Envolve cada inicialização em um try...catch para que um erro em um
-    // módulo não impeça os outros de funcionarem.
 
     function safeInit(name, initFunction) {
         try {
