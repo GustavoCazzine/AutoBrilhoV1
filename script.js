@@ -394,26 +394,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuLinks = document.querySelectorAll('.mobile-menu-overlay .nav-link');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn'); // <-- Reativado
 
-        if (!hamburgerBtn || !mobileMenu) return;
+        if (!hamburgerBtn || !mobileMenu || !closeMenuBtn) {
+            console.error("Erro: Elementos essenciais do menu mobile não foram encontrados.");
+            return;
+        }
 
-        const toggleMenu = () => {
-            hamburgerBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
+        const openMenu = () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
         };
 
-        hamburgerBtn.addEventListener('click', toggleMenu);
-        if (closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
+        const closeMenu = () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        // O hambúrguer AGORA SÓ ABRE o menu
+        hamburgerBtn.addEventListener('click', openMenu);
         
+        // O botão 'X' e os links AGORA SÓ FECHAM o menu
+        closeMenuBtn.addEventListener('click', closeMenu);
         mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileMenu.classList.contains('active')) toggleMenu();
-            });
+            link.addEventListener('click', closeMenu);
         });
 
+        // Efeito de scroll no header continua igual
         window.addEventListener('scroll', () => {
-            if (header) header.classList.toggle('scrolled', window.scrollY > 50);
+            if (header) {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            }
         });
     }
 
