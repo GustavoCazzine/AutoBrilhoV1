@@ -1395,6 +1395,7 @@ main {
     /* NOVO: Adicionado para os dois scrollers funcionarem juntos */
     display: flex;
     flex-wrap: nowrap;
+    gap: var(--space-lg);
 }
 
 .testimonial-scroller {
